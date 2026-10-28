@@ -10,10 +10,10 @@
     "status": "candidate",
     "source": {
       "repository": "https://github.com/Razdva122/clean-your-tv-lg-webos",
-      "commit": "4bbc4227b01c0e388a5f6851845109345b8dd1cc",
+      "commit": "1d0cb46fb08dfdbc767e4bfeee05a138028ede88",
       "dirty": true
     },
-    "manifestSha256": "9bf031cd242dd74cd2163d3d2380e612dcef3a5acee61157b0bb52d2ea3a5a17"
+    "manifestSha256": "5129e7290623612932bf73c4ccb6350f254fbae7c7175646ba954b7fc1453ddd"
   },
   "themeApiVersion": 1,
   "scenarios": [
@@ -25,7 +25,8 @@
     "columns": 8,
     "override": null,
     "themeColumns": 8,
-    "preset": "scenic-grid"
+    "preset": "scenic-grid",
+    "allowColumnOverride": false
   },
   "settingsThemeSuspended": true
 }

@@ -18,7 +18,8 @@ npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
 
 Open **http://127.0.0.1:8877/**. Select a theme above the screen, then use the
 mouse or arrows/Enter inside Home. Switching uses the same renderer without
-reloading it; app order and the column override are retained. Apps and TV
+reloading it; app order and the saved column preference are retained.
+Themes may fix their own layout and temporarily suspend the column override. Apps and TV
 services are simulated. Keep the terminal open; Ctrl+C stops the local server.
 This is a local candidate showcase, not a published community catalog.
 

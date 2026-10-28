@@ -22,10 +22,10 @@ positioning, geometry transforms, hidden focus controls and unsupported features
 fail validation. Settings, confirmations and recovery remain standard.
 
 Layout belongs in `theme.json`, not arbitrary CSS: one of `dock-grid` (low shelf), `icon-grid` (compact square icons),
-`side-grid` (fixed sidebar and app grid) or `channel-list` (numbered rows),
+`side-grid` (fixed sidebar and app grid) `channel-list` (numbered rows) or `scenic-grid` (bottom scenic rows),
 columns 1–8,
 spacingScale 0.8–1.2, textScale 0.9–1.25 and focusScale 1.05–1.15. Dim is 0–0.85.
-Templates own geometry and remote hit areas. The TV user can override columns
+Templates own geometry and remote hit areas. Unless `allowColumnOverride` is false, the TV user can override columns
 within every template; narrow channel-list cells use a compact icon and label.
 In side-grid, Left from the first grid column enters the sidebar, Up/Down
 selects a shortcut, and Right returns to the grid.
@@ -70,3 +70,16 @@ In the `channel-list` preset, focus is painted directly on
 travelling `.ctv-focus` frame belongs to other layouts and stays hidden in the
 list. Channel row changes and scrolling are immediate, without a second zooming
 outline. Remote input keeps focus until actual pointer movement or a click.
+
+## Let the author keep a fixed composition
+
+Set `layout.allowColumnOverride: false` in `theme.json` for a preset whose
+column count is part of the intended design. The TV hides Columns and uses
+`layout.columns`. Classic and themes omitting the flag keep that setting.
+The user's saved value returns when switching to an adjustable theme; it is
+never overwritten by a fixed theme. The current Glasshouse example demonstrates
+this flag. Use a runtime with column-policy support; older candidates reject it.
+
+The flag does not unlock arbitrary CSS positioning. Templates still own card
+coordinates, focus, pointer hit areas and remote navigation. New placement
+patterns need a trusted renderer preset rather than theme JavaScript.

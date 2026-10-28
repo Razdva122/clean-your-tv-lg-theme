@@ -21,11 +21,11 @@ test('live showcase switches themes on one renderer and retains user column choi
   await frame.waitForFunction(()=>window.HomeLayoutState);
   assert.equal(await frame.locator('#ctv-theme-style').count(),0,'Classic uses the built-in renderer styles');
   await frame.evaluate(()=>{window.sameHome=true;HomeLayoutState.setColumns(4);});
-  for(const [title,preset] of [['Glasshouse','scenic-grid'],['Channel','channel-list']]){
+  for(const [title,preset,columns] of [['Glasshouse','scenic-grid',8],['Channel','channel-list',4]]){
    await page.getByRole('button',{name:title,exact:true}).click();
    await frame.waitForFunction(preset=>HomeLayoutState.state().preset===preset,preset);
    assert.equal(await frame.evaluate(()=>window.sameHome),true,'renderer is not reloaded');
-   assert.equal(await frame.evaluate(()=>HomeLayoutState.state().columns),4,'user override is retained');
+   assert.equal(await frame.evaluate(()=>HomeLayoutState.state().columns),columns,'fixed theme uses author columns; adjustable theme restores user override');
    await page.waitForFunction(title=>[...document.querySelectorAll('[data-theme-id]')].some(b=>b.textContent===title&&b.getAttribute('aria-pressed')==='true'),title);
   }
   await page.getByRole('button',{name:'Classic',exact:true}).click();

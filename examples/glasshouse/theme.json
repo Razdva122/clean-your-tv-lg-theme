@@ -8,13 +8,14 @@
     "name": "Clean Your TV contributors",
     "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.0.0",
+  "themeVersion": "1.1.0",
   "layout": {
     "preset": "scenic-grid",
     "columns": 8,
     "spacingScale": 1,
     "textScale": 1,
-    "focusScale": 1.1
+    "focusScale": 1.1,
+    "allowColumnOverride": false
   },
   "defaults": {
     "wallpaperAssetId": "landscape",
