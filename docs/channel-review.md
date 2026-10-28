@@ -45,3 +45,21 @@ This is browser/service simulation, with no TV connection. Root was checked by
 automated browser tests, not a manual device run. Physical TV model, firmware,
 webOS version and remote: untested. Installation, real app launches/input
 switching, sound, standby, cold boot, OTA and rollback: untested.
+
+## Navigation follow-up
+
+Reproduced the reported Up-navigation failure with actual animations enabled:
+after scrolling to the end and parking the pointer over row eight, Up to row
+five selected row seven instead. Content moved beneath the stationary cursor
+and mouseover overrode keyboard focus. The regression now runs in both editions
+and confirms every Up selects exactly the preceding row, and genuine pointer
+movement restores hover.
+
+Channel 1.2.1 uses one immediate row highlight; its enlarged travelling glass
+and row/stage transitions are disabled. The selected row remains readable during
+reorder. Classic retains its existing glass/motion behavior. No hardware claim
+is added by these browser results.
+
+Navigation follow-up candidate source: `a1b6a7aa399e8202df2383f802e33752b7264ad0`.
+The TV/preview check groups passed; final first-pointer and parked-pointer
+regressions passed separately after the simplified input ownership fix.

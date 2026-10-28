@@ -64,3 +64,9 @@ App library surfaces expose `.ctv-library-panel` and `.ctv-library-close`
 so a theme can match its app library without styling trusted Settings.
 Channel uses the current candidate's selected-app preview, larger list rows,
 and full-width multi-column cells. Older candidates lack these polish fixes.
+
+In the `channel-list` preset, focus is painted directly on
+`.ctv-card.is-focused` (with the engine's mandatory accent border). The enlarged
+travelling `.ctv-focus` frame belongs to other layouts and stays hidden in the
+list. Channel row changes and scrolling are immediate, without a second zooming
+outline. Remote input keeps focus until actual pointer movement or a click.
