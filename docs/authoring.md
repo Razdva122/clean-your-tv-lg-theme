@@ -77,7 +77,7 @@ Set `layout.allowColumnOverride: false` in `theme.json` for a preset whose
 column count is part of the intended design. The TV hides Columns and uses
 `layout.columns`. Classic and themes omitting the flag keep that setting.
 The user's saved value returns when switching to an adjustable theme; it is
-never overwritten by a fixed theme. The current Glasshouse example demonstrates
+never overwritten by a fixed theme. The current Alpine example demonstrates
 this flag. Use a runtime with column-policy support; older candidates reject it.
 
 The flag does not unlock arbitrary CSS positioning. Templates still own card

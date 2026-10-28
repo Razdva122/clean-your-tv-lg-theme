@@ -24,7 +24,7 @@ services are simulated. Keep the terminal open; Ctrl+C stops the local server.
 This is a local candidate showcase, not a published community catalog.
 
 
-Use built-in **Classic** or the complete [Channel and Glasshouse examples and screenshots](examples/README.md). The [local visual gallery](examples/index.html)
+Use built-in **Classic** or the complete [Channel and Alpine examples and screenshots](examples/README.md). The [local visual gallery](examples/index.html)
 compares Home, Inputs and the standard Settings screen without a runtime.
 For an interactive example, run `npm run theme -- preview examples/terminal --runtime .runtime/candidate`.
 
@@ -59,6 +59,7 @@ npm run theme -- validate themes/ocean --runtime .runtime/candidate
 npm test
 ```
 
+Start with [the complete author walkthrough](docs/tutorial.md).
 See [CSS and layout](docs/authoring.md), [publishing and collections](docs/publish.md),
 [Russian quick start](docs/quick-start.ru.md) and [limitations](docs/compatibility.md).
 The authoring workflow needs no embedded editor or desktop authoring application.
@@ -67,3 +68,16 @@ The live showcase starts with **Classic**, the renderer's built-in appearance.
 Classic calls the trusted reset path rather than loading a CSS imitation.
 It restores the original layout and default of 5 columns, while an explicit
 user column choice still takes precedence. Other themes remain selectable.
+
+## Documentation map
+
+| Task | Guide |
+| --- | --- |
+| Create a first theme, open it, fix errors | [Author walkthrough](docs/tutorial.md) |
+| CSS parts, images, layouts, button icons | [Authoring reference](docs/authoring.md) |
+| Prepare a runtime locally | [Runtime preparation](docs/runtime.md) |
+| Build, publish several themes and submit a PR | [Publishing](docs/publish.md) |
+| Candidate limits and TV availability | [Compatibility](docs/compatibility.md) |
+| Compare complete examples | [Classic, Alpine and Channel](examples/README.md) |
+
+The public catalog belongs to [the main project](https://github.com/Razdva122/clean-your-tv-lg-webos/tree/codex/theme-css-foundation/showcase). Its initial Alpine/Channel records reference independently committed distributions in this repository; the catalog and TV installer follow the main project release cycle. A listing does not install or bundle a theme.

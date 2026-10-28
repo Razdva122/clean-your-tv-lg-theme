@@ -6,9 +6,9 @@
   "description": "A quiet alpine panorama, large clock and one infinitely looping horizontal app ribbon.",
   "author": {
     "name": "Clean Your TV contributors",
-    "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
+    "url": "https://github.com/razdva122"
   },
-  "themeVersion": "1.4.1",
+  "themeVersion": "1.4.2",
   "layout": {
     "preset": "scenic-grid",
     "columns": 8,
@@ -57,6 +57,27 @@
       "mediaType": "image/png",
       "width": 96,
       "height": 96
+    },
+    {
+      "id": "inputs-preview",
+      "path": "assets/inputs-preview.png",
+      "mediaType": "image/png",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "id": "settings-preview",
+      "path": "assets/settings-preview.png",
+      "mediaType": "image/png",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "id": "library-preview",
+      "path": "assets/library-preview.png",
+      "mediaType": "image/png",
+      "width": 960,
+      "height": 540
     }
   ],
   "previewAssetId": "preview",
