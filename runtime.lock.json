@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "themeApiVersion": 1,
+  "status": "unpublished",
+  "artifact": null,
+  "note": "No official author runtime has been published. Development requires an explicit locally exported candidate via --runtime; a candidate is not a signed application release."
+}
