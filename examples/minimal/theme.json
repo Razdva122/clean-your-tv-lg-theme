@@ -2,16 +2,16 @@
   "schemaVersion": 1,
   "themeApiVersion": 1,
   "id": "github:razdva122/clean-your-tv-lg-theme:minimal",
-  "title": "Minimal",
-  "description": "Graphite panels, quiet typography and a crisp neutral focus.",
+  "title": "Pure",
+  "description": "A pure black app grid with small square icons, quiet chrome and a white frame.",
   "author": {
     "name": "Clean Your TV contributors",
     "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.1.0",
+  "themeVersion": "1.2.0",
   "layout": {
-    "preset": "dock-grid",
-    "columns": 5,
+    "preset": "icon-grid",
+    "columns": 6,
     "spacingScale": 1,
     "textScale": 1,
     "focusScale": 1.1
@@ -19,7 +19,7 @@
   "defaults": {
     "wallpaperAssetId": null,
     "dim": 0,
-    "accent": "#dce6ef"
+    "accent": "#ffffff"
   },
   "assets": [
     {

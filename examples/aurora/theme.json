@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "themeApiVersion": 1,
   "id": "github:razdva122/clean-your-tv-lg-theme:aurora",
-  "title": "Aurora",
-  "description": "Original sea-glass aurora ribbons with ink-blue surfaces and mint focus.",
+  "title": "Postcard",
+  "description": "Original flat mountain artwork and a low shelf of apps, with dark ink controls.",
   "author": {
     "name": "Clean Your TV contributors",
     "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.1.0",
+  "themeVersion": "1.2.0",
   "layout": {
     "preset": "dock-grid",
     "columns": 5,
@@ -18,8 +18,8 @@
   },
   "defaults": {
     "wallpaperAssetId": "wallpaper",
-    "dim": 0.06,
-    "accent": "#8de4ce"
+    "dim": 0,
+    "accent": "#18364a"
   },
   "assets": [
     {

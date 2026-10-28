@@ -2,24 +2,24 @@
   "schemaVersion": 1,
   "themeApiVersion": 1,
   "id": "github:razdva122/clean-your-tv-lg-theme:gallery",
-  "title": "Gallery",
-  "description": "A light paper landscape, large app cards and a dark serif clock.",
+  "title": "Index",
+  "description": "A gray clock sidebar and a white app grid with a red selection marker.",
   "author": {
     "name": "Clean Your TV contributors",
     "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.1.0",
+  "themeVersion": "1.2.0",
   "layout": {
-    "preset": "dock-grid",
-    "columns": 4,
+    "preset": "side-grid",
+    "columns": 3,
     "spacingScale": 1,
     "textScale": 1,
     "focusScale": 1.1
   },
   "defaults": {
-    "wallpaperAssetId": "wallpaper",
+    "wallpaperAssetId": null,
     "dim": 0,
-    "accent": "#29483a"
+    "accent": "#c73224"
   },
   "assets": [
     {
@@ -28,13 +28,6 @@
       "mediaType": "image/png",
       "width": 960,
       "height": 540
-    },
-    {
-      "id": "wallpaper",
-      "path": "assets/wallpaper.png",
-      "mediaType": "image/png",
-      "width": 1920,
-      "height": 1080
     }
   ],
   "previewAssetId": "preview",

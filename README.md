@@ -11,7 +11,7 @@ does not download floating `main`, execute theme scripts or connect to a TV.
 ## Ready-made examples
 
 Browse [four complete themes and their screenshots](examples/README.md):
-Minimal, Aurora, Gallery and Terminal. The [local visual gallery](examples/index.html)
+Pure, Postcard, Index and Channel. The [local visual gallery](examples/index.html)
 compares Home, Inputs and the standard Settings screen without a runtime.
 For an interactive example, run `npm run theme -- preview examples/aurora --runtime .runtime/candidate`.
 

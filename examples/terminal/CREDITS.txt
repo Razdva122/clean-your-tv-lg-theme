@@ -1,7 +1,6 @@
-CSS: original work by Clean Your TV contributors, MIT.
+CSS and visual design: original work by Clean Your TV contributors, MIT.
 Preview: actual Clean Your TV browser renderer with synthetic demo apps; not physical-TV evidence.
 Demo brand artwork belongs to its respective owners. The notices below travel with this theme.
-Design references only (no copied CSS or artwork): https://lasharor.github.io/cleanyourtv-WebOS/themes/ and https://github.com/ecklf/lg-luma .
 
 Vector artwork used by the browser preview.
 Brand names and logos belong to their respective owners.

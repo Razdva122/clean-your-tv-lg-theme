@@ -1,22 +1,24 @@
-/* Minimal: graphite surfaces, quiet type and a clear white focus. */
-:root {
-  --ink: #e4e9ee;
-  --muted: #9faab5;
-  --surface: #20252b;
-}
-.ctv-home { background-image: linear-gradient(145deg, #111519 0%, #222830 100%); }
-.ctv-clock, .ctv-hero { color: var(--ink); font-weight: 400; }
-.ctv-greeting, .ctv-date, .ctv-period { color: var(--muted); }
-.ctv-divider { background-color: #46505b; }
-.ctv-shortcut { background-image: linear-gradient(180deg, #303841 0%, #252c34 100%); color: var(--ink); border-color: #53606d; border-radius: 26px; }
-.ctv-shortcut.is-focused { background-image: linear-gradient(180deg, #e4e9ee 0%, #d3dce5 100%); color: #151a20; border-color: #e4e9ee; }
-.ctv-dock { background-color: #171c22; border-color: #414b56; border-radius: 30px; }
-.ctv-card { border-radius: 22px; border-style: solid; border-width: 2px; border-color: #46515e; }
-.ctv-card.is-focused { box-shadow: 0px 0px 16px 2px rgba(224, 234, 245, 0.35); }
-.ctv-label { color: var(--ink); }
-.ctv-inputs { background-image: linear-gradient(180deg, #272f38 0%, #171d24 100%); color: var(--ink); border-color: #586574; border-radius: 24px; }
-.ctv-input-row { border-radius: 16px; }
-.ctv-input-row.is-focused { background-image: linear-gradient(180deg, #e4e9ee 0%, #d3dce5 100%); color: #151a20; }
-.ctv-library-row { background-color: var(--surface); border-color: #46515e; border-radius: 16px; }
-.ctv-library-row.is-focused { background-color: #e4e9ee; color: #151a20; }
-.ctv-library-row.is-focused .ctv-label { color: #151a20; }
+/* Pure: a black app grid. Geometry belongs to the trusted icon-grid preset. */
+:root { --ink: #ffffff; --muted: #a6a6a6; }
+.ctv-home { background-color: #000000; color: var(--ink); font-family: sans-serif; }
+.ctv-ambient { background-image: linear-gradient(0deg, transparent 0%, transparent 100%); }
+.ctv-header { background-color: #000000; }
+.ctv-clock, .ctv-date, .ctv-period { color: var(--muted); font-weight: 400; letter-spacing: 0px; }
+.ctv-greeting { color: var(--ink); text-transform: none; letter-spacing: 0px; font-weight: 400; }
+.ctv-divider { background-color: #000000; }
+.ctv-shortcut { background-image: linear-gradient(0deg, #000000 0%, #000000 100%); color: var(--muted); border-style: none; border-radius: 0px; }
+.ctv-shortcut.is-focused { color: var(--ink); text-decoration: underline; }
+.ctv-dock { background-color: #000000; border-style: none; border-radius: 0px; }
+.ctv-card { border-radius: 0px; border-style: none; box-shadow: 0px 0px 0px 0px transparent; }
+.ctv-focus { background-image: linear-gradient(0deg, transparent 0%, transparent 100%); border-radius: 0px; border-width: 2px; border-color: #ffffff; box-shadow: 0px 0px 0px 0px transparent; }
+.ctv-label { color: var(--muted); font-weight: 400; letter-spacing: 0px; }
+.ctv-label.is-focused { color: var(--ink); }
+.ctv-inputs { background-image: linear-gradient(0deg, #000000 0%, #000000 100%); color: var(--ink); border-color: #777777; border-radius: 0px; }
+.ctv-input-row { border-radius: 0px; }
+.ctv-input-row.is-focused { background-color: #ffffff; color: #000000; }
+.ctv-library-row { background-color: #171717; border-radius: 0px; border-color: #333333; }
+.ctv-library-row.is-focused { background-color: #ffffff; color: #000000; }
+.ctv-library-row.is-focused .ctv-label { color: #000000; }
+
+/* Engine-owned Add/fallback glyphs inherit this readable icon color. */
+.ctv-card { color: #ffffff; }

@@ -36,29 +36,27 @@ function png(pixel) {
   return Buffer.concat([Buffer.from('89504e470d0a1a0a', 'hex'), chunk('IHDR', header),
     chunk('IDAT', zlib.deflateSync(scanlines, {level: 9})), chunk('IEND', Buffer.alloc(0))]);
 }
-const mix = (a, b, amount) => a.map((value, index) => value * (1 - amount) + b[index] * amount);
-function aurora(x, y) {
-  let color = mix([7, 16, 29], [13, 29, 38], y / height);
-  const mint = 1470 - y * .34 + Math.sin(y / 230) * 150;
-  const violet = 1850 - y * .83 + Math.sin(y / 190 + 1) * 90;
-  const first = Math.exp(-Math.pow((x - mint) / 155, 2)) * (.24 + y / height * .3);
-  const second = Math.exp(-Math.pow((x - violet) / 220, 2)) * .37;
-  color = mix(color, [92, 183, 158], first);
-  return mix(color, [124, 103, 167], second);
+// Original cut-paper landscape. Flat colors are intentional: no gradients or glow.
+const sky = [215, 230, 233], sun = [231, 163, 76];
+const layers = [
+  {color: [168, 197, 204], points: [[0,280],[145,209],[279,260],[411,201],[522,236],[680,177],[803,229],[960,198]]},
+  {color: [113, 156, 169], points: [[0,361],[125,282],[261,326],[381,298],[538,356],[674,287],[816,302],[960,264]]},
+  {color: [48, 94, 118], points: [[0,464],[166,375],[288,417],[444,376],[617,432],[795,353],[960,401]]}
+];
+function edge(points, x) {
+  for (let i = 1; i < points.length; i++) if (x <= points[i][0]) {
+    const a = points[i - 1], b = points[i];
+    return a[1] + (b[1] - a[1]) * (x - a[0]) / (b[0] - a[0]);
+  }
+  return points[points.length - 1][1];
 }
-function gallery(x, y) {
-  let color = mix([238, 239, 226], [216, 225, 205], y / height);
-  if (y > 620 + Math.sin(x / 410) * 46 + Math.cos(x / 670) * 24) color = [195, 207, 181];
-  if (y > 750 + Math.sin(x / 390 + .8) * 76) color = [147, 172, 148];
-  if (y > 880 + Math.sin(x / 470 + 2) * 72) color = [91, 126, 107];
-  if (y > 1000 + Math.sin(x / 640 + 1) * 60) color = [53, 86, 70];
-  const grain = ((x * 13 + y * 7) % 19 - 9) * .12;
-  return color.map(value => value + grain);
-}
-for (const [name, paint] of Object.entries({aurora, gallery})) {
-  const file = path.resolve(__dirname, '../examples', name, 'assets/wallpaper.png');
-  const bytes = png(paint);
-  assert.ok(bytes.length <= 2 * 1024 * 1024, 'wallpaper image budget');
-  fs.writeFileSync(file, bytes);
-  console.log(name + ': original 1920x1080 PNG, ' + bytes.length + ' bytes');
-}
+const bytes = png((px, py) => {
+  const x = px / 2, y = py / 2;
+  let color = (x - 742) ** 2 + (y - 131) ** 2 <= 53 ** 2 ? sun : sky;
+  for (const layer of layers) if (y >= edge(layer.points, x)) color = layer.color;
+  return color;
+});
+assert.ok(bytes.length <= 2 * 1024 * 1024, 'wallpaper image budget');
+const file = path.resolve(__dirname, '../examples/aurora/assets/wallpaper.png');
+fs.writeFileSync(file, bytes);
+console.log('Postcard: original 1920x1080 PNG, ' + bytes.length + ' bytes');

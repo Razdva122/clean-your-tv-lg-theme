@@ -4,38 +4,38 @@ Four complete starting points using the same public theme API. Each includes
 editable CSS, a manifest, license, credits and a real browser-rendered preview.
 [Open the visual gallery](index.html) locally, or compare the Home images below.
 
-| Theme | Direction | Default columns | Wallpaper |
+| Theme | Composition | Default columns | Wallpaper |
 | --- | --- | --- | --- |
-| [Minimal](minimal/theme.css) | Graphite, quiet neutral controls | 5 | None |
-| [Aurora](aurora/theme.css) | Navy, mint focus, soft violet ribbons | 5 | Original generated artwork |
-| [Gallery](gallery/theme.css) | Light paper, green hills, serif clock | 4 | Original generated artwork |
-| [Terminal](terminal/theme.css) | Amber, monospace, squared panels | 6 | None |
+| [Pure](minimal/theme.css) | Small square icons on black, no shelf or hero | 6 | None |
+| [Postcard](aurora/theme.css) | Large original illustration with a low app shelf | 5 | Original cut-paper mountains |
+| [Index](gallery/theme.css) | Clock and vertical menu in a fixed left sidebar; grid on the right | 3 | None |
+| [Channel](terminal/theme.css) | Numbered list and selected title, inspired by teletext | 1 | None |
 
 The author sets the default column count in `theme.json`. The TV user's explicit
 setting takes precedence. App logos retain their own branding. Settings use the
 standard trusted appearance with the theme suspended.
 
-## Minimal
+## Pure
 
-![Minimal Home](minimal/assets/preview.png)
+![Pure Home](minimal/assets/preview.png)
 
 [Inputs](minimal/previews/inputs.png) · [Settings](minimal/previews/settings.png) · [Manifest](minimal/theme.json)
 
-## Aurora
+## Postcard
 
-![Aurora Home](aurora/assets/preview.png)
+![Postcard Home](aurora/assets/preview.png)
 
 [Inputs](aurora/previews/inputs.png) · [Settings](aurora/previews/settings.png) · [Manifest](aurora/theme.json)
 
-## Gallery
+## Index
 
-![Gallery Home](gallery/assets/preview.png)
+![Index Home](gallery/assets/preview.png)
 
 [Inputs](gallery/previews/inputs.png) · [Settings](gallery/previews/settings.png) · [Manifest](gallery/theme.json)
 
-## Terminal
+## Channel
 
-![Terminal Home](terminal/assets/preview.png)
+![Channel Home](terminal/assets/preview.png)
 
 [Inputs](terminal/previews/inputs.png) · [Settings](terminal/previews/settings.png) · [Manifest](terminal/theme.json)
 
@@ -63,11 +63,14 @@ it compares saved screenshots, with Home / Inputs / Settings switches.
 ## Evidence and artwork
 
 These are No-root browser captures from the actual candidate Home renderer,
-with synthetic demo data and a fixed clock. Each `previews/provenance.json`
+with synthetic demo data and a fixed clock. These examples require the updated
+candidate runtime with trusted layout presets; the earlier dock-grid-only
+candidate cannot load Pure, Index or Channel. Directory slugs and theme IDs
+remain stable even though the display names changed. Each `previews/provenance.json`
 records the runtime snapshot and browser. Browser screenshots do not establish
 physical-TV acceptance. Candidate APIs and visuals may still change.
 
-Regenerate the two original wallpapers with `node scripts/generate-example-art.cjs`.
+Regenerate the original Postcard wallpaper with `node scripts/generate-example-art.cjs`.
 Capture each theme using the same candidate runtime:
 
 ```sh

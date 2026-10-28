@@ -1,23 +1,26 @@
-/* Terminal: amber phosphor, compact columns and native monospace fallback. */
-:root {
-  --ink: #f1dfa2;
-  --dim: #b5a274;
-  --amber: #e8c95b;
-}
-.ctv-home { background-image: linear-gradient(180deg, #14130f 0%, #222016 100%); font-family: monospace; }
-.ctv-clock { color: var(--ink); font-weight: 400; letter-spacing: 0px; }
-.ctv-hero { color: var(--ink); font-weight: 400; text-transform: uppercase; letter-spacing: 3px; }
-.ctv-greeting, .ctv-date, .ctv-period { color: var(--dim); letter-spacing: 0px; }
-.ctv-divider { background-color: #76663e; }
-.ctv-shortcut { background-image: linear-gradient(180deg, #302b1b 0%, #201e14 100%); color: var(--ink); border-color: #887744; border-radius: 8px; }
-.ctv-shortcut.is-focused { background-image: linear-gradient(180deg, #f1dfa2 0%, #d7bd70 100%); color: #1d1b12; border-color: var(--amber); }
-.ctv-dock { background-color: #1b1a12; border-color: #8e7b45; border-radius: 8px; }
-.ctv-card { border-radius: 8px; border-style: solid; border-width: 2px; border-color: #8b7848; box-shadow: 5px 5px 0px 0px rgba(12, 11, 7, 0.8); }
-.ctv-card.is-focused { box-shadow: 0px 0px 0px 4px rgba(232, 201, 91, 0.8); }
-.ctv-label { color: var(--ink); }
-.ctv-inputs { background-image: linear-gradient(180deg, #302b1b 0%, #201e14 100%); color: var(--ink); border-color: #8e7b45; border-radius: 8px; }
-.ctv-input-row { border-radius: 4px; }
-.ctv-input-row.is-focused { background-image: linear-gradient(180deg, #f1dfa2 0%, #d7bd70 100%); color: #1d1b12; }
-.ctv-library-row { background-color: #302b1b; border-color: #8e7b45; border-radius: 8px; }
-.ctv-library-row.is-focused { background-color: #f1dfa2; color: #1d1b12; }
-.ctv-library-row.is-focused .ctv-label { color: #1d1b12; }
+/* Channel: royal-blue teletext, a numbered list and a yellow selection title. */
+:root { --blue: #121c85; --yellow: #fff36a; --cyan: #90e8fc; }
+.ctv-home { background-color: var(--blue); color: #ffffff; font-family: monospace; }
+.ctv-ambient { background-image: linear-gradient(0deg, transparent 0%, transparent 100%); }
+.ctv-header { background-color: var(--blue); }
+.ctv-clock, .ctv-greeting, .ctv-date, .ctv-period { color: #ffffff; font-family: monospace; font-weight: 400; letter-spacing: 0px; text-transform: uppercase; }
+.ctv-hero { color: var(--yellow); font-family: monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.ctv-divider { background-color: #ffffff; }
+.ctv-shortcut { background-image: linear-gradient(0deg, var(--blue) 0%, var(--blue) 100%); color: var(--cyan); border-style: none; border-radius: 0px; font-family: monospace; }
+.ctv-shortcut.is-focused { background-image: linear-gradient(0deg, #ffffff 0%, #ffffff 100%); color: var(--blue); }
+.ctv-dock { background-color: transparent; border-style: none; border-radius: 0px; }
+.ctv-card { border-style: none; border-radius: 0px; box-shadow: 0px 0px 0px 0px transparent; }
+.ctv-card.is-focused { background-color: #ffffff; }
+.ctv-focus { background-image: linear-gradient(0deg, #ffffff 0%, #ffffff 100%); border-color: #ffffff; border-width: 0px; border-radius: 0px; box-shadow: 0px 0px 0px 0px transparent; }
+.ctv-label { color: #ffffff; font-family: monospace; font-weight: 400; letter-spacing: 0px; }
+.ctv-label.is-focused { color: var(--blue); }
+.ctv-inputs { background-image: linear-gradient(0deg, var(--blue) 0%, var(--blue) 100%); color: #ffffff; border-color: var(--cyan); border-radius: 0px; font-family: monospace; }
+.ctv-input-row { border-radius: 0px; }
+.ctv-input-row.is-focused { background-color: #ffffff; color: var(--blue); }
+.ctv-library-row { background-color: var(--blue); border-color: var(--cyan); border-radius: 0px; }
+.ctv-library-row.is-focused { background-color: #ffffff; color: var(--blue); }
+.ctv-library-row.is-focused .ctv-label { color: var(--blue); }
+
+/* Engine-owned Add/fallback glyphs inherit this readable icon color. */
+.ctv-card { color: #ffffff; }
+.ctv-card.is-focused { color: var(--blue); }

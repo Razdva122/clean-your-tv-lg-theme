@@ -2,16 +2,16 @@
   "schemaVersion": 1,
   "themeApiVersion": 1,
   "id": "github:razdva122/clean-your-tv-lg-theme:terminal",
-  "title": "Terminal",
-  "description": "Amber monochrome controls and native monospace type with a compact grid.",
+  "title": "Channel",
+  "description": "A royal-blue teletext app list with cyan controls and a yellow selection title.",
   "author": {
     "name": "Clean Your TV contributors",
     "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.0.0",
+  "themeVersion": "1.1.0",
   "layout": {
-    "preset": "dock-grid",
-    "columns": 6,
+    "preset": "channel-list",
+    "columns": 1,
     "spacingScale": 1,
     "textScale": 1,
     "focusScale": 1.1
@@ -19,7 +19,7 @@
   "defaults": {
     "wallpaperAssetId": null,
     "dim": 0,
-    "accent": "#e8c95b"
+    "accent": "#ffffff"
   },
   "assets": [
     {

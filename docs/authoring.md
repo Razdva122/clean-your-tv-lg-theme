@@ -21,9 +21,15 @@ Unknown parts/properties, raw executable content, imports, network URLs, arbitra
 positioning, geometry transforms, hidden focus controls and unsupported features
 fail validation. Settings, confirmations and recovery remain standard.
 
-Layout belongs in `theme.json`, not arbitrary CSS: `dock-grid`, columns 1–8,
+Layout belongs in `theme.json`, not arbitrary CSS: one of `dock-grid` (low shelf), `icon-grid` (compact square icons),
+`side-grid` (fixed sidebar and app grid) or `channel-list` (numbered rows),
+columns 1–8,
 spacingScale 0.8–1.2, textScale 0.9–1.25 and focusScale 1.05–1.15. Dim is 0–0.85.
-This candidate implements columns with Classic spacing/text/focus scales only:
+Templates own geometry and remote hit areas. The TV user can override columns
+within every template; narrow channel-list cells use a compact icon and label.
+In side-grid, Left from the first grid column enters the sidebar, Up/Down
+selects a shortcut, and Right returns to the grid.
+This candidate implements Classic spacing/text/focus scales only:
 use spacingScale=1, textScale=1 and focusScale=1.1. Other scale combinations fail
 explicitly until shared geometry support lands. The broader API bounds do not
 prove every combination readable on a real TV.
@@ -45,3 +51,10 @@ the 2 MiB encoded-image limit: preview converts validated image bytes to browser
 Blob URLs before the actual ThemeRuntime.apply call. The runtime releases accepted
 handles on replacement/reset; the adapter releases handles for rejected candidates.
 Unchanged preview polls do not resend image bytes. No raw-CSS bypass is used.
+
+The `.ctv-focus` visual part styles the shared focus frame. `.ctv-label.is-focused`
+styles selected app names. Themes cannot change focus positioning or hide it:
+the runtime retains a 2px focused-card border in the selected accent.
+The old glass specular layer is disabled while an author theme is active.
+An explicit `.ctv-ambient` background-image can replace the built-in app-colored
+glow; a fully transparent gradient produces a flat background.
