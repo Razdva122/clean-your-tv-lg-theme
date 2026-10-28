@@ -1,0 +1,31 @@
+{
+  "kind": "browser-preview",
+  "hardwareVerified": false,
+  "edition": "no-root",
+  "locale": "en-US",
+  "clock": "2026-01-01T12:00:00Z",
+  "browser": "156.0.8078.73",
+  "customExecutable": true,
+  "runtime": {
+    "status": "candidate",
+    "source": {
+      "repository": "https://github.com/Razdva122/clean-your-tv-lg-webos",
+      "commit": "4bbc4227b01c0e388a5f6851845109345b8dd1cc",
+      "dirty": true
+    },
+    "manifestSha256": "9bf031cd242dd74cd2163d3d2380e612dcef3a5acee61157b0bb52d2ea3a5a17"
+  },
+  "themeApiVersion": 1,
+  "scenarios": [
+    "home",
+    "inputs",
+    "settings"
+  ],
+  "columns": {
+    "columns": 8,
+    "override": null,
+    "themeColumns": 8,
+    "preset": "scenic-grid"
+  },
+  "settingsThemeSuspended": true
+}

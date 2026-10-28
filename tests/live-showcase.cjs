@@ -15,13 +15,13 @@ test('live showcase switches themes on one renderer and retains user column choi
  try{
   const page=await browser.newPage({viewport:{width:1280,height:900}});await page.goto(preview.url);
   assert.equal(await page.locator('#themePicker strong').textContent(),'Темы','picker uses UTF-8');
-  assert.deepEqual(await page.locator('#themePicker button').allTextContents(),['Classic','Channel']);
+  assert.deepEqual(await page.locator('#themePicker button').allTextContents(),['Classic','Glasshouse','Channel']);
   const frame=page.frames().find(f=>f.url().includes('/runtime/'));
   await page.getByRole('button',{name:'Classic',exact:true}).waitFor();
   await frame.waitForFunction(()=>window.HomeLayoutState);
   assert.equal(await frame.locator('#ctv-theme-style').count(),0,'Classic uses the built-in renderer styles');
   await frame.evaluate(()=>{window.sameHome=true;HomeLayoutState.setColumns(4);});
-  for(const [title,preset] of [['Channel','channel-list']]){
+  for(const [title,preset] of [['Glasshouse','scenic-grid'],['Channel','channel-list']]){
    await page.getByRole('button',{name:title,exact:true}).click();
    await frame.waitForFunction(preset=>HomeLayoutState.state().preset===preset,preset);
    assert.equal(await frame.evaluate(()=>window.sameHome),true,'renderer is not reloaded');

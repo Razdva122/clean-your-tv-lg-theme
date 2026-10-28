@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "themeApiVersion": 1,
+  "id": "github:razdva122/clean-your-tv-lg-theme:glasshouse",
+  "title": "Glasshouse",
+  "description": "A scenic Home inspired by Glasshouse: large quiet clock, mountain panorama and compact bottom app rows.",
+  "author": {
+    "name": "Clean Your TV contributors",
+    "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
+  },
+  "themeVersion": "1.0.0",
+  "layout": {
+    "preset": "scenic-grid",
+    "columns": 8,
+    "spacingScale": 1,
+    "textScale": 1,
+    "focusScale": 1.1
+  },
+  "defaults": {
+    "wallpaperAssetId": "landscape",
+    "dim": 0.36,
+    "accent": "#ece7df"
+  },
+  "assets": [
+    {
+      "id": "preview",
+      "path": "assets/preview.png",
+      "mediaType": "image/png",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "id": "landscape",
+      "path": "assets/fronalpstock.jpg",
+      "mediaType": "image/jpeg",
+      "width": 1280,
+      "height": 575
+    }
+  ],
+  "previewAssetId": "preview",
+  "license": {
+    "identifier": "MIT AND CC-BY-SA-3.0",
+    "textPath": "LICENSE.txt",
+    "creditsPath": "CREDITS.txt"
+  }
+}

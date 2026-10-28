@@ -1,15 +1,19 @@
-# Classic and Channel
+# Classic, Channel and Glasshouse
 
-The live showcase includes two choices:
+The live showcase includes three choices:
 
 | Theme | Composition | Default columns | Source |
 | --- | --- | --- | --- |
+| [Glasshouse](glasshouse/theme.css) | Scenic wallpaper, large clock and compact bottom rows | 8 | Editable example in `glasshouse/` |
 | Classic | Original Home shelf and grid | 5 | Built into the renderer; uses trusted reset, no theme CSS copy |
 | [Channel](terminal/theme.css) | Blue teletext-style numbered list with a selected title | 1 | Editable example in `terminal/` |
 
 The TV user's explicit column choice overrides either default. Settings use the
 standard trusted appearance. The `terminal` directory and Channel theme ID stay
-stable. No other example themes are shipped.
+stable. Glasshouse is an independent interpretation of the Glasshouse Home composition.
+Its `scenic-grid` layout pages rows with Down/Up; Left/Right selects an app.
+The active page range appears above the row. Wallpaper attribution and license
+are in `glasshouse/CREDITS.txt` and `glasshouse/LICENSE.txt`.
 
 ## Open the live showcase
 
@@ -22,7 +26,7 @@ npm ci --ignore-scripts
 npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
 ```
 
-Open **http://127.0.0.1:8877/**. Classic is selected initially. Click Channel or
+Open **http://127.0.0.1:8877/**. Classic is selected initially. Click Glasshouse, Channel or
 Classic above the actual Home screen, then use the mouse or arrows/Enter inside
 it. Switching does not reload Home; app order and column overrides are retained.
 App launches and TV services are simulated. Keep the terminal open; Ctrl+C stops
