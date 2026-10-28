@@ -18,7 +18,7 @@ suite passed 21 checks including compilation and missing-icon/Add-app contrast.
 Home, Inputs and Settings captures use synthetic data; see
 `examples/glasshouse/previews/provenance.json`. The Home PNG is palette-compressed
 to meet the 300 KiB descriptor budget; composition and dimensions are unchanged.
-Runtime source: `1cd23e13b66eb26af76f9898821bc3eac93f069e`, candidate export.
+Runtime source: `c0919d03cc29c4119aa135103e0c5494cd23af82`, candidate export.
 
 The panorama is Hannes Röst's Fronalpstock, CC BY-SA 3.0; see the theme credits
 and license. Wallpaper remains under its own license; theme code is MIT.
@@ -40,3 +40,9 @@ rearrangement/cancel and one-app/empty libraries. Related layout, Columns and
 Channel navigation checks, the theme/compiler suite, TV compatibility and preview
 group passed. The toolkit's 21 checks passed with this runtime. These are browser
 and service simulations; physical-TV acceptance remains outstanding.
+
+Glasshouse 1.3.0 adds the [UI/UX review and fixes](glasshouse-ux-review.md):
+static full-name detail, larger captions/shortcuts, one focus border, bounded
+wheel input, edge-hover protection and stable DOM order during selection.
+The full both-edition browser suite, theme/compiler/runtime suite, TV web
+compatibility, preview group and 21 toolkit checks passed.

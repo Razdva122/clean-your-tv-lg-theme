@@ -94,3 +94,16 @@ requires a freshly exported runtime with column-policy support.
 The flag controls user reflow, not arbitrary CSS coordinates. Choose a supported
 trusted preset for placement. The renderer continues to own remote navigation,
 focus and hit areas; external CSS controls the exposed visual parts.
+
+## Glasshouse interaction polish
+
+The selected app's full name stays above the ribbon without a slide/fade. Wider
+28px captions make normal names easier to read; Add app can use two lines.
+The single 3px focus border replaces nested frames. Upper shortcuts are larger;
+Latin AM/PM is a smaller label, while locale time preferences remain unchanged.
+
+Use a mouse wheel or touchpad over the ribbon to step in either direction.
+Trusted dialogs block this input. A clipped next-card preview is a continuation
+hint and becomes clickable after it is fully revealed; hovering that hint cannot
+auto-pan the ribbon. Reduced motion remains supported. See the
+[UI/UX review](../docs/glasshouse-ux-review.md) for browser coverage and limits.
