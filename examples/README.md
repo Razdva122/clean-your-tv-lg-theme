@@ -4,7 +4,7 @@ The live showcase includes three choices:
 
 | Theme | Composition | Default columns | Source |
 | --- | --- | --- | --- |
-| [Glasshouse](glasshouse/theme.css) | Scenic wallpaper, large clock and compact bottom rows | 8 | Editable example in `glasshouse/` |
+| [Glasshouse](glasshouse/theme.css) | Scenic wallpaper, large clock and one looping bottom ribbon | 8 | Editable example in `glasshouse/` |
 | Classic | Original Home shelf and grid | 5 | Built into the renderer; uses trusted reset, no theme CSS copy |
 | [Channel](terminal/theme.css) | Blue teletext-style numbered list with a selected title | 1 | Editable example in `terminal/` |
 
@@ -13,8 +13,9 @@ Glasshouse fixes its author composition at eight columns and hides that setting;
 the saved user choice resumes when switching back to Classic or Channel. Settings use the
 standard trusted appearance. The `terminal` directory and Channel theme ID stay
 stable. Glasshouse is an independent interpretation of the Glasshouse Home composition.
-Its `scenic-grid` layout pages rows with Down/Up; Left/Right selects an app.
-The active page range appears above the row. Wallpaper attribution and license
+Its `scenic-grid` layout loops horizontally with Left/Right; Up enters shortcuts and Down
+returns to the same app.
+The selected app index appears above the ribbon. Wallpaper attribution and license
 are in `glasshouse/CREDITS.txt` and `glasshouse/LICENSE.txt`.
 
 ## Open the live showcase

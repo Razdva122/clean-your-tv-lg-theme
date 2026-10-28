@@ -3,12 +3,12 @@
   "themeApiVersion": 1,
   "id": "github:razdva122/clean-your-tv-lg-theme:glasshouse",
   "title": "Glasshouse",
-  "description": "A scenic Home inspired by Glasshouse: large quiet clock, mountain panorama and compact bottom app rows.",
+  "description": "A scenic Home inspired by Glasshouse: large quiet clock, mountain panorama and one infinitely looping horizontal app ribbon.",
   "author": {
     "name": "Clean Your TV contributors",
     "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.1.0",
+  "themeVersion": "1.2.0",
   "layout": {
     "preset": "scenic-grid",
     "columns": 8,

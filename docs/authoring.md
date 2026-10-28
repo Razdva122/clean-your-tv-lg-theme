@@ -22,7 +22,7 @@ positioning, geometry transforms, hidden focus controls and unsupported features
 fail validation. Settings, confirmations and recovery remain standard.
 
 Layout belongs in `theme.json`, not arbitrary CSS: one of `dock-grid` (low shelf), `icon-grid` (compact square icons),
-`side-grid` (fixed sidebar and app grid) `channel-list` (numbered rows) or `scenic-grid` (bottom scenic rows),
+`side-grid` (fixed sidebar and app grid) `channel-list` (numbered rows) or `scenic-grid` (a looping scenic ribbon),
 columns 1–8,
 spacingScale 0.8–1.2, textScale 0.9–1.25 and focusScale 1.05–1.15. Dim is 0–0.85.
 Templates own geometry and remote hit areas. Unless `allowColumnOverride` is false, the TV user can override columns
