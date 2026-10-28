@@ -39,6 +39,17 @@ PC window. Edit `examples/terminal/theme.css` and save. Before publishing a copy
 change its repository identity, title, author and version. Each theme needs its
 own license, credits and manifest.
 
+## Channel behavior
+
+Channel uses a readable numbered list and a large selected-app icon/title with
+a position counter in its default single-column layout. Explicit choices of
+2–4 columns use full-width rows; 5–8 use compact labelled icon cells. The app
+library shares its square blue/cyan styling. Held OK, reorder, Add app and
+keyboard Close keep their labels/focus readable. Missing icon previews remain
+hidden; app labels and fallback initials still identify the app.
+
+See the [browser QA record](../docs/channel-review.md) for tested scenarios.
+
 ## Channel screenshots
 
 ![Channel Home](terminal/assets/preview.png)

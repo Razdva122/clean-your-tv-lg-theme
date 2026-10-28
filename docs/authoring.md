@@ -58,3 +58,9 @@ the runtime retains a 2px focused-card border in the selected accent.
 The old glass specular layer is disabled while an author theme is active.
 An explicit `.ctv-ambient` background-image can replace the built-in app-colored
 glow; a fully transparent gradient produces a flat background.
+
+App library surfaces expose `.ctv-library-panel` and `.ctv-library-close`
+(including `.is-focused`). These use the same bounded appearance properties,
+so a theme can match its app library without styling trusted Settings.
+Channel uses the current candidate's selected-app preview, larger list rows,
+and full-width multi-column cells. Older candidates lack these polish fixes.

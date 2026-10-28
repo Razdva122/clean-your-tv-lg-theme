@@ -3,12 +3,12 @@
   "themeApiVersion": 1,
   "id": "github:razdva122/clean-your-tv-lg-theme:terminal",
   "title": "Channel",
-  "description": "A royal-blue teletext app list with cyan controls and a yellow selection title.",
+  "description": "A readable teletext Home with numbered rows, a selected-app preview and matching app library.",
   "author": {
     "name": "Clean Your TV contributors",
     "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.1.0",
+  "themeVersion": "1.2.0",
   "layout": {
     "preset": "channel-list",
     "columns": 1,
