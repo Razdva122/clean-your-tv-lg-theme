@@ -1,33 +1,33 @@
 {
   "schemaVersion": 1,
   "themeApiVersion": 1,
-  "id": "github:example/themes:minimal",
+  "id": "github:razdva122/clean-your-tv-lg-theme:minimal",
   "title": "Minimal",
-  "description": "An original CSS theme for Clean Your TV.",
+  "description": "Graphite panels, quiet typography and a crisp neutral focus.",
   "author": {
-    "name": "Example author",
-    "url": "https://github.com/example"
+    "name": "Clean Your TV contributors",
+    "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.0.0",
+  "themeVersion": "1.1.0",
   "layout": {
     "preset": "dock-grid",
-    "columns": 6,
+    "columns": 5,
     "spacingScale": 1,
     "textScale": 1,
     "focusScale": 1.1
   },
   "defaults": {
     "wallpaperAssetId": null,
-    "dim": 0.2,
-    "accent": "#88bbff"
+    "dim": 0,
+    "accent": "#dce6ef"
   },
   "assets": [
     {
       "id": "preview",
       "path": "assets/preview.png",
       "mediaType": "image/png",
-      "width": 1,
-      "height": 1
+      "width": 960,
+      "height": 540
     }
   ],
   "previewAssetId": "preview",

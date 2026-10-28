@@ -8,6 +8,13 @@ in `themes/<slug>/` in one public GitHub repository.
 The commands below require an explicit maintainer-exported candidate. The toolkit
 does not download floating `main`, execute theme scripts or connect to a TV.
 
+## Ready-made examples
+
+Browse [four complete themes and their screenshots](examples/README.md):
+Minimal, Aurora, Gallery and Terminal. The [local visual gallery](examples/index.html)
+compares Home, Inputs and the standard Settings screen without a runtime.
+For an interactive example, run `npm run theme -- preview examples/aurora --runtime .runtime/candidate`.
+
 ## Start a theme and open the preview
 
 Install Node.js 22 or newer. Open a terminal in this toolkit checkout:
