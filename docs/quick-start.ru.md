@@ -32,7 +32,7 @@ id, версия, лицензия и описание. Проверка: `npm r
 npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
 ```
 
-Откройте **http://127.0.0.1:8877/** и нажимайте Classic, Pure, Postcard, Index или Channel.
+Откройте **http://127.0.0.1:8877/** и нажимайте Classic или Channel.
 Classic выбрана при открытии: это исходное встроенное оформление Home.
 Возврат к ней сбрасывает CSS и обои темы; явный выбор числа колонок сохраняется.
 После выбора темы используйте мышь либо стрелки и Enter внутри экрана. При
@@ -44,17 +44,16 @@ Classic выбрана при открытии: это исходное встр
 
 Откройте `examples/index.html` двойным щелчком: это галерея сохранённых снимков
 Home, входов и стандартных настроек. Node.js и runtime для неё не нужны.
-В [каталоге примеров](../examples/README.md) есть Pure, Postcard, Index и Channel. Нужен свежий кандидат runtime с поддержкой раскладок;
+В [каталоге примеров](../examples/README.md) есть Channel; Classic встроена в движок. Нужен свежий кандидат runtime с поддержкой раскладок;
 ранний вариант с одной раскладкой их не поддерживает.
 
 Для живого превью после подготовки runtime выполните:
 
 ```sh
-npm run theme -- preview examples/aurora --runtime .runtime/candidate --edition no-root
+npm run theme -- preview examples/terminal --runtime .runtime/candidate --edition no-root
 ```
 
 Откройте напечатанный адрес. Весь экран ТВ автоматически уменьшается до размеров
-окна ПК. Редактируйте `examples/aurora/theme.css`; можно заменить `aurora` на другую
-тему. Число колонок по умолчанию задаётся в `theme.json`; личная настройка
+окна ПК. Редактируйте `examples/terminal/theme.css`; это исходники Channel. Число колонок по умолчанию задаётся в `theme.json`; личная настройка
 пользователя на ТВ имеет приоритет. Перед публикацией копии замените id, автора,
 название и версию в манифесте на свои.

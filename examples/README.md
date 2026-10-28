@@ -1,106 +1,66 @@
-# Example themes
+# Classic and Channel
 
-Four complete starting points using the same public theme API. Each includes
-editable CSS, a manifest, license, credits and a real browser-rendered preview.
-[Open the visual gallery](index.html) locally, or compare the Home images below.
+The live showcase includes two choices:
 
-| Theme | Composition | Default columns | Wallpaper |
+| Theme | Composition | Default columns | Source |
 | --- | --- | --- | --- |
-| [Pure](minimal/theme.css) | Small square icons on black, no shelf or hero | 6 | None |
-| [Postcard](aurora/theme.css) | Large original illustration with a low app shelf | 5 | Original cut-paper mountains |
-| [Index](gallery/theme.css) | Clock and vertical menu in a fixed left sidebar; grid on the right | 3 | None |
-| [Channel](terminal/theme.css) | Numbered list and selected title, inspired by teletext | 1 | None |
+| Classic | Original Home shelf and grid | 5 | Built into the renderer; uses trusted reset, no theme CSS copy |
+| [Channel](terminal/theme.css) | Blue teletext-style numbered list with a selected title | 1 | Editable example in `terminal/` |
 
-The author sets the default column count in `theme.json`. The TV user's explicit
-setting takes precedence. App logos retain their own branding. Settings use the
-standard trusted appearance with the theme suspended.
+The TV user's explicit column choice overrides either default. Settings use the
+standard trusted appearance. The `terminal` directory and Channel theme ID stay
+stable. No other example themes are shipped.
 
-## Pure
+## Open the live showcase
 
-![Pure Home](minimal/assets/preview.png)
+Install Node.js 22+ and obtain the explicit candidate runtime as described in
+[runtime preparation](../docs/runtime.md). No official runtime download is
+published yet. From the toolkit root:
 
-[Inputs](minimal/previews/inputs.png) · [Settings](minimal/previews/settings.png) · [Manifest](minimal/theme.json)
+```sh
+npm ci --ignore-scripts
+npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
+```
 
-## Postcard
+Open **http://127.0.0.1:8877/**. Classic is selected initially. Click Channel or
+Classic above the actual Home screen, then use the mouse or arrows/Enter inside
+it. Switching does not reload Home; app order and column overrides are retained.
+App launches and TV services are simulated. Keep the terminal open; Ctrl+C stops
+the server. Save the selected theme's CSS to see validated changes live.
 
-![Postcard Home](aurora/assets/preview.png)
+To preview just Channel:
 
-[Inputs](aurora/previews/inputs.png) · [Settings](aurora/previews/settings.png) · [Manifest](aurora/theme.json)
+```sh
+npm run theme -- preview examples/terminal --runtime .runtime/candidate --edition no-root
+```
 
-## Index
+Open the printed loopback URL. The complete 1920×1080 TV canvas scales to the
+PC window. Edit `examples/terminal/theme.css` and save. Before publishing a copy,
+change its repository identity, title, author and version. Each theme needs its
+own license, credits and manifest.
 
-![Index Home](gallery/assets/preview.png)
-
-[Inputs](gallery/previews/inputs.png) · [Settings](gallery/previews/settings.png) · [Manifest](gallery/theme.json)
-
-## Channel
+## Channel screenshots
 
 ![Channel Home](terminal/assets/preview.png)
 
 [Inputs](terminal/previews/inputs.png) · [Settings](terminal/previews/settings.png) · [Manifest](terminal/theme.json)
 
-## Switch themes on one live Home screen
+The [static gallery](index.html) opens without Node/runtime and compares saved
+Channel Home, Inputs and Settings images. Classic's live view comes from the
+renderer's own built-in styles rather than a saved imitation.
+
+These No-root browser captures use synthetic data and a fixed clock. The
+`terminal/previews/provenance.json` file records candidate-runtime provenance.
+The runtime must support trusted layout presets. Browser screenshots do not
+establish physical-TV acceptance. Candidate APIs may still change.
+
+To regenerate the captures into a new empty output directory:
 
 ```sh
-npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
+npm run theme -- screenshots examples/terminal --runtime .runtime/candidate --out .runtime/channel-captures
 ```
 
-Open **http://127.0.0.1:8877/**. The buttons above the real Home renderer switch
-local themes without a reload. Mouse and arrow/Enter navigation work inside the
-screen; app launches and TV services are simulated. Explicit user columns and
-app order are retained. Keep the terminal running; Ctrl+C stops it. Every local
-subdirectory with `theme.json` becomes a choice; editing the selected source
-still triggers validated live reload. No scripts from a theme are executed.
-
-## Open an interactive example on your PC
-
-From the toolkit root, install Node.js 22+ and dependencies, then obtain the
-explicit candidate runtime as described in [runtime preparation](../docs/runtime.md).
-No official runtime download is published yet.
-
-```sh
-npm ci --ignore-scripts
-npm run theme -- preview examples/aurora --runtime .runtime/candidate --edition no-root
-```
-
-Open the printed loopback URL, usually **http://127.0.0.1:8766/**. Keep the terminal
-open. The full 1920×1080 TV canvas scales to your browser window. Use arrows,
-Enter, Back or the mouse; edit `examples/aurora/theme.css` and save to see changes.
-Replace `aurora` with `minimal`, `gallery` or `terminal`. Stop with **Ctrl+C**.
-For a theme you plan to publish, copy a directory into your own collection and
-change its repository identity, title, author and version before publishing.
-
-The static `index.html` can also be opened directly, without Node or runtime;
-it compares saved screenshots, with Home / Inputs / Settings switches.
-
-## Evidence and artwork
-
-These are No-root browser captures from the actual candidate Home renderer,
-with synthetic demo data and a fixed clock. These examples require the updated
-candidate runtime with trusted layout presets; the earlier dock-grid-only
-candidate cannot load Pure, Index or Channel. Directory slugs and theme IDs
-remain stable even though the display names changed. Each `previews/provenance.json`
-records the runtime snapshot and browser. Browser screenshots do not establish
-physical-TV acceptance. Candidate APIs and visuals may still change.
-
-Regenerate the original Postcard wallpaper with `node scripts/generate-example-art.cjs`.
-Capture each theme using the same candidate runtime:
-
-```sh
-npm run theme -- screenshots examples/aurora --runtime .runtime/candidate --out .runtime/aurora-captures
-```
-
-Use an empty output directory. A locally installed Chrome can be selected with
-`--browser-executable /absolute/path/to/chrome`. Replace the committed previews
-and their provenance together after reviewing the results. Demo icon sources and
+A local Chrome can be selected with `--browser-executable /absolute/path/to/chrome`.
+Replace previews and provenance together after review. Demo icon sources and
 licenses are in [DEMO-ICON-CREDITS.txt](DEMO-ICON-CREDITS.txt),
-[DEMO-ICON-LICENSE.txt](DEMO-ICON-LICENSE.txt), and every theme's `CREDITS.txt`.
-
-Visual research: [CleanYourTV's theme gallery](https://lasharor.github.io/cleanyourtv-WebOS/themes/)
-and [Luma](https://github.com/ecklf/lg-luma). The CSS and wallpapers here are
-original; no theme code or wallpaper was copied from those projects.
-
-The live showcase starts with **Classic**, the renderer's built-in appearance.
-Classic calls the trusted reset path rather than loading a CSS imitation.
-It restores the original layout and default of 5 columns, while an explicit
-user column choice still takes precedence. Other themes remain selectable.
+[DEMO-ICON-LICENSE.txt](DEMO-ICON-LICENSE.txt), and Channel's `CREDITS.txt`.

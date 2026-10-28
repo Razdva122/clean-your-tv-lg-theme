@@ -15,12 +15,13 @@ test('live showcase switches themes on one renderer and retains user column choi
  try{
   const page=await browser.newPage({viewport:{width:1280,height:900}});await page.goto(preview.url);
   assert.equal(await page.locator('#themePicker strong').textContent(),'Темы','picker uses UTF-8');
+  assert.deepEqual(await page.locator('#themePicker button').allTextContents(),['Classic','Channel']);
   const frame=page.frames().find(f=>f.url().includes('/runtime/'));
   await page.getByRole('button',{name:'Classic',exact:true}).waitFor();
   await frame.waitForFunction(()=>window.HomeLayoutState);
   assert.equal(await frame.locator('#ctv-theme-style').count(),0,'Classic uses the built-in renderer styles');
   await frame.evaluate(()=>{window.sameHome=true;HomeLayoutState.setColumns(4);});
-  for(const [title,preset] of [['Pure','icon-grid'],['Index','side-grid'],['Channel','channel-list'],['Postcard','dock-grid']]){
+  for(const [title,preset] of [['Channel','channel-list']]){
    await page.getByRole('button',{name:title,exact:true}).click();
    await frame.waitForFunction(preset=>HomeLayoutState.state().preset===preset,preset);
    assert.equal(await frame.evaluate(()=>window.sameHome),true,'renderer is not reloaded');
@@ -34,18 +35,16 @@ test('live showcase switches themes on one renderer and retains user column choi
   assert.equal(await frame.evaluate(()=>window.sameHome),true);
   await frame.evaluate(()=>HomeLayoutState.setColumns(null));
   assert.equal(await frame.evaluate(()=>HomeLayoutState.state().columns),5,'Classic default is five columns');
-  await page.getByRole('button',{name:'Index',exact:true}).click();
-  await frame.waitForFunction(()=>HomeLayoutState.state().preset==='side-grid');
-  await page.getByRole('button',{name:'Postcard',exact:true}).click();
-  await frame.waitForFunction(()=>HomeLayoutState.state().preset==='dock-grid'&&document.getElementById('ctv-theme-style'));
+  await page.getByRole('button',{name:'Channel',exact:true}).click();
+  await frame.waitForFunction(()=>HomeLayoutState.state().preset==='channel-list'&&document.getElementById('ctv-theme-style'));
   await frame.locator('#btnInputs').click();await frame.locator('#inputsPanel:not(.hidden)').waitFor();
   await frame.locator('#btnSettings').click();await frame.waitForFunction(()=>document.getElementById('ctv-theme-style').disabled);
   const origin=new URL(preview.url).origin;
   const post=(body,from=origin)=>fetch(preview.url+'theme-selection',{method:'POST',headers:{origin:from,'content-type':'application/json'},body:JSON.stringify(body)});
   assert.equal((await post({theme:'../../private'})).status,400);
-  assert.equal((await post({theme:'minimal'},'https://example.com')).status,403);
+  assert.equal((await post({theme:'terminal'},'https://example.com')).status,403);
   assert.equal((await fetch(preview.url+'theme-selection')).status,405);
-  assert.equal(preview.state().input.manifest.title,'Postcard');
+  assert.equal(preview.state().input.manifest.title,'Channel');
  }finally{await browser.close();preview.server.closeAllConnections();await new Promise(resolve=>preview.server.close(resolve));}
 });
 

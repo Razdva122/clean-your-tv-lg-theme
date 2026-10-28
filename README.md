@@ -23,10 +23,9 @@ services are simulated. Keep the terminal open; Ctrl+C stops the local server.
 This is a local candidate showcase, not a published community catalog.
 
 
-Browse [four complete themes and their screenshots](examples/README.md):
-Pure, Postcard, Index and Channel. The [local visual gallery](examples/index.html)
+Use built-in **Classic** or the complete [Channel example and screenshots](examples/README.md). The [local visual gallery](examples/index.html)
 compares Home, Inputs and the standard Settings screen without a runtime.
-For an interactive example, run `npm run theme -- preview examples/aurora --runtime .runtime/candidate`.
+For an interactive example, run `npm run theme -- preview examples/terminal --runtime .runtime/candidate`.
 
 ## Start a theme and open the preview
 
