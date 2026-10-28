@@ -39,3 +39,9 @@ Runtime image limits are 1920×1080 / 2 MiB each, preview 960×540 / 300 KiB,
 16 assets and 6 MiB total. Resize large originals yourself; automatic image
 normalization is not provided. Every asset needs redistribution permission and
 an entry in CREDITS.txt. LICENSE and credits are bounded hashed documents, not images.
+
+The final emitted stylesheet has a global 256 KiB budget. This is separate from
+the 2 MiB encoded-image limit: preview converts validated image bytes to browser
+Blob URLs before the actual ThemeRuntime.apply call. The runtime releases accepted
+handles on replacement/reset; the adapter releases handles for rejected candidates.
+Unchanged preview polls do not resend image bytes. No raw-CSS bypass is used.
