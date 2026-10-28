@@ -39,6 +39,19 @@ standard trusted appearance with the theme suspended.
 
 [Inputs](terminal/previews/inputs.png) · [Settings](terminal/previews/settings.png) · [Manifest](terminal/theme.json)
 
+## Switch themes on one live Home screen
+
+```sh
+npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
+```
+
+Open **http://127.0.0.1:8877/**. The buttons above the real Home renderer switch
+local themes without a reload. Mouse and arrow/Enter navigation work inside the
+screen; app launches and TV services are simulated. Explicit user columns and
+app order are retained. Keep the terminal running; Ctrl+C stops it. Every local
+subdirectory with `theme.json` becomes a choice; editing the selected source
+still triggers validated live reload. No scripts from a theme are executed.
+
 ## Open an interactive example on your PC
 
 From the toolkit root, install Node.js 22+ and dependencies, then obtain the

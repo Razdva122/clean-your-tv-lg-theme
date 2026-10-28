@@ -35,7 +35,7 @@ async function main() {
     return;
   }
   if (command === 'runtime:fetch') throw Error('No published runtime is pinned. Use an explicitly exported maintainer candidate with --runtime PATH. Never download or execute a theme repository as runtime tooling.');
-  if (!['validate', 'build', 'preview', 'submission', 'screenshots'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|screenshots|build|collection|submission} DIRECTORY [--runtime PATH]');
+  if (!['validate', 'build', 'preview', 'showcase', 'submission', 'screenshots'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|showcase|screenshots|build|collection|submission} DIRECTORY [--runtime PATH]');
   const rt = t.runtime(options.runtime || process.env.CYTV_THEME_RUNTIME);
   const sourceOptions = {
     repository: options['source-repository'],
@@ -75,10 +75,10 @@ async function main() {
     const m = await t.build(pos[0], rt, sourceOptions);
     console.log(m.id + ' ' + m.themeVersion + ' → ' + path.resolve(options.out));
   }
-  if (command === 'preview') {
+  if (command === 'preview' || command === 'showcase') {
     const port = options.port === undefined ? 8766 : Number(options.port);
     if (!Number.isInteger(port) || port < 0 || port > 65535) throw Error('Invalid port');
-    const p = await t.preview(pos[0], rt, {
+    const p = await t[command](pos[0], rt, {
       edition: options.edition,
       port
     });

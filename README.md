@@ -10,6 +10,19 @@ does not download floating `main`, execute theme scripts or connect to a TV.
 
 ## Ready-made examples
 
+For a live Home screen with theme-switching buttons, run:
+
+```sh
+npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
+```
+
+Open **http://127.0.0.1:8877/**. Select a theme above the screen, then use the
+mouse or arrows/Enter inside Home. Switching uses the same renderer without
+reloading it; app order and the column override are retained. Apps and TV
+services are simulated. Keep the terminal open; Ctrl+C stops the local server.
+This is a local candidate showcase, not a published community catalog.
+
+
 Browse [four complete themes and their screenshots](examples/README.md):
 Pure, Postcard, Index and Channel. The [local visual gallery](examples/index.html)
 compares Home, Inputs and the standard Settings screen without a runtime.
