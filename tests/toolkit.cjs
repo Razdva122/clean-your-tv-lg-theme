@@ -175,11 +175,38 @@ test('submission draft requires real review evidence and preserves source/distri
   }
 });
 test('source input ceilings reject oversized images before allocating their bytes', () => {
-  const root=dir();
+  const root = dir();
   try {
-    toolkit().init(path.join(root,'theme'));
-    const image=path.join(root,'theme/assets/preview.png');
-    fs.truncateSync(image,16*1024*1024+1);
-    assert.throws(()=>toolkit().source(path.join(root,'theme')),/large|limit/);
-  } finally {fs.rmSync(root,{recursive:true,force:true});}
+    toolkit().init(path.join(root, 'theme'));
+    const image = path.join(root, 'theme/assets/preview.png');
+    fs.truncateSync(image, 16 * 1024 * 1024 + 1);
+    assert.throws(() => toolkit().source(path.join(root, 'theme')), /large|limit/);
+  } finally {
+    fs.rmSync(root, {
+      recursive: true,
+      force: true
+    });
+  }
+});
+test('submission rejects identity traversal before creating review output', () => {
+  const root = dir();
+  try {
+    const dist = path.join(root, 'dist');
+    fs.mkdirSync(dist);
+    fs.writeFileSync(path.join(dist, 'cytv-theme.json'), JSON.stringify({
+      id: 'github:../../escape:bad'
+    }));
+    assert.throws(() => toolkit().submission(dist, {
+      out: path.join(root, 'draft'),
+      evidence: 'Actual browser result',
+      date: '2026-10-28',
+      url: 'https://raw.githubusercontent.com/../../' + 'a'.repeat(40) + '/cytv-theme.json'
+    }), /identity/);
+    assert.equal(fs.existsSync(path.join(root, 'draft')), false);
+  } finally {
+    fs.rmSync(root, {
+      recursive: true,
+      force: true
+    });
+  }
 });

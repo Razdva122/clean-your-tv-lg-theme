@@ -29,12 +29,13 @@ async function main() {
   }
   if (command === 'collection') {
     if (!options.out || !pos.length) throw Error('Usage: collection DIST... --out COLLECTION_ROOT');
-    t.collection(pos, options.out);
+    const rt = t.runtime(options.runtime || process.env.CYTV_THEME_RUNTIME);
+    t.collection(pos, options.out, require(path.join(rt.root, rt.meta.policy)));
     console.log(path.resolve(options.out, 'cytv-themes.json'));
     return;
   }
   if (command === 'runtime:fetch') throw Error('No published runtime is pinned. Use an explicitly exported maintainer candidate with --runtime PATH. Never download or execute a theme repository as runtime tooling.');
-  if (!['validate', 'build', 'preview', 'submission', 'screenshots'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|build|collection} DIRECTORY [--runtime PATH]');
+  if (!['validate', 'build', 'preview', 'submission', 'screenshots'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|screenshots|build|collection|submission} DIRECTORY [--runtime PATH]');
   const rt = t.runtime(options.runtime || process.env.CYTV_THEME_RUNTIME);
   const sourceOptions = {
     repository: options['source-repository'],

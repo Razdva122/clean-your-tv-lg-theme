@@ -17,7 +17,7 @@ Output must be empty so old assets cannot silently accompany a new distribution.
 Build a second theme into `dist/forest`, then create a repository discovery index:
 
 ```sh
-npm run theme -- collection dist/ocean dist/forest --out dist
+npm run theme -- collection dist/ocean dist/forest --out dist --runtime .runtime/candidate
 ```
 
 This creates `dist/cytv-themes.json` with independent identity/version, relative
