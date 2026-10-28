@@ -32,8 +32,7 @@ Paste your public repository URL (for collection selection), or the exact public
 GitHub descriptor URL into the theme installer when supported by the TV candidate.
 A moving branch is resolved once; themes never follow a branch live. A convenient
 tag is not proof bytes are immutable. Each update needs a new themeVersion/digest.
-Theme transport/TV installation is candidate work; this toolkit does not claim a
-verified released TV flow or hardware compatibility.
+The main theme-enabled candidate implements URL/collection install, offline storage and 20-second trials; it is not a claim about current published packages or hardware compatibility.
 
 Personal installation does not need a showcase submission. Showcase lives in the
 **main** `Razdva122/clean-your-tv-lg-webos` repository. Submit one reviewed record
@@ -77,3 +76,7 @@ The exact main-runtime submission validator checks both record and copied bytes.
 Copy registry/ and assets/ into the main project's showcase/ and open a PR targeting
 release/next. The command does not post anything. Maintainers must review evidence,
 credits, ownership and review dates before approving. Use one draft per theme.
+
+## Bundled versus external examples
+
+Classic and Alpine are bundled by the main candidate. Channel is its ordinary external showcase theme. The old external Alpine distribution remains immutable for historical reproducibility; its catalog listing is archived, and the bundled descriptor uses `builtin:alpine`. Copying the editable Alpine example into your own repository still requires an independent ID, author and redistribution notices. Do not edit historical distribution directories in place.

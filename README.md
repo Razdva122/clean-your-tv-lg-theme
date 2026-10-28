@@ -80,4 +80,4 @@ user column choice still takes precedence. Other themes remain selectable.
 | Candidate limits and TV availability | [Compatibility](docs/compatibility.md) |
 | Compare complete examples | [Classic, Alpine and Channel](examples/README.md) |
 
-The public catalog belongs to [the main project](https://github.com/Razdva122/clean-your-tv-lg-webos/tree/codex/theme-css-foundation/showcase). Its initial Alpine/Channel records reference independently committed distributions in this repository; the catalog and TV installer follow the main project release cycle. A listing does not install or bundle a theme.
+The public catalog belongs to [the main project](https://github.com/Razdva122/clean-your-tv-lg-webos/tree/codex/theme-css-foundation/showcase). Its initial Alpine/Channel records reference independently committed distributions in this repository; the catalog and TV installer follow the main project release cycle. A listing does not automatically bundle a theme. The main candidate bundles Classic and Alpine, while Channel stays an external showcase install; see the main user guide for the implemented candidate TV flow.

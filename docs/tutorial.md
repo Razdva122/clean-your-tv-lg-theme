@@ -72,7 +72,7 @@ Several themes can share one repository: use `themes/ocean` and `themes/forest`,
 
 ## Can I choose this on my TV now?
 
-The current public Home release does **not** have external theme installation. The catalog's Copy TV link exposes the fixed descriptor for the planned installer and review; it is not an installation button. Do not sideload CSS, run repository scripts on the TV or replace Home files manually. Until the installer ships, use the browser preview. Its eventual on-TV selection flow will be documented against the actual released UI.
+The theme-enabled main candidate now implements **Settings → Themes**. Classic and Alpine are bundled; Channel stays external. Use **Add by URL → Load**, choose a distribution entry, then its downloaded version. **Keep theme** within 20 seconds; Back/Revert/timeout restores the accepted appearance. Confirmed files are cached for offline startup; interrupted previews relaunch in Classic. Published packages may not include this candidate yet. Follow [the user guide](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/codex/theme-css-foundation/docs/THEMES.md). Do not manually replace Home files or run author code on the TV. Browser results are not physical-TV acceptance.
 
 ## Troubleshooting
 
@@ -84,4 +84,4 @@ The current public Home release does **not** have external theme installation. T
 | Images fail validation | Check manifest paths, MIME type, actual dimensions, byte limits and credits. |
 | Last version remains on screen | Fix the error above Home; the preview deliberately retains the last valid theme. |
 | Build refuses dirty input | Commit the source files, pass the exact HEAD and use an empty output outside the source folder. |
-| There is no TV theme setting | Installation is still in development; a catalog listing does not add the setting. |
+| There is no TV theme setting | That package does not include the theme-enabled candidate; a catalog listing cannot add the control. |

@@ -30,6 +30,8 @@ test('live showcase switches themes on one renderer and retains user column choi
   await page.getByRole('button',{name:'Classic',exact:true}).waitFor();
   await frame.waitForFunction(()=>window.HomeLayoutState);
   assert.equal(await frame.locator('#ctv-theme-style').count(),0,'Classic uses the built-in renderer styles');
+  assert.equal(await frame.evaluate(()=>window.CYTV_THEME_AUTHOR_PREVIEW),true,'trusted author wrapper controls preview selection');
+  await frame.evaluate(async()=>{if(window.ThemeManager){await ThemeManager.start();if(ThemeManager.current().id!=='builtin:classic')throw Error('author startup restored persisted TV appearance');}});
   await page.getByRole('button',{name:'Alpine',exact:true}).press('Enter');
   await frame.waitForFunction(()=>HomeLayoutState.state().preset==='scenic-grid');
   await page.getByRole('button',{name:'Classic',exact:true}).press('Space');
