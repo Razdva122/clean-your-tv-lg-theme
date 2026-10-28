@@ -129,3 +129,80 @@ test('real browser captures Home, Inputs and unthemed Settings', {
     });
   }
 });
+test('distinct asset identities keep unique distribution paths for identical image bytes', {
+  skip: !runtimePath
+}, async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ctv-identical-assets-'));
+  try {
+    const theme = path.join(root, 'source', 'themes', 'ocean');
+    t.init(theme, {
+      repository: 'https://github.com/example/themes'
+    });
+    const manifestFile = path.join(theme, 'theme.json');
+    const manifest = JSON.parse(fs.readFileSync(manifestFile));
+    fs.copyFileSync(path.join(theme, 'assets/preview.png'), path.join(theme, 'assets/wallpaper.png'));
+    manifest.assets.push({
+      ...manifest.assets[0],
+      id: 'wallpaper',
+      path: 'assets/wallpaper.png'
+    });
+    fs.writeFileSync(manifestFile, JSON.stringify(manifest));
+    const git = (...args) => cp.execFileSync('git', ['-C', path.join(root, 'source'), ...args], {
+      encoding: 'utf8'
+    }).trim();
+    git('init', '-q');
+    git('add', '.');
+    git('-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'identical images with distinct identities');
+    const out = path.join(root, 'dist');
+    const built = await t.build(theme, t.runtime(runtimePath), {
+      repository: 'https://github.com/example/themes',
+      commit: git('rev-parse', 'HEAD'),
+      out
+    });
+    assert.equal(built.assets.length, 2);
+    assert.equal(built.assets[0].sha256, built.assets[1].sha256);
+    assert.notEqual(built.assets[0].path, built.assets[1].path);
+    for (const asset of built.assets) {
+      assert.equal(t.hash(fs.readFileSync(path.join(out, asset.path))), asset.sha256);
+    }
+  } finally {
+    fs.rmSync(root, {
+      recursive: true,
+      force: true
+    });
+  }
+});
+test('restoring identical preview asset bytes clears a transient read error', {
+  skip: !runtimePath
+}, async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ctv-recovered-asset-'));
+  let preview;
+  try {
+    const theme = path.join(root, 'ocean');
+    t.init(theme, {
+      repository: 'https://github.com/example/themes'
+    });
+    preview = await t.preview(theme, t.runtime(runtimePath));
+    const file = path.join(theme, 'assets/preview.png');
+    const bytes = fs.readFileSync(file);
+    const before = preview.state();
+    fs.unlinkSync(file);
+    await preview.refresh();
+    assert.match(preview.state().error, /ENOENT/);
+    assert.equal(preview.state().css, before.css);
+    fs.writeFileSync(file, bytes);
+    await preview.refresh();
+    assert.equal(preview.state().error, null);
+    assert.equal(preview.state().css, before.css);
+    assert.equal(preview.state().revision, before.revision);
+  } finally {
+    if (preview) {
+      preview.server.closeAllConnections();
+      await new Promise(resolve => preview.server.close(resolve));
+    }
+    fs.rmSync(root, {
+      recursive: true,
+      force: true
+    });
+  }
+});
