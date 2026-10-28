@@ -15,18 +15,35 @@ test('live showcase switches themes on one renderer and retains user column choi
  try{
   const page=await browser.newPage({viewport:{width:1280,height:900}});await page.goto(preview.url);
   assert.equal(await page.locator('#themePicker strong').textContent(),'Темы','picker uses UTF-8');
-  assert.deepEqual(await page.locator('#themePicker button').allTextContents(),['Classic','Glasshouse','Channel']);
+  assert.deepEqual(await page.locator('#themePicker .ctv-theme-card__name').allTextContents(),['Classic','Glasshouse','Channel']);
+  assert.equal(await page.locator('#themePicker img').count(),3,'each theme has a preview image');
+  for(const img of await page.locator('#themePicker img').all()) {await img.evaluate(el=>el.decode());assert.ok(await img.evaluate(el=>el.naturalWidth>1));}
+  assert.equal(await page.locator('#themePicker .ctv-theme-card').count(),3);
+  assert.equal((await fetch(preview.url+'theme-thumbnail?theme=../private')).status,404);
+  await page.setViewportSize({width:390,height:844});
+  await page.waitForFunction(()=>document.getElementById('screen').getBoundingClientRect().width<=innerWidth);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'narrow page contains its horizontal card strip');
+  for(const name of await page.locator('#themePicker .ctv-theme-card__name').all()) assert.ok(await name.evaluate(el=>el.offsetHeight<=parseFloat(getComputedStyle(el).lineHeight)+1),'short theme name fits one line');
+  assert.equal(await page.locator('.theme-card-strip').evaluate(el=>el.scrollWidth>el.clientWidth),true,'narrow picker can scroll through image cards');
+  await page.setViewportSize({width:1280,height:900});
   const frame=page.frames().find(f=>f.url().includes('/runtime/'));
   await page.getByRole('button',{name:'Classic',exact:true}).waitFor();
   await frame.waitForFunction(()=>window.HomeLayoutState);
   assert.equal(await frame.locator('#ctv-theme-style').count(),0,'Classic uses the built-in renderer styles');
+  await page.getByRole('button',{name:'Glasshouse',exact:true}).press('Enter');
+  await frame.waitForFunction(()=>HomeLayoutState.state().preset==='scenic-grid');
+  await page.getByRole('button',{name:'Classic',exact:true}).press('Space');
+  await frame.waitForFunction(()=>!document.getElementById('ctv-theme-style'));
+  const thumbnail=page.locator('button[data-key="terminal"] img');
+  await thumbnail.evaluate(img=>{img.src='/theme-thumbnail?theme=missing';});
+  await page.locator('button[data-key="terminal"] .ctv-theme-card__fallback:not([hidden])').waitFor();
   await frame.evaluate(()=>{window.sameHome=true;HomeLayoutState.setColumns(4);});
   for(const [title,preset,columns] of [['Glasshouse','scenic-grid',8],['Channel','channel-list',4]]){
    await page.getByRole('button',{name:title,exact:true}).click();
    await frame.waitForFunction(preset=>HomeLayoutState.state().preset===preset,preset);
    assert.equal(await frame.evaluate(()=>window.sameHome),true,'renderer is not reloaded');
    assert.equal(await frame.evaluate(()=>HomeLayoutState.state().columns),columns,'fixed theme uses author columns; adjustable theme restores user override');
-   await page.waitForFunction(title=>[...document.querySelectorAll('[data-theme-id]')].some(b=>b.textContent===title&&b.getAttribute('aria-pressed')==='true'),title);
+   await page.waitForFunction(title=>[...document.querySelectorAll('[data-theme-id]')].some(b=>b.dataset.themeTitle===title&&b.getAttribute('aria-pressed')==='true'),title);
   }
   await page.getByRole('button',{name:'Classic',exact:true}).click();
   await frame.waitForFunction(()=>!document.getElementById('ctv-theme-style'));

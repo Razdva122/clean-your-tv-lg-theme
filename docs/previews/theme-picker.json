@@ -1,0 +1,14 @@
+{
+  "kind": "browser-preview",
+  "hardwareVerified": false,
+  "viewport": {
+    "width": 960,
+    "height": 820
+  },
+  "clock": "2026-01-01T12:00:00Z",
+  "runtime": {
+    "repository": "https://github.com/Razdva122/clean-your-tv-lg-webos",
+    "commit": "23968cafedd8a1f4a62eaa77c8390f0678d272c9",
+    "dirty": true
+  }
+}

@@ -107,3 +107,18 @@ Trusted dialogs block this input. A clipped next-card preview is a continuation
 hint and becomes clickable after it is fully revealed; hovering that hint cannot
 auto-pan the ribbon. Reduced motion remains supported. See the
 [UI/UX review](../docs/glasshouse-ux-review.md) for browser coverage and limits.
+
+## Image-card picker
+
+The live showcase now uses 16:9 Home preview cards with a theme name and a
+visible selected state. Click the image/card or use Tab and Enter/Space. On a
+narrow window the card strip scrolls horizontally without widening the page.
+
+Classic uses a real built-in renderer capture supplied by the candidate runtime.
+Other cards use their manifest's `previewAssetId`, served only after source
+validation. A missing image shows a fallback without breaking Home selection.
+The card stylesheet is shared with the main project's community showcase; the
+latter still publishes only reviewed registry entries. A built-in Classic sample
+is identified separately. New card UI requires the refreshed candidate runtime.
+
+![Image-card theme picker](../docs/previews/theme-picker.png)
