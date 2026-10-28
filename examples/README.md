@@ -1,18 +1,18 @@
-# Classic, Channel and Glasshouse
+# Classic, Channel and Alpine
 
 The live showcase includes three choices:
 
 | Theme | Composition | Default columns | Source |
 | --- | --- | --- | --- |
-| [Glasshouse](glasshouse/theme.css) | Scenic wallpaper, large clock and one looping bottom ribbon | 8 | Editable example in `glasshouse/` |
+| [Alpine](glasshouse/theme.css) | Scenic wallpaper, large clock and one looping bottom ribbon | 8 | Editable example in `glasshouse/` |
 | Classic | Original Home shelf and grid | 5 | Built into the renderer; uses trusted reset, no theme CSS copy |
 | [Channel](terminal/theme.css) | Blue teletext-style numbered list with a selected title | 1 | Editable example in `terminal/` |
 
 Classic and Channel allow the TV user to override their column defaults.
-Glasshouse fixes its author composition at eight columns and hides that setting;
+Alpine fixes its author composition at eight columns and hides that setting;
 the saved user choice resumes when switching back to Classic or Channel. Settings use the
 standard trusted appearance. The `terminal` directory and Channel theme ID stay
-stable. Glasshouse is an independent interpretation of the Glasshouse Home composition.
+stable. Alpine is an independent interpretation of the Glasshouse Home composition.
 Its `scenic-grid` layout loops horizontally with Left/Right; Up enters shortcuts and Down
 returns to the same app.
 The selected app index appears above the ribbon. Wallpaper attribution and license
@@ -29,7 +29,7 @@ npm ci --ignore-scripts
 npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
 ```
 
-Open **http://127.0.0.1:8877/**. Classic is selected initially. Click Glasshouse, Channel or
+Open **http://127.0.0.1:8877/**. Classic is selected initially. Click Alpine, Channel or
 Classic above the actual Home screen, then use the mouse or arrows/Enter inside
 it. Switching does not reload Home; app order and saved column preferences are retained.
 App launches and TV services are simulated. Keep the terminal open; Ctrl+C stops
@@ -87,7 +87,7 @@ licenses are in [DEMO-ICON-CREDITS.txt](DEMO-ICON-CREDITS.txt),
 
 Set `layout.allowColumnOverride` to `false` in `theme.json` to hide the Columns
 setting and keep the author's column count. Omit it, or set `true`, to let users
-choose. Glasshouse demonstrates the fixed option; Channel remains adjustable.
+choose. Alpine demonstrates the fixed option; Channel remains adjustable.
 The saved user value is preserved across theme switches. This candidate field
 requires a freshly exported runtime with column-policy support.
 
@@ -95,7 +95,7 @@ The flag controls user reflow, not arbitrary CSS coordinates. Choose a supported
 trusted preset for placement. The renderer continues to own remote navigation,
 focus and hit areas; external CSS controls the exposed visual parts.
 
-## Glasshouse interaction polish
+## Alpine interaction polish
 
 The selected app's full name stays above the ribbon without a slide/fade. Wider
 28px captions make normal names easier to read; Add app can use two lines.
@@ -122,3 +122,7 @@ latter still publishes only reviewed registry entries. A built-in Classic sample
 is identified separately. New card UI requires the refreshed candidate runtime.
 
 ![Image-card theme picker](../docs/previews/theme-picker.png)
+
+## Button icon examples
+
+Alpine uses original outline artwork; Channel uses original pixel artwork for Inputs, network and Settings. See [the icon recipe](../docs/authoring.md#replace-header-button-icons). Alpine retains its existing `glasshouse` directory and stable ID so installed theme identity is preserved.

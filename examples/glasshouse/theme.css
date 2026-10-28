@@ -14,3 +14,9 @@
 
 /* One crisp border remains supplied by the trusted renderer. */
 .ctv-card.is-focused { box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.65); }
+
+/* Replace the trusted SVG fill with a validated local image; keep button labels. */
+.ctv-input-icon { color: transparent; background-image: url(assets/button-inputs.png); }
+.ctv-network-icon { color: transparent; background-image: url(assets/button-network.png); }
+.ctv-settings-icon { color: transparent; background-image: url(assets/button-settings.png); }
+.ctv-shortcut.is-focused { background-color: #353c3a; color: #ece7df; }

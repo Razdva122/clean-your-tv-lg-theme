@@ -83,3 +83,18 @@ this flag. Use a runtime with column-policy support; older candidates reject it.
 The flag does not unlock arbitrary CSS positioning. Templates still own card
 coordinates, focus, pointer hit areas and remote navigation. New placement
 patterns need a trusted renderer preset rather than theme JavaScript.
+
+## Replace header button icons
+
+Use `.ctv-input-icon`, `.ctv-network-icon` and `.ctv-settings-icon`. Each hook is a decorative SVG inside its original button. Its dimensions, interaction and text label stay owned by the renderer. Register a transparent PNG/WebP in `theme.json` with its real dimensions and redistribution credits, then add:
+
+```css
+.ctv-input-icon {
+  color: transparent;
+  background-image: url(assets/button-inputs.png);
+}
+```
+
+`color: transparent` makes the built-in SVG fill transparent while the listed image occupies the same bounds. Omitting both declarations restores the default glyph. Do not use remote images, SVG uploads, data URLs, IDs or arbitrary selectors. Choose a focused button background that keeps the raster image readable, or provide a separate registered focus asset with `.ctv-shortcut.is-focused .ctv-input-icon`.
+
+Run the live showcase command in [examples](../examples/README.md), select Alpine or Channel and click Inputs/Settings or navigate Up with the remote keys. Compare their outline/pixel glyphs and focused states; switching to Classic restores the built-in artwork. A candidate runtime containing these three new hooks is required. This styles only the Home shortcut; the Settings screen remains standard.

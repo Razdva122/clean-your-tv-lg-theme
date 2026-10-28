@@ -48,3 +48,7 @@ Verified candidate runtime source: `c0919d03cc29c4119aa135103e0c5494cd23af82`.
 Full browser, theme/compiler/runtime, TV compatibility and preview groups passed.
 All 21 toolkit checks passed. The current IAB preview was manually checked in
 Russian for the full Add app title, library open/Back and focus return.
+
+## Alpine 1.4.0
+
+The display name is now Alpine; its existing theme ID and source directory stay stable. The scenic reorder arrow cluster is removed while remote movement and trusted footer controls remain. New dedicated header icon hooks demonstrate local raster replacement with original outline artwork; Channel demonstrates pixel artwork. Fresh Home, Inputs and Settings captures accompany both examples. Browser checks cover custom SVG fill suppression and Classic restoration. No physical TV verification was performed.

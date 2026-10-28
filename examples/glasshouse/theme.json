@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "themeApiVersion": 1,
   "id": "github:razdva122/clean-your-tv-lg-theme:glasshouse",
-  "title": "Glasshouse",
-  "description": "A scenic Home inspired by Glasshouse: large quiet clock, mountain panorama and one infinitely looping horizontal app ribbon.",
+  "title": "Alpine",
+  "description": "A quiet alpine panorama, large clock and one infinitely looping horizontal app ribbon.",
   "author": {
     "name": "Clean Your TV contributors",
     "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.3.0",
+  "themeVersion": "1.4.0",
   "layout": {
     "preset": "scenic-grid",
     "columns": 8,
@@ -36,6 +36,27 @@
       "mediaType": "image/jpeg",
       "width": 1280,
       "height": 575
+    },
+    {
+      "id": "button-inputs",
+      "path": "assets/button-inputs.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    },
+    {
+      "id": "button-network",
+      "path": "assets/button-network.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    },
+    {
+      "id": "button-settings",
+      "path": "assets/button-settings.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
     }
   ],
   "previewAssetId": "preview",

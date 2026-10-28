@@ -15,7 +15,7 @@ test('live showcase switches themes on one renderer and retains user column choi
  try{
   const page=await browser.newPage({viewport:{width:1280,height:900}});await page.goto(preview.url);
   assert.equal(await page.locator('#themePicker strong').textContent(),'Темы','picker uses UTF-8');
-  assert.deepEqual(await page.locator('#themePicker .ctv-theme-card__name').allTextContents(),['Classic','Glasshouse','Channel']);
+  assert.deepEqual(await page.locator('#themePicker .ctv-theme-card__name').allTextContents(),['Classic','Alpine','Channel']);
   assert.equal(await page.locator('#themePicker img').count(),3,'each theme has a preview image');
   for(const img of await page.locator('#themePicker img').all()) {await img.evaluate(el=>el.decode());assert.ok(await img.evaluate(el=>el.naturalWidth>1));}
   assert.equal(await page.locator('#themePicker .ctv-theme-card').count(),3);
@@ -30,7 +30,7 @@ test('live showcase switches themes on one renderer and retains user column choi
   await page.getByRole('button',{name:'Classic',exact:true}).waitFor();
   await frame.waitForFunction(()=>window.HomeLayoutState);
   assert.equal(await frame.locator('#ctv-theme-style').count(),0,'Classic uses the built-in renderer styles');
-  await page.getByRole('button',{name:'Glasshouse',exact:true}).press('Enter');
+  await page.getByRole('button',{name:'Alpine',exact:true}).press('Enter');
   await frame.waitForFunction(()=>HomeLayoutState.state().preset==='scenic-grid');
   await page.getByRole('button',{name:'Classic',exact:true}).press('Space');
   await frame.waitForFunction(()=>!document.getElementById('ctv-theme-style'));
@@ -38,15 +38,26 @@ test('live showcase switches themes on one renderer and retains user column choi
   await thumbnail.evaluate(img=>{img.src='/theme-thumbnail?theme=missing';});
   await page.locator('button[data-key="terminal"] .ctv-theme-card__fallback:not([hidden])').waitFor();
   await frame.evaluate(()=>{window.sameHome=true;HomeLayoutState.setColumns(4);});
-  for(const [title,preset,columns] of [['Glasshouse','scenic-grid',8],['Channel','channel-list',4]]){
+  for(const [title,preset,columns] of [['Alpine','scenic-grid',8],['Channel','channel-list',4]]){
    await page.getByRole('button',{name:title,exact:true}).click();
    await frame.waitForFunction(preset=>HomeLayoutState.state().preset===preset,preset);
+   for(const part of ['input-icon','network-icon','settings-icon']) {
+    const icon=frame.locator('.ctv-'+part);
+    assert.equal(await icon.count(),1,'dedicated decorative icon hook');
+    assert.equal(await icon.evaluate(el=>getComputedStyle(el).fill),'rgba(0, 0, 0, 0)','original SVG fill is replaced');
+    assert.match(await icon.evaluate(el=>getComputedStyle(el).backgroundImage),/url\(/,'custom local artwork is applied');
+   }
+   await frame.locator('#btnInputs').hover();
+   assert.notEqual(await frame.locator('#btnInputs').evaluate(el=>getComputedStyle(el).color),'rgba(0, 0, 0, 0)','button label remains readable');
+   await page.mouse.move(0,0);
    assert.equal(await frame.evaluate(()=>window.sameHome),true,'renderer is not reloaded');
    assert.equal(await frame.evaluate(()=>HomeLayoutState.state().columns),columns,'fixed theme uses author columns; adjustable theme restores user override');
    await page.waitForFunction(title=>[...document.querySelectorAll('[data-theme-id]')].some(b=>b.dataset.themeTitle===title&&b.getAttribute('aria-pressed')==='true'),title);
   }
   await page.getByRole('button',{name:'Classic',exact:true}).click();
   await frame.waitForFunction(()=>!document.getElementById('ctv-theme-style'));
+  assert.equal(await frame.locator('.ctv-input-icon').evaluate(el=>getComputedStyle(el).backgroundImage),'none','Classic restores original artwork');
+  assert.notEqual(await frame.locator('.ctv-input-icon').evaluate(el=>getComputedStyle(el).fill),'rgba(0, 0, 0, 0)');
   assert.equal(await frame.evaluate(()=>HomeLayoutState.state().preset),'dock-grid');
   assert.equal(await frame.evaluate(()=>HomeLayoutState.state().columns),4,'Classic keeps the user override');
   assert.equal(await frame.evaluate(()=>window.sameHome),true);

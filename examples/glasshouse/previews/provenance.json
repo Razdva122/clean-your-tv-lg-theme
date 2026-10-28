@@ -10,10 +10,10 @@
     "status": "candidate",
     "source": {
       "repository": "https://github.com/Razdva122/clean-your-tv-lg-webos",
-      "commit": "c0919d03cc29c4119aa135103e0c5494cd23af82",
+      "commit": "9d9a2b12c7c4d4b2ef04c4f04cd0b5e4bc5e65f8",
       "dirty": true
     },
-    "manifestSha256": "cd86aac7180214cf7ed8226b30373102c2fd7ab7dfbeebdfd08a1c777ea49c8d"
+    "manifestSha256": "3267a337f5c5aa148e45c6fd6ce29cb62a0477d25577c67769514e1abafb9dcd"
   },
   "themeApiVersion": 1,
   "scenarios": [

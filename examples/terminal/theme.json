@@ -8,7 +8,7 @@
     "name": "Clean Your TV contributors",
     "url": "https://github.com/Razdva122/clean-your-tv-lg-theme"
   },
-  "themeVersion": "1.2.1",
+  "themeVersion": "1.3.0",
   "layout": {
     "preset": "channel-list",
     "columns": 1,
@@ -28,6 +28,27 @@
       "mediaType": "image/png",
       "width": 960,
       "height": 540
+    },
+    {
+      "id": "button-inputs",
+      "path": "assets/button-inputs.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    },
+    {
+      "id": "button-network",
+      "path": "assets/button-network.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    },
+    {
+      "id": "button-settings",
+      "path": "assets/button-settings.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
     }
   ],
   "previewAssetId": "preview",

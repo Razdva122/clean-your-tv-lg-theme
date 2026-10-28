@@ -26,3 +26,9 @@
 .ctv-library-panel { background-color: var(--blue); color: #ffffff; border-style: solid; border-width: 2px; border-color: var(--cyan); border-radius: 0px; box-shadow: 0px 0px 0px 0px transparent; }
 .ctv-library-close { background-color: var(--blue); color: #ffffff; border-style: solid; border-width: 2px; border-color: var(--cyan); border-radius: 0px; font-family: monospace; }
 .ctv-library-close.is-focused { background-color: #ffffff; color: var(--blue); border-color: #ffffff; }
+
+/* Replace the trusted SVG fill with a validated local image; keep button labels. */
+.ctv-input-icon { color: transparent; background-image: url(assets/button-inputs.png); }
+.ctv-network-icon { color: transparent; background-image: url(assets/button-network.png); }
+.ctv-settings-icon { color: transparent; background-image: url(assets/button-settings.png); }
+.ctv-shortcut.is-focused { background-color: #232c76; color: #8ce9ff; }
