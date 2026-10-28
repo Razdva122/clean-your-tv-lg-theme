@@ -47,6 +47,14 @@ test('live showcase switches themes on one renderer and retains user column choi
     assert.equal(await icon.evaluate(el=>getComputedStyle(el).fill),'rgba(0, 0, 0, 0)','original SVG fill is replaced');
     assert.match(await icon.evaluate(el=>getComputedStyle(el).backgroundImage),/url\(/,'custom local artwork is applied');
    }
+   if(title==='Alpine') {
+    await frame.locator('body').press('ArrowLeft');await frame.locator('.add-app.focused').waitFor();await page.keyboard.press('Enter');await frame.locator('#appPicker:not([hidden])').waitFor();
+    const overlay=await frame.locator('.ctv-library').evaluate(el=>{const s=getComputedStyle(el);return {color:s.backgroundColor,image:s.backgroundImage};});
+    assert.match(overlay.color,/rgba\([^,]+,[^,]+,[^,]+, 0\.[1-4]\)/,'Alpine library leaves wallpaper visible behind its panel');
+    assert.doesNotMatch(overlay.image,/rgb\(/,'library backdrop has no opaque gradient');
+    assert.equal(await frame.locator('.ctv-library :focus').count(),1,'library keeps visible focus');
+    await page.keyboard.press('Escape');await frame.locator('#appPicker').waitFor({state:'hidden'});
+   }
    await frame.locator('#btnInputs').hover();
    assert.notEqual(await frame.locator('#btnInputs').evaluate(el=>getComputedStyle(el).color),'rgba(0, 0, 0, 0)','button label remains readable');
    await page.mouse.move(0,0);

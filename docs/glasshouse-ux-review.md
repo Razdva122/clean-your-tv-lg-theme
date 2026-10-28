@@ -52,3 +52,7 @@ Russian for the full Add app title, library open/Back and focus return.
 ## Alpine 1.4.0
 
 The display name is now Alpine; its existing theme ID and source directory stay stable. The scenic reorder arrow cluster is removed while remote movement and trusted footer controls remain. New dedicated header icon hooks demonstrate local raster replacement with original outline artwork; Channel demonstrates pixel artwork. Fresh Home, Inputs and Settings captures accompany both examples. Browser checks cover custom SVG fill suppression and Classic restoration. No physical TV verification was performed.
+
+## Alpine 1.4.1: library backdrop and glyph refinement
+
+The app library now uses a 30% dark scrim instead of the opaque shared Inputs background. Its central panel remains 92% opaque for readable text and focus. Home wallpaper stays visible around the panel; standard Settings and Classic remain unchanged. The Inputs glyph is now an original HDMI connector; Channel 1.3.1 uses a clearer stepped Wi-Fi symbol. The live showcase regression opens the library using remote keys, checks its backdrop/focus and closes it before switching themes. See [library browser capture](previews/alpine-library.png) and its provenance JSON.
