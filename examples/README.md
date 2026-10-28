@@ -99,3 +99,8 @@ licenses are in [DEMO-ICON-CREDITS.txt](DEMO-ICON-CREDITS.txt),
 Visual research: [CleanYourTV's theme gallery](https://lasharor.github.io/cleanyourtv-WebOS/themes/)
 and [Luma](https://github.com/ecklf/lg-luma). The CSS and wallpapers here are
 original; no theme code or wallpaper was copied from those projects.
+
+The live showcase starts with **Classic**, the renderer's built-in appearance.
+Classic calls the trusted reset path rather than loading a CSS imitation.
+It restores the original layout and default of 5 columns, while an explicit
+user column choice still takes precedence. Other themes remain selectable.

@@ -62,3 +62,8 @@ npm test
 See [CSS and layout](docs/authoring.md), [publishing and collections](docs/publish.md),
 [Russian quick start](docs/quick-start.ru.md) and [limitations](docs/compatibility.md).
 The authoring workflow needs no embedded editor or desktop authoring application.
+
+The live showcase starts with **Classic**, the renderer's built-in appearance.
+Classic calls the trusted reset path rather than loading a CSS imitation.
+It restores the original layout and default of 5 columns, while an explicit
+user column choice still takes precedence. Other themes remain selectable.
