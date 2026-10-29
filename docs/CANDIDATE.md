@@ -51,3 +51,14 @@ A green browser/CI run proves the declared source checks, not TV compatibility,
 standby, cold boot, OTA or rollback. Match physical observations to the exact TV
 candidate and this toolkit artifact. No GitHub Release, stable tag or application
 signing is performed by this workflow.
+
+
+The current paired runtime includes the one-row installed-theme picker: the active
+version is first, with a distinct surface and border, and remote focus reveals a
+whole card. Alpine source 1.4.4 also styles the expanded inputs as a translucent
+scenic panel. The built-in Alpine remains part of Home; Channel remains external.
+
+Short IDs still require network access to is.gd. Physical C3 testing of the paired
+Home candidate observed a TLS handshake timeout to is.gd while direct GitHub and
+PC-to-TV delivery worked. This path is not accepted on that device/network; use
+Send to TV or the full pinned GitHub link. No certificate checks are disabled.
