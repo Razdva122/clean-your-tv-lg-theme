@@ -66,8 +66,9 @@ Use [the screenshots command](publish.md#capture-browser-review-images) for fixe
 
 ## Try an unpublished theme on your TV
 
-In preview/showcase choose your local theme, then **Send to TV**. On a compatible
-TV candidate open **Settings → Themes → From computer**, enter the displayed
+In preview/showcase choose your local theme, then **Send to TV**. A modal installation
+guide opens in the same browser page with numbered steps, computer addresses and a
+large PIN. On a compatible TV candidate open **Settings → Themes → Receive from computer**, enter the displayed
 private computer IPv4 address and six-digit PIN. Both devices must share the home
 network; publishing, a long URL and a clean Git commit are unnecessary. Classic is
 built in and cannot be sent. Alternatively run:
@@ -81,8 +82,11 @@ of the interface on the TV's network; guest Wi-Fi/client isolation can block it.
 Do not forward this port on your router. The server exposes only the compiled
 selected theme snapshot, closes after ten minutes, and stops with **Stop sharing**
 or Ctrl+C. Closing preview stops its share; closing a browser tab alone does not.
-Edits after sharing require **Send to TV** again, which creates a fresh PIN and
-snapshot. Accept the appearance on TV before the rollback timer ends. Browser
+After editing the source, use **Новый PIN** (New PIN) in the guide for a fresh snapshot.
+Reopening Send to TV keeps the active session and PIN for the same selected theme;
+choosing another theme starts a new snapshot. Closing the instructions keeps sharing
+active; **Остановить передачу** (Stop sharing) stops it. On TV choose **Receive theme**,
+then **Apply theme**; an installed theme is saved immediately. Browser
 preview alone does not verify physical TV behavior.
 
 ## 7. Commit, build and submit
