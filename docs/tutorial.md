@@ -68,7 +68,7 @@ Use [the screenshots command](publish.md#capture-browser-review-images) for fixe
 
 In preview/showcase choose your local theme, then **Send to TV**. A modal installation
 guide opens in the same browser page with numbered steps, computer addresses and a
-large PIN. On a compatible TV candidate open **Settings → Themes → Receive from computer**, enter the displayed
+large PIN. On a compatible TV candidate open **Settings → Appearance → Receive from computer**, enter the displayed
 private computer IPv4 address and six-digit PIN. Both devices must share the home
 network; publishing, a long URL and a clean Git commit are unnecessary. Classic is
 built in and cannot be sent. Alternatively run:
@@ -97,7 +97,7 @@ Several themes can share one repository: use `themes/ocean` and `themes/forest`,
 
 ## Can I choose this on my TV now?
 
-The theme-enabled main candidate now implements **Settings → Themes**. Classic and Alpine are bundled; Channel stays external. Use **Add by URL → Load**, choose a distribution entry, then its downloaded version. Installed and built-in themes apply and save immediately without a timer. The separate showcase refreshes from the main repository without reloading Home; its **Try theme** action retains the 20-second Keep/Revert trial. Local transfers offer **Apply theme** without a timer. Confirmed files are cached for offline startup; interrupted previews relaunch in Classic. Published packages may not include this candidate yet. Follow [the user guide](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/codex/theme-css-foundation/docs/THEMES.md). Do not manually replace Home files or run author code on the TV. Browser results are not physical-TV acceptance.
+The theme-enabled main candidate embeds theme cards and controls directly in **Settings → Appearance**; there is no separate Themes launch screen. Classic and Alpine are bundled; Channel stays external. Use **Add by URL → Load**, choose a distribution entry, then its downloaded version. Installed and built-in themes apply and save immediately without a timer. The separate showcase refreshes from the main repository without reloading Home; its **Try theme** action retains the 20-second Keep/Revert trial. Local transfers offer **Apply theme** without a timer. Confirmed files are cached for offline startup; interrupted previews relaunch in Classic. Published packages may not include this candidate yet. Follow [the user guide](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/codex/theme-css-foundation/docs/THEMES.md). Do not manually replace Home files or run author code on the TV. Browser results are not physical-TV acceptance.
 
 ## Troubleshooting
 
