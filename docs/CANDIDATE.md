@@ -58,7 +58,9 @@ version is first, with a distinct surface and border, and remote focus reveals a
 whole card. Alpine source 1.4.4 also styles the expanded inputs as a translucent
 scenic panel. The built-in Alpine remains part of Home; Channel remains external.
 
-Short IDs still require network access to is.gd. Physical C3 testing of the paired
-Home candidate observed a TLS handshake timeout to is.gd while direct GitHub and
-PC-to-TV delivery worked. This path is not accepted on that device/network; use
-Send to TV or the full pinned GitHub link. No certificate checks are disabled.
+The unpublished short-ID feature now uses da.gd. The former is.gd endpoint stalled
+at TLS on the maintainer C3 network path. On that same TV and original route, the
+da.gd development resolver accepted the bare ID and full short URL and verified
+all 12 Channel files. This module check is separate from signed-candidate UI
+acceptance. Full pinned GitHub links and Send to TV remain available; certificate
+checks are unchanged.

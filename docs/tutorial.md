@@ -114,11 +114,11 @@ The theme-enabled main candidate embeds theme cards and controls directly in **S
 | Build refuses dirty input | Commit the source files, pass the exact HEAD and use an empty output outside the source folder. |
 | There is no TV theme setting | That package does not include the theme-enabled candidate; a catalog listing cannot add the control. |
 
-In the computer renderer, **Receive from computer** explains the steps on the TV instead of reporting an unavailable TV service. Use **Send to TV** above the preview. Classic is built in: its send dialog explains that no transfer is needed before asking for TV details. The renderer permits data requests only to the GitHub origins and is.gd JSON lookup used by the trusted theme loader; the outer author page remains restricted to same-origin network requests.
+In the computer renderer, **Receive from computer** explains the steps on the TV instead of reporting an unavailable TV service. Use **Send to TV** above the preview. Classic is built in: its send dialog explains that no transfer is needed before asking for TV details. The renderer permits data requests only to the GitHub origins and da.gd plain-text lookup used by the trusted theme loader; the outer author page remains restricted to same-origin network requests.
 
 
 ## Short installation IDs
 
 Use **TV link → Copy ID** for published versions, or generate the keyless release
 workflow to attach IDs automatically. See [complete instructions](short-links.md).
-The matching Home accepts an ID, an is.gd URL or the full GitHub URL.
+The matching Home accepts an ID, an da.gd URL or the full GitHub URL.
