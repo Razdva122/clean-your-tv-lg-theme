@@ -55,7 +55,8 @@ distributions/ocean/1.0.0/cytv-theme.json
 ```
 
 Push the distribution commit, then publish a GitHub release tagged `v1.0.0` at
-that commit. The workflow:
+that commit. Contract-valid prerelease tags such as `v1.0.0-beta.1` work too.
+The workflow:
 
 1. Reads tracked descriptors matching that version, without running theme scripts.
 2. Checks their public bytes against the distribution checkout before shortening.
