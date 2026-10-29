@@ -5,9 +5,9 @@
     {
       "id": "github:razdva122/clean-your-tv-lg-theme:terminal",
       "title": "Channel",
-      "themeVersion": "1.3.2",
-      "path": "distributions/channel/1.3.2/cytv-theme.json",
-      "sha256": "d94f984c28be6903401f8748626679644c82e6de21b79a47eccd2359859658b0"
+      "themeVersion": "1.3.3",
+      "path": "distributions/channel/1.3.3/cytv-theme.json",
+      "sha256": "da7da0848ac0ecd60ebbcd964cb65a68fdf4fab54f30eebd56218c9d3141e17c"
     }
   ]
 }
