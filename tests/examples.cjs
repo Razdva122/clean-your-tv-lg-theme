@@ -45,6 +45,18 @@ test('example focus keeps Add app and missing-icon glyphs readable', {
         await page.goto(preview.url);
         const frame = page.frames().find(f=>f.url().includes('/runtime/'));
         await frame.waitForFunction(()=>document.getElementById('ctv-theme-style') && document.querySelector('#tiles .focused'));
+        await frame.addStyleTag({content:'* { transition:none !important; animation:none !important; }'});
+        if(name==='terminal'){
+          for(const id of ['btnInputs','btnWifi','btnSettings']){
+            const button=frame.locator('#'+id),icon=button.locator('svg');
+            const normal=await icon.evaluate(el=>getComputedStyle(el).backgroundImage);
+            await button.hover();
+            await frame.waitForFunction(id=>document.getElementById(id).classList.contains('is-focused'),id);
+            assert.equal(await button.evaluate(el=>getComputedStyle(el).color),'rgb(18, 28, 133)',id+': dark-blue focus text');
+            assert.notEqual(await icon.evaluate(el=>getComputedStyle(el).backgroundImage),normal,id+': focus artwork changes with text');
+            if(process.env.THEME_FOCUS_SCREENSHOTS){fs.mkdirSync(process.env.THEME_FOCUS_SCREENSHOTS,{recursive:true});await page.locator('iframe').screenshot({path:path.join(process.env.THEME_FOCUS_SCREENSHOTS,id+'.png')});}
+          }
+        }
         const contrast = async selector => frame.locator(selector).evaluate(el=>{
           const card=el.closest('.card'),style=getComputedStyle(card);
           const color=el.tagName.toLowerCase()==='svg'?getComputedStyle(el).stroke:getComputedStyle(card,'::after').color;

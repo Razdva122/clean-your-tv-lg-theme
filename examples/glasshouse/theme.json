@@ -8,7 +8,7 @@
     "name": "Clean Your TV contributors",
     "url": "https://github.com/razdva122"
   },
-  "themeVersion": "1.4.2",
+  "themeVersion": "1.4.3",
   "layout": {
     "preset": "scenic-grid",
     "columns": 8,
@@ -34,8 +34,8 @@
       "id": "landscape",
       "path": "assets/fronalpstock.jpg",
       "mediaType": "image/jpeg",
-      "width": 1280,
-      "height": 575
+      "width": 3840,
+      "height": 2160
     },
     {
       "id": "button-inputs",

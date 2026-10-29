@@ -1,6 +1,6 @@
 Visual reference: Glasshouse Home by rorygallagher2024, https://github.com/rorygallagher2024/glasshouse (MIT). Independent theme, no affiliation; no Glasshouse logo or application code copied.
 
-Wallpaper: Fronalpstock big.jpg by Hannes Röst, https://commons.wikimedia.org/wiki/File:Fronalpstock_big.jpg . CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/ . Resized by Wikimedia, displayed cropped and darkened by the renderer. The wallpaper remains CC BY-SA 3.0. Theme CSS and tools are MIT.
+Wallpaper: Fronalpstock big.jpg by Hannes Röst, https://commons.wikimedia.org/wiki/File:Fronalpstock_big.jpg . CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/ . Cropped from the original 10109×4542 photograph and downsampled to 3840×2160 using Lanczos, JPEG quality 88. Displayed darkened by the renderer. The wallpaper remains CC BY-SA 3.0. Theme CSS and tools are MIT.
 
 Preview application icons: see ../DEMO-ICON-CREDITS.txt and ../DEMO-ICON-LICENSE.txt in the example collection. Product names and marks identify simulated apps and do not imply endorsement.
 

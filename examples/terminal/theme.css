@@ -31,4 +31,8 @@
 .ctv-input-icon { color: transparent; background-image: url(assets/button-inputs.png); }
 .ctv-network-icon { color: transparent; background-image: url(assets/button-network.png); }
 .ctv-settings-icon { color: transparent; background-image: url(assets/button-settings.png); }
-.ctv-shortcut.is-focused { background-color: #232c76; color: #8ce9ff; }
+.ctv-shortcut.is-focused { background-color: #ffffff; color: var(--blue); }
+
+.ctv-shortcut.is-focused .ctv-input-icon { background-image: url(assets/button-inputs-focused.png); }
+.ctv-shortcut.is-focused .ctv-network-icon { background-image: url(assets/button-network-focused.png); }
+.ctv-shortcut.is-focused .ctv-settings-icon { background-image: url(assets/button-settings-focused.png); }

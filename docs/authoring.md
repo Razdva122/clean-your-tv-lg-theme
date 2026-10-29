@@ -41,7 +41,7 @@ asset handles. No remote imports/fonts/videos/scripts/plugins/install hooks.
 A preview asset is required; the scaffold includes an original 1×1 placeholder.
 Replace it with a useful browser preview before submitting to showcase.
 
-Runtime image limits are 1920×1080 / 2 MiB each, preview 960×540 / 300 KiB,
+With the UHD wallpaper candidate runtime, the asset selected by `defaults.wallpaperAssetId` may be up to 3840×2160 / 2 MiB. Other images remain 1920×1080 / 2 MiB each, preview 960×540 / 300 KiB,
 16 assets and 6 MiB total. Resize large originals yourself; automatic image
 normalization is not provided. Every asset needs redistribution permission and
 an entry in CREDITS.txt. LICENSE and credits are bounded hashed documents, not images.
@@ -98,3 +98,5 @@ Use `.ctv-input-icon`, `.ctv-network-icon` and `.ctv-settings-icon`. Each hook i
 `color: transparent` makes the built-in SVG fill transparent while the listed image occupies the same bounds. Omitting both declarations restores the default glyph. Do not use remote images, SVG uploads, data URLs, IDs or arbitrary selectors. Choose a focused button background that keeps the raster image readable, or provide a separate registered focus asset with `.ctv-shortcut.is-focused .ctv-input-icon`.
 
 Run the live showcase command in [examples](../examples/README.md), select Alpine or Channel and click Inputs/Settings or navigate Up with the remote keys. Compare their outline/pixel glyphs and focused states; switching to Classic restores the built-in artwork. A candidate runtime containing these three new hooks is required. This styles only the Home shortcut; the Settings screen remains standard.
+
+The Channel example demonstrates separate registered dark-blue focus icons on a white shortcut. Use `.ctv-shortcut.is-focused .ctv-network-icon` (and the input/settings hooks) to replace the artwork as well as the text color. Verify every shortcut with mouse and remote focus. The Alpine example crops and downsamples the original photograph to 3840×2160; do not enlarge a small thumbnail and call it 4K. Older runtimes reject UHD images.
