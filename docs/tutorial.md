@@ -93,7 +93,7 @@ Several themes can share one repository: use `themes/ocean` and `themes/forest`,
 
 ## Can I choose this on my TV now?
 
-The theme-enabled main candidate now implements **Settings → Themes**. Classic and Alpine are bundled; Channel stays external. Use **Add by URL → Load**, choose a distribution entry, then its downloaded version. **Keep theme** within 20 seconds; Back/Revert/timeout restores the accepted appearance. Confirmed files are cached for offline startup; interrupted previews relaunch in Classic. Published packages may not include this candidate yet. Follow [the user guide](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/codex/theme-css-foundation/docs/THEMES.md). Do not manually replace Home files or run author code on the TV. Browser results are not physical-TV acceptance.
+The theme-enabled main candidate now implements **Settings → Themes**. Classic and Alpine are bundled; Channel stays external. Use **Add by URL → Load**, choose a distribution entry, then its downloaded version. Installed and built-in themes apply and save immediately without a timer. The separate showcase refreshes from the main repository without reloading Home; its **Try theme** action retains the 20-second Keep/Revert trial. Local transfers offer **Apply theme** without a timer. Confirmed files are cached for offline startup; interrupted previews relaunch in Classic. Published packages may not include this candidate yet. Follow [the user guide](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/codex/theme-css-foundation/docs/THEMES.md). Do not manually replace Home files or run author code on the TV. Browser results are not physical-TV acceptance.
 
 ## Troubleshooting
 
