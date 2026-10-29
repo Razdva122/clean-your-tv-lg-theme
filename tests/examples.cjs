@@ -42,6 +42,7 @@ test('example focus keeps Add app and missing-icon glyphs readable', {
       const preview = await toolkit.preview(path.join(root,name),runtime);
       const page = await browser.newPage({viewport:{width:960,height:595}});
       try {
+        page.setDefaultTimeout(10000);
         await page.goto(preview.url);
         const frame = page.frames().find(f=>f.url().includes('/runtime/'));
         await frame.waitForFunction(()=>document.getElementById('ctv-theme-style') && document.querySelector('#tiles .focused'));
