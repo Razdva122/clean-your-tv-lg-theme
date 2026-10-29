@@ -34,6 +34,16 @@ async function main() {
     console.log(path.resolve(options.out, 'cytv-themes.json'));
     return;
   }
+  if (command === 'release-workflow') {
+    const release=require('../lib/release-links.cjs'),destination=path.resolve(options.out||'.github/workflows/theme-links.yml');
+    if(fs.existsSync(destination))throw Error('Workflow already exists; inspect it before replacing it.');
+    fs.mkdirSync(path.dirname(destination),{recursive:true});fs.writeFileSync(destination,release.workflow(release.toolkitCommit()));console.log('Created '+destination);return;
+  }
+  if (command === 'release-notes') {if(!pos[0])throw Error('Use release-notes OUTPUT_DIRECTORY');require('../lib/release-links.cjs').finishNotes(pos[0]);return;}
+  if (command === 'release-links') {
+    if(!pos[0]||!options.out)throw Error('Use release-links REPOSITORY_DIRECTORY --repository OWNER/REPO --commit SHA --tag vX.Y.Z --out NEW_DIRECTORY');
+    const entries=await require('../lib/release-links.cjs').generate(pos[0],options);console.log('Prepared installation links for '+entries.length+' themes.');return;
+  }
   if (command === 'runtime:fetch') throw Error('No published runtime is pinned. Use an explicitly exported maintainer candidate with --runtime PATH. Never download or execute a theme repository as runtime tooling.');
   if (!['validate', 'build', 'preview', 'showcase', 'submission', 'screenshots', 'send'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|showcase|send|screenshots|build|collection|submission} DIRECTORY [--runtime PATH]');
   const rt = t.runtime(options.runtime || process.env.CYTV_THEME_RUNTIME);

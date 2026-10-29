@@ -6,7 +6,7 @@
   "note": "No stable author runtime is published. candidateSource pins the reviewed main-project input for the tested Actions candidate bundle; --runtime remains explicit and runtime:fetch does not invent a stable release.",
   "candidateSource": {
     "repository": "Razdva122/clean-your-tv-lg-webos",
-    "commit": "f0e1e2c217954fc991b1eea1908907e732500bdf",
+    "commit": "6f0d2fe495eb47e7dbb4689e01459fd8a18f2187",
     "releaseCandidate": "1.5.0"
   }
 }

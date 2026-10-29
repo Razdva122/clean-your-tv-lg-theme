@@ -51,7 +51,8 @@ jobs:
           import hashlib,json,os,subprocess,tarfile
           from pathlib import Path
           root=Path.cwd();target=root/'dist';target.mkdir()
-          paths=['bin','lib','examples','docs','package.json','package-lock.json','runtime.lock.json','README.md','CONTRIBUTING.md','LICENSE','.runtime/candidate']
+          (root/'toolkit-source.json').write_text(json.dumps({'commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()})+'\n')
+          paths=['bin','lib','examples','docs','package.json','package-lock.json','runtime.lock.json','README.md','CONTRIBUTING.md','LICENSE','toolkit-source.json','.runtime/candidate']
           for name in paths:
               if not (root/name).exists():raise ValueError('Missing candidate input: '+name)
           archive=target/'clean-your-tv-lg-theme-candidate.tar.gz'

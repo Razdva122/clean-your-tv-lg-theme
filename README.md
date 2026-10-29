@@ -80,6 +80,15 @@ be on the same home network; no incoming computer firewall change is needed.
 The PIN is never saved. See the [TV transfer guide](docs/tutorial.md#try-an-unpublished-theme-on-your-tv)
 for retries and CLI sending. The only transfer direction is PC → TV.
 
+## Short installation IDs
+
+For a published theme, **TV link** offers **Copy ID** (for example `102300a209`)
+and **Copy link**. Generate a pinned release workflow once with
+`node /path/to/toolkit/bin/theme.cjs release-workflow`; it automatically attaches
+IDs when you publish `vX.Y.Z` theme releases. No is.gd account or API key is needed.
+See [ID and release instructions](docs/short-links.md). Local PC → TV transfer
+remains available independently.
+
 ## Matched release candidate
 
 `release/next` collects the tools for the main project’s 1.5.0 candidate. Download
