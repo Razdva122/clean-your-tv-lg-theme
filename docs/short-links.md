@@ -1,11 +1,11 @@
 # Theme installation IDs without API keys
 
 For a published public theme, **TV link** in the preview can retrieve its release
-link or create one through is.gd. The ID is convenient for remote entry:
+link or create one through da.gd. The ID is convenient for remote entry:
 
 - `102300a209`
-- `is.gd/102300a209`
-- `https://is.gd/102300a209`
+- `da.gd/102300a209`
+- `https://da.gd/102300a209`
 
 All three identify the same version. Matching Home candidates accept them under
 **Settings → Appearance → More options → Add by URL**, show the expanded address
@@ -22,8 +22,8 @@ commit, then choose **Create short link**. Use **Copy ID** for remote entry or
 **Copy link** for sharing. The descriptor ID, version and repository must match
 the selected theme. Classic is already built in and needs no link.
 
-The tools check the public descriptor before contacting is.gd and verify the
-returned link's destination. No key or account is required. If is.gd is unavailable
+The tools check the public descriptor before contacting da.gd and verify the
+returned link's destination. No key or account is required. If da.gd is unavailable
 or rate-limited, the full URL remains available. Requests do not hammer the
 provider with automatic retries. A failed/changed input clears previous results
 so an older ID cannot accidentally be copied for a newer address.
@@ -60,7 +60,7 @@ The workflow:
 
 1. Reads tracked descriptors matching that version, without running theme scripts.
 2. Checks their public bytes against the distribution checkout before shortening.
-3. Creates one immutable is.gd link per theme/version, with a lowercase hexadecimal
+3. Creates one immutable da.gd link per theme/version, with a lowercase hexadecimal
    ID. Repeated calls reuse an existing alias only after checking its destination.
 4. Attaches `tv-links.json` and adds a clickable ID table to the release notes.
 5. Reads the current release notes immediately before updating its owned block,
@@ -74,13 +74,13 @@ without replacing release notes. A shortening outage preserves full URLs.
 
 ## Provider and scope
 
-is.gd is an external, rate-limited service. Its API supports keyless creation and
-JSON lookup; its URLs cannot be retargeted. The package remains at its immutable
+da.gd is an external, rate-limited service. Its API supports keyless creation and
+plain-text lookup. The public creation API does not retarget an occupied alias;
+the tools reuse it only after checking the exact destination. The package remains at its immutable
 GitHub URL, and Showcase records keep that full URL and descriptor digest.
 
-- [Creation API](https://is.gd/apishorteningreference.php)
-- [Lookup API](https://is.gd/apilookupreference.php)
-- [Provider limits](https://is.gd/usagelimits.php)
+- [Creation API](https://da.gd/help)
+- [Lookup API](https://da.gd/help)
 
 Browser and source tests are not physical-TV acceptance. The matching Home package
 must include ID lookup support; older packages do not acquire it from a short link.

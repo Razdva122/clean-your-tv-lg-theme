@@ -85,7 +85,7 @@ for retries and CLI sending. The only transfer direction is PC → TV.
 For a published theme, **TV link** offers **Copy ID** (for example `102300a209`)
 and **Copy link**. Generate a pinned release workflow once with
 `node /path/to/toolkit/bin/theme.cjs release-workflow`; it automatically attaches
-IDs when you publish `vX.Y.Z` theme releases. No is.gd account or API key is needed.
+IDs when you publish `vX.Y.Z` theme releases. No da.gd account or API key is needed.
 See [ID and release instructions](docs/short-links.md). Local PC → TV transfer
 remains available independently.
 
