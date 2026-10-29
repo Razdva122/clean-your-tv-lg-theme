@@ -23,7 +23,7 @@ test('real pinned renderer: valid reload, last-valid retention, isolated allowli
         edition
       });
       try {
-        assert.match(await (await fetch(p.url)).text(), /Browser preview/);
+        assert.match(await (await fetch(p.url)).text(), /Theme preview/);
         const renderer = await fetch(p.url + 'runtime/' + rt.meta.preview[edition]);
         assert.equal(renderer.status, 200);
         assert.match(await renderer.text(), /theme-preview.js/);

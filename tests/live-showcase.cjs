@@ -14,7 +14,7 @@ test('live showcase switches themes on one renderer and retains user column choi
  const browser=await require('playwright').chromium.launch({headless:true,executablePath:process.env.CYTV_THEME_BROWSER});
  try{
   const page=await browser.newPage({viewport:{width:1280,height:900}});await page.goto(preview.url);
-  assert.equal(await page.locator('#themePicker strong').textContent(),'Темы','picker uses UTF-8');
+  assert.equal(await page.locator('#themePicker strong').textContent(),'Themes','author picker uses English');
   assert.deepEqual(await page.locator('#themePicker .ctv-theme-card__name').allTextContents(),['Classic','Alpine','Channel']);
   assert.equal(await page.locator('#themePicker img').count(),3,'each theme has a preview image');
   for(const img of await page.locator('#themePicker img').all()) {await img.evaluate(el=>el.decode());assert.ok(await img.evaluate(el=>el.naturalWidth>1));}

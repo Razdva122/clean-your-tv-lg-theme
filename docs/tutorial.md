@@ -82,10 +82,10 @@ of the interface on the TV's network; guest Wi-Fi/client isolation can block it.
 Do not forward this port on your router. The server exposes only the compiled
 selected theme snapshot, closes after ten minutes, and stops with **Stop sharing**
 or Ctrl+C. Closing preview stops its share; closing a browser tab alone does not.
-After editing the source, use **Новый PIN** (New PIN) in the guide for a fresh snapshot.
+After editing the source, use **New PIN** in the guide for a fresh snapshot.
 Reopening Send to TV keeps the active session and PIN for the same selected theme;
 choosing another theme starts a new snapshot. Closing the instructions keeps sharing
-active; **Остановить передачу** (Stop sharing) stops it. On TV choose **Receive theme**,
+active; **Stop sharing** stops it. On TV choose **Receive theme**,
 then **Apply theme**; an installed theme is saved immediately. Browser
 preview alone does not verify physical TV behavior.
 
