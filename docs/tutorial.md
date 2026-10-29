@@ -64,6 +64,27 @@ In preview check Home, the last app, Add app/library, empty library, Inputs, foc
 
 Use [the screenshots command](publish.md#capture-browser-review-images) for fixed-clock Home/Inputs/Settings images and provenance. Review library screenshots too. The preview must be at most 960×540 and 300 KiB; other assets at most 1920×1080, 2 MiB each and 6 MiB in total. Resize/compress externally, update actual dimensions and validate again.
 
+## Try an unpublished theme on your TV
+
+In preview/showcase choose your local theme, then **Send to TV**. On a compatible
+TV candidate open **Settings → Themes → From computer**, enter the displayed
+private computer IPv4 address and six-digit PIN. Both devices must share the home
+network; publishing, a long URL and a clean Git commit are unnecessary. Classic is
+built in and cannot be sent. Alternatively run:
+
+```sh
+npm run theme -- share themes/ocean --runtime .runtime/candidate
+```
+
+Keep the computer awake and allow Node.js inbound TCP 8879 if prompted. Try the IP
+of the interface on the TV's network; guest Wi-Fi/client isolation can block it.
+Do not forward this port on your router. The server exposes only the compiled
+selected theme snapshot, closes after ten minutes, and stops with **Stop sharing**
+or Ctrl+C. Closing preview stops its share; closing a browser tab alone does not.
+Edits after sharing require **Send to TV** again, which creates a fresh PIN and
+snapshot. Accept the appearance on TV before the rollback timer ends. Browser
+preview alone does not verify physical TV behavior.
+
 ## 7. Commit, build and submit
 
 Commit all theme source files before building. Follow [publishing](publish.md): source commit A produces a descriptor and hashed assets; commit the distribution separately as B, then use the exact descriptor URL at B. Never invent either hash or replace it with a moving branch in a catalog submission.
