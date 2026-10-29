@@ -6,7 +6,7 @@ in `themes/<slug>/` in one public GitHub repository.
 
 **Development candidate:** no official author runtime is published or pinned yet.
 The commands below require an explicit maintainer-exported candidate. The toolkit
-does not download floating `main`, execute theme scripts or connect to a TV.
+does not download floating `main` or execute theme scripts. TV transfers require an explicit Send theme action.
 
 ## Ready-made examples
 
@@ -68,6 +68,16 @@ The live showcase starts with **Classic**, the renderer's built-in appearance.
 Classic calls the trusted reset path rather than loading a CSS imitation.
 It restores the original layout and default of 5 columns, while an explicit
 user column choice still takes precedence. Other themes remain selectable.
+
+## Send a theme to your TV
+
+Choose your local theme in preview/showcase and click **Send to TV**. On TV open
+**Settings → Appearance → Receive from computer**, then enter the TV address and
+six-digit PIN in the computer dialog. Choose **Send theme**. Both devices must
+be on the same home network; no incoming computer firewall change is needed.
+**Sent** means bytes received: finish installation on TV and choose **Apply theme**.
+The PIN is never saved. See the [TV transfer guide](docs/tutorial.md#try-an-unpublished-theme-on-your-tv)
+for retries, CLI sending and secondary legacy computer sharing.
 
 ## Documentation map
 

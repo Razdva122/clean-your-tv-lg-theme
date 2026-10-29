@@ -66,28 +66,40 @@ Use [the screenshots command](publish.md#capture-browser-review-images) for fixe
 
 ## Try an unpublished theme on your TV
 
-In preview/showcase choose your local theme, then **Send to TV**. A modal installation
-guide opens in the same browser page with numbered steps, computer addresses and a
-large PIN. On a compatible TV candidate open **Settings → Appearance → Receive from computer**, enter the displayed
-private computer IPv4 address and six-digit PIN. Both devices must share the home
-network; publishing, a long URL and a clean Git commit are unnecessary. Classic is
-built in and cannot be sent. Alternatively run:
+In preview/showcase select a local theme, then **Send to TV**. First open
+**Settings → Appearance → Receive from computer** on your compatible TV candidate.
+Enter the TV's private IPv4 address and six-digit PIN into the dialog on your
+computer, then choose **Send theme**. Keep both devices on the same home network.
+The computer compiles the currently selected theme and sends an outgoing request
+to the temporary TV receiver. No incoming computer connection or firewall change
+is needed. Classic is built in; select another theme to send.
+
+**Sent** means the TV received the bytes. Finish validation/installation on TV and
+choose **Apply theme**. Sending does not prove installation or hardware acceptance.
+If sending fails, reopen the TV receiver, check its current address and PIN, and
+retry. Guest Wi-Fi or client isolation can block communication. Do not forward
+port 8879 to the internet. The PIN is never saved; closing the dialog clears it.
+After editing, send again for a fresh compiled snapshot.
+
+Without a browser:
+
+```sh
+npm run theme -- send themes/ocean --tv 192.168.1.20 --pin SIX_DIGITS --runtime .runtime/candidate
+```
+
+Use the actual address and PIN shown on your TV. Avoid retaining a PIN in shell
+history on a shared computer; the browser dialog is the primary workflow.
+
+For older candidates that ask for the **computer** address, the secondary legacy
+method remains available:
 
 ```sh
 npm run theme -- share themes/ocean --runtime .runtime/candidate
 ```
 
-Keep the computer awake and allow Node.js inbound TCP 8879 if prompted. Try the IP
-of the interface on the TV's network; guest Wi-Fi/client isolation can block it.
-Do not forward this port on your router. The server exposes only the compiled
-selected theme snapshot, closes after ten minutes, and stops with **Stop sharing**
-or Ctrl+C. Closing preview stops its share; closing a browser tab alone does not.
-After editing the source, use **New PIN** in the guide for a fresh snapshot.
-Reopening Send to TV keeps the active session and PIN for the same selected theme;
-choosing another theme starts a new snapshot. Closing the instructions keeps sharing
-active; **Stop sharing** stops it. On TV choose **Receive theme**,
-then **Apply theme**; an installed theme is saved immediately. Browser
-preview alone does not verify physical TV behavior.
+Only this legacy method starts an incoming computer listener on TCP 8879. Keep the
+terminal open and allow that incoming connection if needed. It expires after ten
+minutes; Ctrl+C stops it. It does not start when opening **Send to TV**.
 
 ## 7. Commit, build and submit
 
