@@ -4,8 +4,9 @@ Create CSS themes for Clean Your TV Home, browse them with the actual launcher,
 and build an independently versioned distribution. You can keep several themes
 in `themes/<slug>/` in one public GitHub repository.
 
-**Development candidate:** no official author runtime is published or pinned yet.
-The commands below require an explicit maintainer-exported candidate. The toolkit
+**Development candidate:** `release/next` includes a reviewed exact main-project
+runtime pin. Use the [tested candidate bundle](docs/CANDIDATE.md) or an explicit
+maintainer export; no stable author runtime is published. The toolkit
 does not download floating `main` or execute theme scripts. TV transfers require an explicit Send theme action.
 
 ## Ready-made examples
@@ -38,8 +39,8 @@ npm run theme -- init themes/ocean --name Ocean --repository https://github.com/
 npm run theme -- preview themes/ocean --runtime .runtime/candidate --edition no-root
 ```
 
-A maintainer must first provide `.runtime/candidate`, exported from the main
-project as described in [runtime preparation](docs/runtime.md). Without it,
+The [candidate bundle](docs/CANDIDATE.md) includes `.runtime/candidate`. For a source
+checkout, use [runtime preparation](docs/runtime.md). Without a runtime,
 preview/validate/build stop with a clear error. `runtime.lock.json` deliberately
 contains no invented download URL or digest.
 
@@ -77,7 +78,14 @@ six-digit PIN in the computer dialog. Choose **Send theme**. Both devices must
 be on the same home network; no incoming computer firewall change is needed.
 **Sent** means bytes received: finish installation on TV and choose **Apply theme**.
 The PIN is never saved. See the [TV transfer guide](docs/tutorial.md#try-an-unpublished-theme-on-your-tv)
-for retries, CLI sending and secondary legacy computer sharing.
+for retries and CLI sending. The only transfer direction is PC → TV.
+
+## Matched release candidate
+
+`release/next` collects the tools for the main project’s 1.5.0 candidate. Download
+the tested toolkit/runtime bundle from Actions using the [candidate guide](docs/CANDIDATE.md).
+Its runtime is pinned to the exact source in `runtime.lock.json`; this does not
+publish a stable application release.
 
 ## Documentation map
 

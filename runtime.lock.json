@@ -3,5 +3,10 @@
   "themeApiVersion": 1,
   "status": "unpublished",
   "artifact": null,
-  "note": "No official author runtime has been published. Development requires an explicit locally exported candidate via --runtime; a candidate is not a signed application release."
+  "note": "No stable author runtime is published. candidateSource pins the reviewed main-project input for the tested Actions candidate bundle; --runtime remains explicit and runtime:fetch does not invent a stable release.",
+  "candidateSource": {
+    "repository": "Razdva122/clean-your-tv-lg-webos",
+    "commit": "f0e1e2c217954fc991b1eea1908907e732500bdf",
+    "releaseCandidate": "1.5.0"
+  }
 }

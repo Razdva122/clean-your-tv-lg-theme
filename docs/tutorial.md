@@ -4,7 +4,7 @@ This guide is for a contributor using a computer. Node.js 22+ runs the author to
 
 ## 1. Prepare the tools once
 
-Clone this repository, open a terminal in its root and run `npm ci --ignore-scripts`. You also need a maintainer-exported candidate in `.runtime/candidate`; follow [runtime preparation](runtime.md). There is no official downloadable author runtime yet. Do not download a random theme repository as executable tooling.
+Download the [matched candidate bundle](CANDIDATE.md), or clone `release/next`, open a terminal in its root and run `npm ci --ignore-scripts`. A source checkout also needs a maintainer-exported candidate in `.runtime/candidate`; follow [runtime preparation](runtime.md). No stable author runtime is published. Do not download a random theme repository as executable tooling.
 
 For a visual comparison before editing:
 
@@ -90,16 +90,7 @@ npm run theme -- send themes/ocean --tv 192.168.1.20 --pin SIX_DIGITS --runtime 
 Use the actual address and PIN shown on your TV. Avoid retaining a PIN in shell
 history on a shared computer; the browser dialog is the primary workflow.
 
-For older candidates that ask for the **computer** address, the secondary legacy
-method remains available:
-
-```sh
-npm run theme -- share themes/ocean --runtime .runtime/candidate
-```
-
-Only this legacy method starts an incoming computer listener on TCP 8879. Keep the
-terminal open and allow that incoming connection if needed. It expires after ten
-minutes; Ctrl+C stops it. It does not start when opening **Send to TV**.
+Transfers use PC → TV only. If the receiver is unavailable, update the complete matching Home/service set on TV; there is no computer-hosted fallback.
 
 ## 7. Commit, build and submit
 
@@ -109,7 +100,7 @@ Several themes can share one repository: use `themes/ocean` and `themes/forest`,
 
 ## Can I choose this on my TV now?
 
-The theme-enabled main candidate embeds theme cards and controls directly in **Settings → Appearance**; there is no separate Themes launch screen. Classic and Alpine are bundled; Channel stays external. Use **More options → Add by URL → Load**, choose a distribution entry, then its downloaded version. Installed and built-in themes apply and save immediately without a timer. The separate showcase refreshes from the main repository without reloading Home; its **Try theme** action retains the 20-second Keep/Revert trial. Local transfers offer **Apply theme** without a timer. Confirmed files are cached for offline startup; interrupted previews relaunch in Classic. Published packages may not include this candidate yet. Follow [the user guide](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/codex/theme-css-foundation/docs/THEMES.md). Do not manually replace Home files or run author code on the TV. Browser results are not physical-TV acceptance.
+The theme-enabled main candidate embeds theme cards and controls directly in **Settings → Appearance**; there is no separate Themes launch screen. Classic and Alpine are bundled; Channel stays external. Use **More options → Add by URL → Load**, choose a distribution entry, then its downloaded version. Installed and built-in themes apply and save immediately without a timer. The separate showcase refreshes from the main repository without reloading Home; its **Try theme** action retains the 20-second Keep/Revert trial. Local transfers offer **Apply theme** without a timer. Confirmed files are cached for offline startup; interrupted previews relaunch in Classic. Published packages may not include this candidate yet. Follow [the user guide](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/release/next/docs/THEMES.md). Do not manually replace Home files or run author code on the TV. Browser results are not physical-TV acceptance.
 
 ## Troubleshooting
 

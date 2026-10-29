@@ -8,14 +8,22 @@ a fixed release URL, exact digest and verified provenance. A candidate snapshot
 is not a signed published release. SHA-256 checks detect changes; they do not
 establish who made an explicitly supplied local runtime.
 
-For current development, a maintainer in the main project runs:
+For the matched candidate, `candidateSource` in the lock identifies the reviewed
+exact main-project commit. The [candidate workflow](CANDIDATE.md) exports from that
+clean commit and includes the complete runtime in its tested Actions artifact.
+This candidate pin does not invent a stable download or enable `runtime:fetch`.
+
+For a manual source export, a maintainer checks out that exact commit in the main
+project, then runs:
 
 ```sh
 npm ci --ignore-scripts
-python3 scripts/export-theme-runtime.py --out build/theme-author-runtime --allow-dirty
+python3 scripts/export-theme-runtime.py --out build/theme-author-runtime
 ```
 
-Omit `--allow-dirty` to require a clean checkout. Existing output is never replaced.
+The candidate requires a clean checkout. For local experiments only, explicitly
+add `--allow-dirty`; those exports cannot stand in for the pinned candidate.
+Existing output is never replaced.
 The output includes `runtime.json`, full SHA-256/size inventory, exact source
 revision, dirty flag, dependency versions, compiled Root/No-root preview,
 mock bridge, contract, policy and compiler. Move/copy the **entire** directory to

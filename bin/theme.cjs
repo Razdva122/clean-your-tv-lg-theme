@@ -35,7 +35,7 @@ async function main() {
     return;
   }
   if (command === 'runtime:fetch') throw Error('No published runtime is pinned. Use an explicitly exported maintainer candidate with --runtime PATH. Never download or execute a theme repository as runtime tooling.');
-  if (!['validate', 'build', 'preview', 'showcase', 'submission', 'screenshots', 'share', 'send'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|showcase|send|share|screenshots|build|collection|submission} DIRECTORY [--runtime PATH]');
+  if (!['validate', 'build', 'preview', 'showcase', 'submission', 'screenshots', 'send'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|showcase|send|screenshots|build|collection|submission} DIRECTORY [--runtime PATH]');
   const rt = t.runtime(options.runtime || process.env.CYTV_THEME_RUNTIME);
   const sourceOptions = {
     repository: options['source-repository'],
@@ -48,11 +48,6 @@ async function main() {
     await sender.send(await t.compile(pos[0], rt), options.tv, options.pin);
     console.log('Sent. Finish installation on TV, then choose Apply theme.');
     return;
-  }
-  if (command === 'share') {
-    const session = await require('../lib/lan-share.cjs').start(await t.compile(pos[0], rt));
-    console.log('Legacy sharing: TV → Settings → Appearance → Receive from computer → legacy computer sharing. Computer IP: ' + (session.addresses.join(' or ') || 'No private IPv4 network found') + ' · PIN: ' + session.pin + '. Expires in 10 minutes. Ctrl+C stops sharing.');
-    for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, () => session.stop());
   }
   if (command === 'screenshots') {
     const report = await require('../lib/screenshots.cjs').screenshots(pos[0], rt, {
