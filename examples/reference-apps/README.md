@@ -7,3 +7,6 @@ YouTube, Netflix, Apple TV, Twitch, Emby, Plex, Jellyfin, Apple Music, LG Channe
 `metadata.json` records exact native IDs/versions, package type (including stubs), resource field/name, pixel dimensions, byte lengths and SHA-256. `icons/` contains the unchanged original files. `inventory.json` embeds those same bytes for the browser renderer. Both main-project and toolkit copies must stay byte-identical; regenerate the inventory if intentionally replacing an original reference asset.
 
 These are static rendering fixtures. Launches, network status and input devices remain browser simulations. One-device resource provenance does not establish playback or universal TV compatibility. Device addresses, serial numbers, account/pairing keys, app data and full device inventories are excluded. Original app artwork keeps its publisher rights; see NOTICE.txt.
+
+The initial Home order starts with Netflix, YouTube, Apple TV, Apple Music and
+Twitch. This is a preview default; saved user rearrangements take precedence.

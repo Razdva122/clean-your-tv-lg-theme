@@ -18,6 +18,24 @@ test('ordinary showcase serves original international TV resources by default',{
   const script=await(await fetch(p.url+'runtime/preview/launcher/apps.js')).text();
   const vm=require('node:vm'),state={window:{},setTimeout,clearTimeout},rt=t.runtime(process.env.CYTV_THEME_RUNTIME);
   vm.runInNewContext(fs.readFileSync(path.join(rt.root,'preview/preview/bridge.js'),'utf8'),state);vm.runInNewContext(script,state);
-  assert.equal(state.window.TV_APPS.apps.length,10);assert.equal(state.window.TV_APPS.apps[0].id,'youtube.leanback.v4');assert(state.window.TV_APPS.apps.every(a=>a.icon.startsWith('data:image/png;base64,')));
+  assert.equal(state.window.TV_APPS.apps.length,10);assert.equal(state.window.TV_APPS.apps[0].id,'netflix');assert(state.window.TV_APPS.apps.every(a=>a.icon.startsWith('data:image/png;base64,')));
  }finally{p.server.closeAllConnections();await new Promise(r=>p.server.close(r));}
+});
+
+test('default reference order remains consistent across author theme switches',{skip:!process.env.CYTV_THEME_RUNTIME||!process.env.CYTV_THEME_BROWSER},async()=>{
+ const p=await t.showcase(path.resolve('examples'),t.runtime(process.env.CYTV_THEME_RUNTIME));
+ const browser=await require('playwright').chromium.launch({headless:true,executablePath:process.env.CYTV_THEME_BROWSER});
+ try{
+  const page=await browser.newPage();await page.goto(p.url);let frame=page.frames().find(f=>f.url().includes('/runtime/'));
+  await frame.locator('#tiles .item[data-app-id]').first().waitFor();
+  const order=()=>frame.locator('#tiles .item[data-app-id]').evaluateAll(items=>items.slice(0,5).map(el=>el.dataset.appId));
+  const expected=['netflix','youtube.leanback.v4','com.apple.appletv','com.apple.applemusic','tv.twitch.tv.starshot.lg'];
+  assert.deepEqual(await order(),expected);
+  for(const key of ['itachi','terminal','']){
+   await page.locator('[data-key="'+key+'"]').click();await page.locator('[data-key="'+key+'"][aria-pressed="true"]').waitFor();
+   assert.deepEqual(await order(),expected);
+  }
+  await page.reload();frame=page.frames().find(f=>f.url().includes('/runtime/'));await frame.locator('#tiles .item[data-app-id]').first().waitFor();
+  assert.deepEqual(await order(),expected);
+ }finally{await browser.close();p.server.closeAllConnections();await new Promise(r=>p.server.close(r));}
 });

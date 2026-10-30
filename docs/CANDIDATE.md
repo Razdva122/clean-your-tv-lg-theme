@@ -68,7 +68,7 @@ checks are unchanged.
 ## Sharingan author runtime
 
 The paired runtime now pins main-project commit
-`0894b977946d0c648c4d7437faeab49988229041`, a clean local main-project revision with
+`e7285168a25f9ff95c17d62cab0e9ee65c504695`, a clean local main-project revision with
 clock/date font sizes and the optional `modern-icon-css-v1` contract. The toolkit
 ships editable Sharingan in `examples/itachi`, including its own identity and
 redistribution notices. The existing ordinary validate, preview, screenshots,

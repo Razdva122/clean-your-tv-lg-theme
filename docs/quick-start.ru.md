@@ -37,6 +37,8 @@ npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
 По умолчанию используются десять международных приложений с оригинальными
 иконками webOS. Их реальные ID, версии, размеры и хеши находятся в
 `examples/reference-apps/metadata.json`. Личные данные ТВ в этот набор не входят.
+Начальный порядок: Netflix → YouTube → Apple TV → Apple Music → Twitch.
+Пользовательские перестановки сохраняются и имеют приоритет.
 Для собственного набора доступен [локальный снимок](tv-preview.md) через `--inventory`.
 
 Classic выбрана при открытии: это исходное встроенное оформление Home.

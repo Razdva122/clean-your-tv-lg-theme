@@ -10,25 +10,6 @@
   },
   "apps": [
     {
-      "slug": "youtube",
-      "id": "youtube.leanback.v4",
-      "title": "YouTube",
-      "version": "26.1.1",
-      "vendor": "LG Electronics",
-      "type": "native",
-      "iconColor": "#ffffff",
-      "icon": {
-        "field": "extraLargeIcon",
-        "originalName": "122271655894055107_16977867_192x192.png",
-        "mediaType": "image/png",
-        "width": 192,
-        "height": 192,
-        "path": "icons/youtube.png",
-        "size": 6821,
-        "sha256": "5ba29744035b2900666f98e63a63ab1b29db5804d9569a003115d3a7e9561e58"
-      }
-    },
-    {
       "slug": "netflix",
       "id": "netflix",
       "title": "Netflix",
@@ -48,6 +29,25 @@
       }
     },
     {
+      "slug": "youtube",
+      "id": "youtube.leanback.v4",
+      "title": "YouTube",
+      "version": "26.1.1",
+      "vendor": "LG Electronics",
+      "type": "native",
+      "iconColor": "#ffffff",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "122271655894055107_16977867_192x192.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/youtube.png",
+        "size": 6821,
+        "sha256": "5ba29744035b2900666f98e63a63ab1b29db5804d9569a003115d3a7e9561e58"
+      }
+    },
+    {
       "slug": "apple-tv",
       "id": "com.apple.appletv",
       "title": "Apple TV",
@@ -64,6 +64,25 @@
         "path": "icons/apple-tv.png",
         "size": 11397,
         "sha256": "51ed1ecd4aa7563592acfe3cdc3a6cb757eab0905323fcfc6ac5189e3e9999c6"
+      }
+    },
+    {
+      "slug": "apple-music",
+      "id": "com.apple.applemusic",
+      "title": "Apple Music",
+      "version": "16.1.6",
+      "vendor": "Apple Inc.",
+      "type": "native",
+      "iconColor": "#fa233b",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "126874411988981143_36763461_192x192_webos.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/apple-music.png",
+        "size": 7433,
+        "sha256": "4f045689ed5df55a74fd4f4c0ea6780242561be4035007b585772c286d051b0c"
       }
     },
     {
@@ -143,25 +162,6 @@
         "path": "icons/jellyfin.png",
         "size": 16111,
         "sha256": "397c229add3498a6cc7ad39b09ec384089e9ccf9a4fa9f787e00e191c19d16de"
-      }
-    },
-    {
-      "slug": "apple-music",
-      "id": "com.apple.applemusic",
-      "title": "Apple Music",
-      "version": "16.1.6",
-      "vendor": "Apple Inc.",
-      "type": "native",
-      "iconColor": "#fa233b",
-      "icon": {
-        "field": "extraLargeIcon",
-        "originalName": "126874411988981143_36763461_192x192_webos.png",
-        "mediaType": "image/png",
-        "width": 192,
-        "height": 192,
-        "path": "icons/apple-music.png",
-        "size": 7433,
-        "sha256": "4f045689ed5df55a74fd4f4c0ea6780242561be4035007b585772c286d051b0c"
       }
     },
     {
