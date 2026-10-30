@@ -57,3 +57,35 @@ node "$THEME_TOOLS/bin/theme.cjs" preview themes/ocean --runtime "$THEME_TOOLS/.
 Run that command from your author repository root. Do not copy the runtime or
 `node_modules` into your theme folder or publish them with a distribution. A
 candidate archive provides tools/runtime, not your author repository's Git history.
+
+## Ribbon PR candidate
+
+`layout.ribbon` requires the paired main-project PR candidate export advertising
+`ribbon-layout-v1`. The tested clean feature export comes from main-project
+commit `b7c12db62b65eb0fc6b6e2a3728ba54d80395eb9`, an unpublished PR candidate
+with `dirty: false`; it does not establish public release or TV acceptance.
+The reviewed stable provenance in `runtime.lock.json` remains
+unchanged; that pin predates this option. A lock upgrade belongs after reviewed
+integration, with exact provenance, rather than pointing at an unreviewed commit.
+
+A maintainer may export the checked-out main PR candidate explicitly:
+
+```sh
+python3 scripts/export-theme-runtime.py --out build/ribbon-pr-runtime
+```
+
+Run this in the main project after installing its locked dependencies. The
+export requires a clean checkout; a development-only dirty export needs explicit
+`--allow-dirty` and is not reviewed release evidence. Keep the complete export
+outside theme source, then pass its absolute path from the toolkit:
+
+```sh
+npm run theme -- preview examples/ribbon --runtime /absolute/path/main/build/ribbon-pr-runtime
+CYTV_THEME_RUNTIME=/absolute/path/main/build/ribbon-pr-runtime npm test
+```
+
+For the browser checks also set `CYTV_THEME_BROWSER` to the installed Chromium
+executable. The wrapper checks the verified runtime contract before compilation
+and refuses an older explicit runtime with `update-runtime` rather than silently
+rendering the old scenic layout. It also checks that compilation preserved the
+ribbon and emitted its capability. The main runtime owns validation and rendering.

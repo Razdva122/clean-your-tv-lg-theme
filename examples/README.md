@@ -1,11 +1,12 @@
-# Classic, Channel, Alpine and Sharingan
+# Classic, Channel, Alpine, Sharingan and Ribbon
 
-The live showcase includes four choices:
+The live showcase includes five choices with the paired Ribbon PR runtime:
 
 | Theme | Composition | Default columns | Source |
 | --- | --- | --- | --- |
 | [Alpine](glasshouse/theme.css) | Scenic wallpaper, large clock and one looping bottom ribbon | 8 | Editable example in `glasshouse/` |
 | [Itachi · Sharingan](itachi/README.md) | Dark portrait, crimson eyes and CSS-only white native icons | 5 | Editable source in `itachi/` |
+| [Ribbon](ribbon/README.md) | Galaxy, skewed cards, raised focus and bottom-left shortcuts | 8 | PR candidate required; editable source in `ribbon/` |
 | Classic | Original Home shelf and grid | 5 | Built into the renderer; uses trusted reset, no theme CSS copy |
 | [Channel](terminal/theme.css) | Blue teletext-style numbered list with a selected title | 1 | Editable example in `terminal/` |
 

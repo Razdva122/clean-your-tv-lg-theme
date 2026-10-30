@@ -130,3 +130,43 @@ logos, not image background removal, and cannot increase native image detail.
 
 The `.ctv-position` part controls the decorative scenic-ribbon counter and arrows.
 Use a transparent color to hide this indicator; app labels use `.ctv-label`.
+
+## Optional scenic ribbon geometry (PR candidate)
+
+A trusted runtime advertising `ribbon-layout-v1` supports optional `layout.ribbon`
+inside the existing `scenic-grid` preset. It requires `allowColumnOverride: false`;
+keep `columns` between 1 and 8. Omit `ribbon` to retain existing scenic behavior.
+The main compiler validates this object and automatically adds the capability to
+`requires.capabilities`; authors do not add a capability by hand.
+
+| Field | Allowed values | Default |
+| --- | --- | --- |
+| `left` | 64–640 | 112 |
+| `right` | 32–320 | 112 |
+| `bottom` | 0–200 | 162 |
+| `cardHeight` | 96–240 | 128 |
+| `gap` | 0–64 | 24 |
+| `skewDeg` | −18–18 | 0 |
+| `focusLift` | 0–64 | 0 |
+| `iconScale` | 0.4–1 | 1 |
+| `shortcuts` | `header`, `bottom-left` | `header` |
+| `edgeNavigation` | `wrap`, `shortcuts` | `wrap` |
+| `labels` | `below`, `focused-above` | `below` |
+| `showClock` | boolean | `true` |
+
+Distances are in the renderer's 1920×1080 design coordinates; skew is degrees.
+Each field is optional. Numeric distances must be integers; `skewDeg` may be
+fractional; `iconScale` may also be fractional and adjusts native artwork within
+its trusted card bounds. Bottom-left shortcuts require `left >= 340`; combinations must leave
+at least 64 design pixels per card after skew and spacing. Labels placed `below`
+require `bottom >= 64` so captions remain on screen. The compiler checks
+these combined bounds as well as individual ranges. `shortcuts` edge navigation moves from the first app
+into trusted shortcuts; wrapping keeps the scenic app loop. Focused-above labels
+show the selected app caption above its card. Card placement, navigation, pointer
+hit areas and focus still belong to the trusted renderer. CSS remains appearance
+only. Unknown keys, invalid values and incompatible layouts fail validation.
+
+[The Ribbon example](../examples/ribbon/README.md) demonstrates eight skewed
+cards, raised focus, bottom-left shortcuts and a hidden clock with original
+wallpaper. It contains no author JavaScript, layout stylesheet or renderer fork.
+See [runtime preparation](runtime.md#ribbon-pr-candidate) before using it.
