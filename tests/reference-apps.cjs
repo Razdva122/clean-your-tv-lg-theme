@@ -31,6 +31,9 @@ test('default reference order remains consistent across author theme switches',{
   const order=()=>frame.locator('#tiles .item[data-app-id]').evaluateAll(items=>items.slice(0,5).map(el=>el.dataset.appId));
   const expected=['netflix','youtube.leanback.v4','com.apple.appletv','com.apple.applemusic','tv.twitch.tv.starshot.lg'];
   assert.deepEqual(await order(),expected);
+  await frame.locator('#btnInputs').click();await frame.locator('#inputsPanel:not(.hidden)').waitFor();
+  assert.equal(await frame.locator('#inputsPanel .ctv-input-row').count(),2,'default author preview offers two generic HDMI inputs');
+  await frame.locator('body').press('Escape');
   for(const key of ['itachi','terminal','']){
    await page.locator('[data-key="'+key+'"]').click();await page.locator('[data-key="'+key+'"][aria-pressed="true"]').waitFor();
    assert.deepEqual(await order(),expected);

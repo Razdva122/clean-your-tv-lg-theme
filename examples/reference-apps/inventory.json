@@ -61,5 +61,14 @@
       "iconColor": "#5C75B8"
     }
   ],
-  "inputs": []
+  "inputs": [
+    {
+      "label": "HDMI 1 · Console",
+      "appId": "preview.hdmi1"
+    },
+    {
+      "label": "HDMI 2 · Media player",
+      "appId": "preview.hdmi2"
+    }
+  ]
 }

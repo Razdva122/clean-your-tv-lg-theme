@@ -54,6 +54,8 @@ signatures. The loopback server marks private inventory scripts as same-origin
 resources and rejects cross-site requests. Snapshots are not copied into runtime
 exports, theme distributions, candidate bundles or the public gallery.
 
-Screenshot generation uses one generic simulated HDMI input when the app-only
-reference has no inputs. Its provenance explicitly marks that scene as simulated;
-the interactive preview keeps the captured empty input list.
+The common reference preview includes two generic simulated HDMI inputs so authors
+can explore the Inputs menu. Their labels are demonstration data, not captured TV
+inputs. A private snapshot keeps its own input list. Screenshot generation adds
+one generic simulated HDMI input only when that list is empty, and records the
+simulation explicitly in provenance.
