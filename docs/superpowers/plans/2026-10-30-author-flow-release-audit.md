@@ -18,10 +18,10 @@
 
 ## Steps
 
-- [ ] Exercise init/help/preview/edit/invalid CSS/restore/Inputs/Settings in a fresh author repository.
-- [ ] Correct command discovery and documentation blockers; run relevant checks.
-- [ ] Make the reviewed runtime source and toolkit commit publicly fetchable; verify candidate CI.
-- [ ] Generate the release workflow and build tracked distributions/itachi/1.0.2 from committed sources.
-- [ ] Commit/push publication B, publish v1.0.2 theme prerelease and observe its real workflow.
-- [ ] Verify public descriptor/files/digests, tv-links.json, release note ID and editor TV link with local edits excluded.
-- [ ] Record actual results, correct remaining instructions and remove temporary author repositories.
+- [x] Exercise init/help/preview/edit/invalid CSS/restore/Inputs/Settings in a fresh author repository.
+- [x] Correct command discovery and documentation blockers; run relevant checks.
+- [x] Make the reviewed runtime source and toolkit commit publicly fetchable; verify candidate CI.
+- [x] Generate the release workflow and build tracked distributions/itachi/1.0.2 from committed sources.
+- [x] Commit/push publication B, publish v1.0.2 theme prerelease and observe its real workflow.
+- [x] Verify public descriptor/files/digests, tv-links.json, release note ID and editor TV link with local edits excluded.
+- [x] Record actual results, correct remaining instructions and remove temporary author repositories.

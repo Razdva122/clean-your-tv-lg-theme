@@ -2,7 +2,8 @@
 
 The `release/next` branch collects the author tools for the main project's 1.6.0
 candidate. Toolkit version `0.1.0-candidate.1` is independent of the TV application's
-version. This is an unpublished test bundle, not a stable TV release.
+version. This is a development toolkit artifact, not a stable TV application release.
+Published theme prereleases have their own version and installation ID.
 
 `runtime.lock.json` records the exact reviewed main-project commit. The candidate
 workflow checks out that commit from the fixed main repository, exports the runtime
@@ -68,7 +69,7 @@ checks are unchanged.
 ## Sharingan author runtime
 
 The paired runtime now pins main-project commit
-`0db8b9bbf4b899c9384eb8a916cf55b03e84b3d6`, a clean local main-project revision with
+`0db8b9bbf4b899c9384eb8a916cf55b03e84b3d6`, a clean, publicly fetchable main-project revision with
 clock/date font sizes and the optional `modern-icon-css-v1` contract. The toolkit
 ships editable Sharingan in `examples/itachi`, including its own identity and
 redistribution notices. The existing ordinary validate, preview, screenshots,
@@ -76,6 +77,20 @@ build and outgoing Send to TV workflows handle it without a theme-specific
 compiler or relaxed policy. Browser checks are not physical-TV acceptance.
 
 The paired local runtime also includes the original ten-app international TV
-reference and clears sampled tile backgrounds on icon failure/recovery. This
-source revision and the toolkit changes are local until pushed and reviewed;
-no new runtime or public release has been published.
+reference and clears sampled tile backgrounds on icon failure/recovery. The source is available in [runtime PR #167](https://github.com/Razdva122/clean-your-tv-lg-webos/pull/167).
+The toolkit/runtime pair was rebuilt and tested by Actions; this does not publish
+a stable runtime or establish physical-TV acceptance.
+
+
+## Verified author-flow run — 2026-10-30
+
+Download [candidate run 41030185462](https://github.com/Razdva122/clean-your-tv-lg-theme/actions/runs/41030185462), artifact **theme-toolkit-candidate**. This exact artifact was downloaded, hash-checked, extracted into a fresh directory, installed with `npm ci --ignore-scripts`, and used to validate Itachi.
+
+- Toolkit/distribution commit: `a361b56c81f5dd0e13fd91e5bbd9ac6c40794c79`.
+- Runtime source: `0db8b9bbf4b899c9384eb8a916cf55b03e84b3d6`, clean export.
+- Archive SHA-256: `d4d11f82c01a9d0c16bd24ce6eb18c641feeafcde8198e04527ae9503b75b44c`.
+- Paired suite: 61 tests, no failures or skips. Unit matrix and candidate CI passed.
+
+The separate [Itachi 1.0.2 theme prerelease](https://github.com/Razdva122/clean-your-tv-lg-theme/releases/tag/v1.0.2) completed its real ID workflow. ID `9e278d443a` downloaded, verified, installed, applied and restored offline in both browser preview editions using this artifact. No physical TV installation was performed. See [the complete audit record](author-flow-audit.md).
+
+Actions artifacts can expire; use a successful matching reviewed candidate if this download is no longer available. Never replace its runtime with unrelated files.
