@@ -115,7 +115,7 @@ The repository-root `cytv-themes.json` discovers **Channel only** for the candid
 
 ## Preview real TV resources
 
-Default icons are public demo SVGs, not TV app resources. For original app icons,
-use [a private local TV snapshot](docs/tv-preview.md) with
+Default icons are [ten original international webOS app resources](examples/reference-apps/README.md),
+including recorded native IDs, versions, dimensions and hashes. For a personal app set, use [a private local TV snapshot](docs/tv-preview.md) with
 `--inventory .runtime/private-tv/inventory.json`. The header distinguishes
-**TV snapshot** from **Demo apps**. Snapshots never become theme package assets.
+**TV snapshot** from **Reference TV apps**. Snapshots never become theme package assets.

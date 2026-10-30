@@ -75,6 +75,8 @@ test('live showcase switches themes on one renderer and retains user column choi
   assert.equal(await frame.evaluate(()=>HomeLayoutState.state().columns),5,'Classic default is five columns');
   await page.getByRole('button',{name:'Channel',exact:true}).click();
   await frame.waitForFunction(()=>HomeLayoutState.state().preset==='channel-list'&&document.getElementById('ctv-theme-style'));
+  // Generic input belongs to this interaction test, not the captured app inventory.
+  await frame.evaluate(() => { TV_APPS.inputs = [{label: 'HDMI 1', appId: 'preview.hdmi1'}]; });
   await frame.locator('#btnInputs').click();await frame.locator('#inputsPanel:not(.hidden)').waitFor();
   await frame.locator('#btnSettings').click();await frame.waitForFunction(()=>document.getElementById('ctv-theme-style').disabled);
   const origin=new URL(preview.url).origin;

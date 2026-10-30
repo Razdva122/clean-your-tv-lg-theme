@@ -137,3 +137,11 @@ retaining native app images. Use the exact paired runtime; older exports reject
 its CSS. The toolkit theme ID differs from the historical main-project ID; old
 packages and installed versions are not silently migrated. Its image license is
 personal/non-commercial fan use; preserve its separate notices.
+
+## Original international app resources
+
+The live renderer uses the [ten-app TV reference](reference-apps/README.md) by
+default: unchanged native files, app IDs, versions, dimensions and hashes. It
+contains no Russian streaming apps. These are rendering fixtures; launches,
+network status and inputs remain simulated. Use `--inventory` for a private
+snapshot instead. Older historical screenshots may use the legacy SVG demo set.

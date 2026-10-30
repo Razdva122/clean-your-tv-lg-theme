@@ -34,6 +34,8 @@ test('desktop preview fits a complete TV canvas without shrinking its layout vie
     await page.setViewportSize({width: 640, height: 400});
     await checkFit(640);
     assert.deepEqual(await frame.evaluate(() => [innerWidth, innerHeight]), [1920, 1080]);
+    // Generic input belongs to this interaction test, not the captured app inventory.
+    await frame.evaluate(() => { TV_APPS.inputs = [{label: 'HDMI 1', appId: 'preview.hdmi1'}]; });
     await frame.locator('#btnInputs').click();
     await frame.locator('#inputsPanel:not(.hidden)').waitFor();
   } finally {

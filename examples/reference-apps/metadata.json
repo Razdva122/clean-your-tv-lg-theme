@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "kind": "original-webos-app-resources",
+    "model": "OLED55C3RLA",
+    "firmware": "43.21.71",
+    "sdk": "11.2.0",
+    "captureDate": "2026-10-30",
+    "hardwareCompatibilityVerified": false
+  },
+  "apps": [
+    {
+      "slug": "youtube",
+      "id": "youtube.leanback.v4",
+      "title": "YouTube",
+      "version": "26.1.1",
+      "vendor": "LG Electronics",
+      "type": "native",
+      "iconColor": "#ffffff",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "122271655894055107_16977867_192x192.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/youtube.png",
+        "size": 6821,
+        "sha256": "5ba29744035b2900666f98e63a63ab1b29db5804d9569a003115d3a7e9561e58"
+      }
+    },
+    {
+      "slug": "netflix",
+      "id": "netflix",
+      "title": "Netflix",
+      "version": "4.0.2",
+      "vendor": "LG",
+      "type": "native",
+      "iconColor": "#ffffff",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "123905479974545611_21790820472215287large_app_icon_192x192.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/netflix.png",
+        "size": 7395,
+        "sha256": "24cf9d4ef1b3cf0e79c2fbf5eea6461467d52cae0dde0e52a675ea2d5a344dff"
+      }
+    },
+    {
+      "slug": "apple-tv",
+      "id": "com.apple.appletv",
+      "title": "Apple TV",
+      "version": "0.0.32",
+      "vendor": "lg_developers@group.apple.com",
+      "type": "stub",
+      "iconColor": "#000000",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "96049298924813307_38663518_192x192_webos.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/apple-tv.png",
+        "size": 11397,
+        "sha256": "51ed1ecd4aa7563592acfe3cdc3a6cb757eab0905323fcfc6ac5189e3e9999c6"
+      }
+    },
+    {
+      "slug": "twitch",
+      "id": "tv.twitch.tv.starshot.lg",
+      "title": "Twitch",
+      "version": "11.0.0",
+      "vendor": "Twitch",
+      "type": "web",
+      "iconColor": "#9146ff",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "88729987682314794_37494902_192x192_webos.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/twitch.png",
+        "size": 3829,
+        "sha256": "abf7f9b5881bf015f6b9d8cec72d7e8f8a51e40fc73231c3304efb0ac3e5462d"
+      }
+    },
+    {
+      "slug": "emby",
+      "id": "com.emby.app",
+      "title": "Emby",
+      "version": "1.0.51",
+      "vendor": "Emby",
+      "type": "web",
+      "iconColor": "#333333",
+      "bgColor": "#000000",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "119917964551956978_38397507_192x192_webos.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/emby.png",
+        "size": 2624,
+        "sha256": "fcf8a3b0c31839bbea89fe76a97ee7806f5d1bff10cc502a818065ec98ae685f"
+      }
+    },
+    {
+      "slug": "plex",
+      "id": "cdp-30",
+      "title": "Plex",
+      "version": "5.2.1",
+      "vendor": "Plex",
+      "type": "web",
+      "iconColor": "#000000",
+      "bgColor": "#000000",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "119905848228385363_38196222_192x192_webos.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/plex.png",
+        "size": 8877,
+        "sha256": "93a4221d4a0240e0b91263119cf501af7c46507886d34323ce6db90449ded679"
+      }
+    },
+    {
+      "slug": "jellyfin",
+      "id": "org.jellyfin.webos",
+      "title": "Jellyfin",
+      "version": "1.2.2",
+      "vendor": "Jellyfin Project",
+      "type": "web",
+      "iconColor": "#000b25",
+      "bgColor": "#000b25",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "119901707638228197_36071259_192x192_webos.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/jellyfin.png",
+        "size": 16111,
+        "sha256": "397c229add3498a6cc7ad39b09ec384089e9ccf9a4fa9f787e00e191c19d16de"
+      }
+    },
+    {
+      "slug": "apple-music",
+      "id": "com.apple.applemusic",
+      "title": "Apple Music",
+      "version": "16.1.6",
+      "vendor": "Apple Inc.",
+      "type": "native",
+      "iconColor": "#fa233b",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "126874411988981143_36763461_192x192_webos.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/apple-music.png",
+        "size": 7433,
+        "sha256": "4f045689ed5df55a74fd4f4c0ea6780242561be4035007b585772c286d051b0c"
+      }
+    },
+    {
+      "slug": "lg-channels",
+      "id": "mgg4.5.channelplus",
+      "title": "LG Channels",
+      "version": "4.16.20",
+      "vendor": "LifeStream ltd.",
+      "type": "web",
+      "iconColor": "#fd312e",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "104672890816300475_38704359_192x192_webos.png",
+        "mediaType": "image/png",
+        "width": 192,
+        "height": 192,
+        "path": "icons/lg-channels.png",
+        "size": 8466,
+        "sha256": "86581e1d2b58531df3a632cb9d8e669e189e9d6df82888a22e449f88ed0dac84"
+      }
+    },
+    {
+      "slug": "browser",
+      "id": "com.webos.app.browser",
+      "title": "Веб-браузер",
+      "version": "11.0.0",
+      "vendor": "LG Electronics, Inc.",
+      "type": "native_builtin",
+      "iconColor": "#5C75B8",
+      "icon": {
+        "field": "extraLargeIcon",
+        "originalName": "webbrowser_extra_large_icon.png",
+        "mediaType": "image/png",
+        "width": 115,
+        "height": 115,
+        "path": "icons/browser.png",
+        "size": 5618,
+        "sha256": "d49b59ad8a507fe3ba8d196e2e9f115b6f545ff99190cf981035e021b0194b8e"
+      }
+    }
+  ]
+}

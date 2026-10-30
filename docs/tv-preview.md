@@ -1,16 +1,17 @@
 # Preview with original TV application icons
 
-The default showcase uses synthetic app IDs and public SVG brand artwork. These
-are useful examples, not the actual resources shipped by a webOS application.
-Use a private local inventory snapshot when assessing native resolution, opaque
-backgrounds, transparency and CSS-only effects such as Sharingan's white logos.
+The default showcase uses ten unchanged original international webOS app icons
+from [the curated TV reference](../examples/reference-apps/README.md). Native IDs,
+versions, pixel dimensions, resource names and SHA-256 are recorded alongside
+the files. The same sanitized reference is used by the main project. Use a
+private local inventory snapshot for your own device's app set.
 
 ```sh
 npm run theme -- showcase examples --runtime .runtime/candidate \
   --inventory .runtime/private-tv/inventory.json --port 8877
 ```
 
-The author header says **TV snapshot**; omitting `--inventory` says **Demo apps**.
+The author header says **TV snapshot**; omitting `--inventory` says **Reference TV apps**.
 The original icon bytes are retained across theme switches. Missing icons use the
 renderer fallback; demo logos are never silently substituted. Preview actions
 and launches remain simulated and do not control the TV. A snapshot is static;
@@ -18,7 +19,7 @@ read a new one when the installed apps or their resources change.
 
 The option also works with `preview` and `screenshots`. It affects browser data
 only; `build` and `send` cannot embed your private inventory in a theme. Snapshot
-screenshots are personal data and should not replace the public synthetic gallery
+screenshots are personal data and should not replace the curated public reference gallery
 or enter a repository/PR without the owner's explicit consent.
 
 ## Snapshot format
@@ -52,3 +53,7 @@ it rejects duplicate IDs, URLs, filesystem icon paths, SVG and mismatched binary
 signatures. The loopback server marks private inventory scripts as same-origin
 resources and rejects cross-site requests. Snapshots are not copied into runtime
 exports, theme distributions, candidate bundles or the public gallery.
+
+Screenshot generation uses one generic simulated HDMI input when the app-only
+reference has no inputs. Its provenance explicitly marks that scene as simulated;
+the interactive preview keeps the captured empty input list.
