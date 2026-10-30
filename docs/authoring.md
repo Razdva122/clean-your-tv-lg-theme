@@ -166,7 +166,7 @@ show the selected app caption above its card. Card placement, navigation, pointe
 hit areas and focus still belong to the trusted renderer. CSS remains appearance
 only. Unknown keys, invalid values and incompatible layouts fail validation.
 
-[The Ribbon example](../examples/ribbon/README.md) demonstrates eight skewed
+[The Ribbon example](../candidate-examples/ribbon/README.md) demonstrates eight skewed
 cards, raised focus, bottom-left shortcuts and a hidden clock with original
 wallpaper. It contains no author JavaScript, layout stylesheet or renderer fork.
 See [runtime preparation](runtime.md#ribbon-pr-candidate) before using it.

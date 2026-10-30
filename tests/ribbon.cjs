@@ -1,8 +1,16 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cp=require('node:child_process');
-const toolkit=require('../lib/toolkit.cjs'),source=path.resolve(__dirname,'../examples/ribbon');
+const toolkit=require('../lib/toolkit.cjs'),source=path.resolve(__dirname,'../candidate-examples/ribbon');
 const manifest=JSON.parse(fs.readFileSync(path.join(source,'theme.json')));
+const runtime=process.env.CYTV_THEME_RUNTIME ? toolkit.runtime(process.env.CYTV_THEME_RUNTIME) : null;
+const contract=runtime && runtime.meta.contract && runtime.inventory.has(runtime.meta.contract) ? JSON.parse(fs.readFileSync(path.join(runtime.root,runtime.meta.contract))) : null;
+const supportsRibbon=!!(contract && contract.optionalCapabilities && contract.optionalCapabilities['ribbon-layout-v1']);
+const featureSkip=!runtime ? 'CYTV_THEME_RUNTIME is not configured' : !supportsRibbon ? 'verified runtime lacks ribbon-layout-v1; use the explicit feature candidate' : false;
+
+test('an explicit older verified runtime refuses Ribbon with update-runtime',{skip:!runtime ? 'CYTV_THEME_RUNTIME is not configured' : supportsRibbon ? 'feature runtime supports ribbon-layout-v1' : false},async()=>{
+ await assert.rejects(toolkit.compile(source,runtime),/update-runtime:.*ribbon-layout-v1/);
+});
 
 test('Ribbon requires a runtime contract advertising ribbon-layout-v1 before compilation',async()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'ctv-ribbon-old-'));
@@ -26,7 +34,7 @@ test('Ribbon refuses a mismatched compiler that silently drops optional geometry
  }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
 
-test('Ribbon compiles and exports through the main candidate without losing geometry',{skip:!process.env.CYTV_THEME_RUNTIME},async()=>{
+test('Ribbon compiles and exports through the main candidate without losing geometry',{skip:featureSkip},async()=>{
  const rt=toolkit.runtime(process.env.CYTV_THEME_RUNTIME),tmp=fs.mkdtempSync(path.join(os.tmpdir(),'ctv-ribbon-build-'));
  try{
   const compiled=await toolkit.compile(source,rt);
@@ -43,7 +51,7 @@ test('Ribbon compiles and exports through the main candidate without losing geom
  }finally{fs.rmSync(tmp,{recursive:true,force:true});}
 });
 
-test('Ribbon preview carries the compiled geometry to both real renderer editions',{skip:!process.env.CYTV_THEME_RUNTIME||!process.env.CYTV_THEME_BROWSER},async()=>{
+test('Ribbon preview carries the compiled geometry to both real renderer editions',{skip:featureSkip || (!process.env.CYTV_THEME_BROWSER && 'CYTV_THEME_BROWSER is not configured')},async()=>{
  const rt=toolkit.runtime(process.env.CYTV_THEME_RUNTIME),browser=await require('playwright').chromium.launch({headless:true,executablePath:process.env.CYTV_THEME_BROWSER});
  try{for(const edition of ['no-root','root']){
   const preview=await toolkit.preview(source,rt,{edition}),page=await browser.newPage();

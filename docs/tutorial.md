@@ -64,7 +64,7 @@ By default the user's explicit Columns setting wins over your default. Set `allo
 For a fixed scenic composition, the paired PR candidate also accepts optional
 `layout.ribbon`: bounded offsets, card height, gap, skew, focus lift, shortcut
 placement, edge navigation, label placement and clock visibility. Start from
-[`examples/ribbon`](../examples/ribbon/README.md), keep
+[`candidate-examples/ribbon`](../candidate-examples/ribbon/README.md), keep
 `allowColumnOverride: false`, and follow the [field table](authoring.md#optional-scenic-ribbon-geometry-pr-candidate).
 Use the [explicit PR runtime](runtime.md#ribbon-pr-candidate); older author
 runtimes fail with `update-runtime`. Older Home rejects its automatically emitted

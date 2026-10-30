@@ -11,7 +11,7 @@ with `ribbon-layout-v1`. It uses ordinary `scenic-grid` plus optional
 not a theme-specific renderer. Both editions use the same trusted geometry.
 
 ```sh
-npm run theme -- preview examples/ribbon --runtime /absolute/path/ribbon-pr-runtime
+npm run theme -- preview candidate-examples/ribbon --runtime /absolute/path/ribbon-pr-runtime
 ```
 
 Use Left from the first app to enter shortcuts and Right to return. The fixed
@@ -26,3 +26,9 @@ captures use the real source theme and reference app inventory.
 [Provenance](previews/provenance.json) records the exact runtime manifest digest
 and records the clean main PR candidate source (`dirty: false`). It does not
 change the reviewed runtime pin or claim release/hardware acceptance.
+
+This unreleased source is outside the stable example catalogue. Use a full
+repository checkout and the explicit feature runtime; the stable candidate
+bundle does not include Ribbon until its runtime pin is reviewed and upgraded.
+
+Ribbon is also being bundled by the paired Home PR. TV users will select the built-in copy after updating Home; this independent candidate source is an authoring reference, not a required download for the built-in theme.

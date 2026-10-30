@@ -80,7 +80,7 @@ export requires a clean checkout; a development-only dirty export needs explicit
 outside theme source, then pass its absolute path from the toolkit:
 
 ```sh
-npm run theme -- preview examples/ribbon --runtime /absolute/path/main/build/ribbon-pr-runtime
+npm run theme -- preview candidate-examples/ribbon --runtime /absolute/path/main/build/ribbon-pr-runtime
 CYTV_THEME_RUNTIME=/absolute/path/main/build/ribbon-pr-runtime npm test
 ```
 
@@ -89,3 +89,8 @@ executable. The wrapper checks the verified runtime contract before compilation
 and refuses an older explicit runtime with `update-runtime` rather than silently
 rendering the old scenic layout. It also checks that compilation preserved the
 ribbon and emitted its capability. The main runtime owns validation and rendering.
+
+Ribbon source lives in `candidate-examples/ribbon`, outside the stable `examples`
+catalogue. Clone this repository and use the explicit feature export above; the
+stable candidate bundle retains examples compatible with its reviewed runtime
+pin. Ribbon joins that bundle only after a reviewed runtime pin upgrade.

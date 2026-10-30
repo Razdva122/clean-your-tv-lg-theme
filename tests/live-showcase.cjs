@@ -15,10 +15,10 @@ test('live showcase switches themes on one renderer and retains user column choi
  try{
   const page=await browser.newPage({viewport:{width:1280,height:900}});await page.goto(preview.url);
   assert.equal(await page.locator('#themePicker strong').textContent(),'Themes','author picker uses English');
-  assert.deepEqual(await page.locator('#themePicker .ctv-theme-card__name').allTextContents(),['Classic','Alpine','Itachi · Sharingan','Ribbon','Channel']);
-  assert.equal(await page.locator('#themePicker img').count(),5,'each theme has a preview image');
+  assert.deepEqual(await page.locator('#themePicker .ctv-theme-card__name').allTextContents(),['Classic','Alpine','Itachi · Sharingan','Channel']);
+  assert.equal(await page.locator('#themePicker img').count(),4,'each theme has a preview image');
   for(const img of await page.locator('#themePicker img').all()) {await img.evaluate(el=>el.decode());assert.ok(await img.evaluate(el=>el.naturalWidth>1));}
-  assert.equal(await page.locator('#themePicker .ctv-theme-card').count(),5);
+  assert.equal(await page.locator('#themePicker .ctv-theme-card').count(),4);
   assert.equal((await fetch(preview.url+'theme-thumbnail?theme=../private')).status,404);
   await page.setViewportSize({width:390,height:844});
   await page.waitForFunction(()=>document.getElementById('screen').getBoundingClientRect().width<=innerWidth);

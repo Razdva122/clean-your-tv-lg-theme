@@ -1,12 +1,11 @@
-# Classic, Channel, Alpine, Sharingan and Ribbon
+# Classic, Channel, Alpine and Sharingan
 
-The live showcase includes five choices with the paired Ribbon PR runtime:
+The live showcase includes four choices:
 
 | Theme | Composition | Default columns | Source |
 | --- | --- | --- | --- |
 | [Alpine](glasshouse/theme.css) | Scenic wallpaper, large clock and one looping bottom ribbon | 8 | Editable example in `glasshouse/` |
 | [Itachi · Sharingan](itachi/README.md) | Dark portrait, crimson eyes and CSS-only white native icons | 5 | Editable source in `itachi/` |
-| [Ribbon](ribbon/README.md) | Galaxy, skewed cards, raised focus and bottom-left shortcuts | 8 | PR candidate required; editable source in `ribbon/` |
 | Classic | Original Home shelf and grid | 5 | Built into the renderer; uses trusted reset, no theme CSS copy |
 | [Channel](terminal/theme.css) | Blue teletext-style numbered list with a selected title | 1 | Editable example in `terminal/` |
 
@@ -146,3 +145,8 @@ default: unchanged native files, app IDs, versions, dimensions and hashes. It
 contains no Russian streaming apps. These are rendering fixtures; launches,
 network status and inputs remain simulated. Use `--inventory` for a private
 snapshot instead. Older historical screenshots may use the legacy SVG demo set.
+
+The unreleased [Ribbon source](../candidate-examples/ribbon/README.md) is kept
+outside this stable catalogue. It requires the full source repository and an
+explicit new PR runtime; it is not included in the stable candidate example
+bundle until the runtime pin has been reviewed and upgraded.
