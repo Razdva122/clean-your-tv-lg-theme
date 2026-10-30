@@ -11,7 +11,11 @@ does not download floating `main` or execute theme scripts. TV transfers require
 
 ## Ready-made examples
 
-For a live Home screen with theme-switching buttons, run:
+First download and extract the [matched candidate bundle](docs/CANDIDATE.md),
+which includes `.runtime/candidate`, install Node.js 22+, and run
+`npm ci --ignore-scripts` in its toolkit directory. A source checkout also needs
+a [trusted runtime export](docs/runtime.md) before preview commands can run.
+For a live Home screen with theme-switching buttons, run from the toolkit root:
 
 ```sh
 npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
@@ -33,18 +37,24 @@ For an interactive example, run `npm run theme -- preview examples/terminal --ru
 
 ## Start a theme and open the preview
 
-Install Node.js 22 or newer. Open a terminal in this toolkit checkout:
+Keep the trusted toolkit separate from your own public theme repository. After
+preparing the tools/runtime above, create an empty public GitHub repository and
+clone it. In a macOS/Linux shell or Git Bash, replace the paths and placeholders:
 
 ```sh
-npm ci --ignore-scripts
-npm run theme -- init themes/ocean --name Ocean --repository https://github.com/YOUR-NAME/YOUR-THEMES --author "Your Name"
-npm run theme -- preview themes/ocean --runtime .runtime/candidate --edition no-root
+THEME_TOOLS=/absolute/path/clean-your-tv-lg-theme
+cd /absolute/path/your-projects
+git clone https://github.com/YOUR-NAME/YOUR-THEMES.git
+cd YOUR-THEMES
+node "$THEME_TOOLS/bin/theme.cjs" init themes/ocean --name Ocean --repository https://github.com/YOUR-NAME/YOUR-THEMES --author "Your Name"
+node "$THEME_TOOLS/bin/theme.cjs" preview themes/ocean --runtime "$THEME_TOOLS/.runtime/candidate" --edition no-root
 ```
 
-The [candidate bundle](docs/CANDIDATE.md) includes `.runtime/candidate`. For a source
-checkout, use [runtime preparation](docs/runtime.md). Without a runtime,
-preview/validate/build stop with a clear error. `runtime.lock.json` deliberately
-contains no invented download URL or digest.
+`init` creates theme files, not a GitHub repository. Run subsequent author
+commands from your own repository root. The toolkit and complete runtime stay
+at `THEME_TOOLS`; source checkouts follow [runtime preparation](docs/runtime.md).
+No stable runtime download is published. Choose the slug/ID once, replace the
+starter's tiny preview, and review licenses/credits before publishing.
 
 Open the printed **http://127.0.0.1:8766/** URL in your browser. Keep the terminal
 running. Edit `themes/ocean/theme.css` in your preferred editor and save. Valid
@@ -58,8 +68,7 @@ standard trusted UI. A browser preview does not verify remote behavior, storage,
 standby, cold boot, OTA, rollback or compatibility with any physical TV.
 
 ```sh
-npm run theme -- validate themes/ocean --runtime .runtime/candidate
-npm test
+node "$THEME_TOOLS/bin/theme.cjs" validate themes/ocean --runtime "$THEME_TOOLS/.runtime/candidate"
 ```
 
 Start with [the complete author walkthrough](docs/tutorial.md).
@@ -88,9 +97,11 @@ for retries and CLI sending. The only transfer direction is PC → TV.
 (for example `102300a209`) and **Copy link**. Local edits are excluded. If that
 public version has no ID yet, **Create installation ID** shortens only its verified
 public address; an unpublished theme gets publishing instructions. Generate a pinned release workflow once with
-`node /path/to/toolkit/bin/theme.cjs release-workflow`; it automatically attaches
+`node "$THEME_TOOLS/bin/theme.cjs" release-workflow` from your author repository; it automatically attaches
 IDs when you publish `vX.Y.Z` theme releases. No da.gd account or API key is needed.
-See [ID and release instructions](docs/short-links.md). Local PC → TV transfer
+Build tracked packages under `distributions/<slug>/<version>/`, publish a theme
+release at distribution commit B, and wait for its link workflow. Follow the
+[complete publishing sequence](docs/publish.md) and [ID instructions](docs/short-links.md). Local PC → TV transfer
 remains available independently.
 
 ## Matched release candidate
@@ -111,7 +122,7 @@ publish a stable application release.
 | Candidate limits and TV availability | [Compatibility](docs/compatibility.md) |
 | Compare complete examples | [Classic, Alpine, Channel and Sharingan](examples/README.md) |
 
-The public catalog belongs to [the main project](https://github.com/Razdva122/clean-your-tv-lg-webos/tree/codex/theme-css-foundation/showcase). Its initial Alpine/Channel records reference independently committed distributions in this repository; the catalog and TV installer follow the main project release cycle. A listing does not automatically bundle a theme. The main candidate bundles Classic and Alpine, while Channel stays an external showcase install; see the main user guide for the implemented candidate TV flow.
+The public catalog belongs to [the main project](https://github.com/Razdva122/clean-your-tv-lg-webos/tree/release/next/showcase). Its initial Alpine/Channel records reference independently committed distributions in this repository; the catalog and TV installer follow the main project release cycle. A listing does not automatically bundle a theme. The main candidate bundles Classic and Alpine, while Channel stays an external showcase install; see the main user guide for the implemented candidate TV flow.
 
 The repository-root `cytv-themes.json` discovers **Channel only** for the candidate TV installer. Alpine is a bundled main-project theme; its older distribution remains historical. A repository-root URL resolves the default branch, so the new index becomes discoverable there after this toolkit PR merges. The showcase's existing commit-pinned Channel descriptor already works independently of that merge.
 

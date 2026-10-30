@@ -37,3 +37,18 @@ loading executable compiler modules. Dependencies are installed separately by
 lifecycle hook or author script runs implicitly. Do not put node_modules inside
 the runtime directory. No service credentials, device address or root access is
 needed. Only use runtime candidates supplied through a trusted maintainer channel.
+
+## Use the runtime from your own author repository
+
+Keep the runtime inside the trusted toolkit directory, separately from your
+public theme repository. After preparing the complete export, use its absolute
+path when invoking the toolkit from elsewhere (macOS/Linux shell or Git Bash):
+
+```sh
+THEME_TOOLS=/absolute/path/clean-your-tv-lg-theme
+node "$THEME_TOOLS/bin/theme.cjs" preview themes/ocean --runtime "$THEME_TOOLS/.runtime/candidate"
+```
+
+Run that command from your author repository root. Do not copy the runtime or
+`node_modules` into your theme folder or publish them with a distribution. A
+candidate archive provides tools/runtime, not your author repository's Git history.

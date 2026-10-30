@@ -1,17 +1,37 @@
 # Быстрый старт
 
-Нужен Node.js 22 или новее. Откройте терминал в папке этого набора инструментов:
+Нужен Node.js 22 или новее. Сначала скачайте и распакуйте
+[согласованный кандидат](CANDIDATE.md): в нём уже есть `.runtime/candidate`.
+В терминале откройте папку набора инструментов и выполните:
 
 ```sh
 npm ci --ignore-scripts
-npm run theme -- init themes/ocean --name Ocean --repository https://github.com/YOUR-NAME/YOUR-THEMES
-npm run theme -- preview themes/ocean --runtime .runtime/candidate --edition no-root
 ```
 
-Скачайте [согласованный кандидат](CANDIDATE.md): в нём уже есть `.runtime/candidate`.
-Для работы из исходников ветки `release/next` получите у сопровождающего полный
-экспорт runtime; подробности в [runtime.md](runtime.md). Стабильный runtime ещё не
-опубликован, случайные адреса загрузки не используются.
+Для исходников ветки `release/next` дополнительно получите у сопровождающего
+полный экспорт runtime; подробности в [runtime.md](runtime.md). Одного клонирования
+недостаточно. Стабильный runtime ещё не опубликован.
+
+Держите инструменты и runtime отдельно от **собственного публичного репозитория
+тем**. Создайте пустой репозиторий на GitHub, клонируйте его и откройте его корень.
+В командах ниже замените абсолютный путь, YOUR-NAME, YOUR-THEMES и имя автора.
+Это синтаксис оболочки macOS/Linux или Git Bash в Windows:
+
+```sh
+THEME_TOOLS=/absolute/path/clean-your-tv-lg-theme
+cd /absolute/path/your-projects
+git clone https://github.com/YOUR-NAME/YOUR-THEMES.git
+cd YOUR-THEMES
+node "$THEME_TOOLS/bin/theme.cjs" init themes/ocean --name Ocean --repository https://github.com/YOUR-NAME/YOUR-THEMES --author "Your Name"
+node "$THEME_TOOLS/bin/theme.cjs" preview themes/ocean --runtime "$THEME_TOOLS/.runtime/candidate" --edition no-root
+```
+
+`init` создаёт файлы темы, но не репозиторий GitHub или историю Git. Имя папки
+`ocean` становится последней частью постоянного ID `github:owner/repository:ocean`.
+Для новых версий сохраняйте ID и увеличивайте `themeVersion`; начальная версия —
+`1.0.0`. Название темы можно менять независимо от ID. Замените имя автора,
+проверьте LICENSE.txt и CREDITS.txt, перед публикацией замените заглушку превью
+1×1 настоящим снимком Home и обновите размеры изображения в `theme.json`.
 
 Откройте в браузере адрес **http://127.0.0.1:8766/**, напечатанный в терминале.
 Не закрывайте терминал. Редактируйте `themes/ocean/theme.css` и сохраняйте файл:
@@ -20,14 +40,20 @@ npm run theme -- preview themes/ocean --runtime .runtime/candidate --edition no-
 Занят порт? Добавьте `--port 8767`. Для Root используйте `--edition root`.
 
 Несколько тем можно хранить в `themes/ocean/`, `themes/forest/`: у каждой свои
-id, версия, лицензия и описание. Проверка: `npm run theme -- validate themes/ocean
---runtime .runtime/candidate` (введите одной строкой). Сборка и публикация описаны
+id, версия, лицензия и описание. Проверка из корня собственного репозитория:
+
+```sh
+node "$THEME_TOOLS/bin/theme.cjs" validate themes/ocean --runtime "$THEME_TOOLS/.runtime/candidate"
+```
+
+Сборка и публикация описаны
 в [publish.md](publish.md). Английская документация и контракт runtime определяют
 точные ограничения. Просмотр в браузере не подтверждает работу на телевизоре.
 
 ## Посмотреть готовые темы
 
-Чтобы увидеть настоящий интерактивный Home и переключать темы кнопками над ним:
+Чтобы увидеть настоящий интерактивный Home и переключать темы кнопками над ним,
+откройте отдельный терминал **в папке инструментов**:
 
 ```sh
 npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
@@ -86,7 +112,7 @@ PIN не сохраняется и очищается при закрытии о
 Без браузера:
 
 ```sh
-npm run theme -- send themes/ocean --tv 192.168.1.20 --pin SIX_DIGITS --runtime .runtime/candidate
+node "$THEME_TOOLS/bin/theme.cjs" send themes/ocean --tv 192.168.1.20 --pin SIX_DIGITS --runtime "$THEME_TOOLS/.runtime/candidate"
 ```
 
 Замените адрес и PIN значениями с ТВ. На общем компьютере используйте окно
@@ -101,13 +127,62 @@ npm run theme -- send themes/ocean --tv 192.168.1.20 --pin SIX_DIGITS --runtime 
 есть, но ID ещё нет, **Create installation ID** создаёт ID только для её публичной
 ссылки. Если публикации нет, окно объясняет шаги публикации.
 
-Команда `release-workflow` один
-раз создаёт workflow для автоматической генерации при релизе — ключ da.gd не
-нужен. [Подробная инструкция](short-links.md).
+## Опубликовать версию и получить ID
+
+Команды выполняются из корня вашего репозитория тем. Полная английская
+инструкция: [publish.md](publish.md).
+
+1. Закончите тему, превью и лицензии. Проверьте `git status --short` и `git diff`.
+   Подготовьте только нужные исходники; не публикуйте личные снимки ТВ, адреса,
+   ключи и посторонние локальные изменения.
+2. Для автоматических ID заранее создайте workflow из чистой доверенной версии
+   инструментов, чей точный коммит уже доступен публично:
+
+   ```sh
+   node "$THEME_TOOLS/bin/theme.cjs" release-workflow
+   ```
+
+   Проверьте закреплённый `ref`, закоммитьте `.github/workflows/theme-links.yml`
+   в основную ветку и включите его в будущий коммит публикации. Локальные
+   незакоммиченные изменения инструментов в этот `ref` не входят. Затем
+   закоммитьте готовые исходники темы: это **A**, его полный хеш показывает
+   `git rev-parse HEAD`. Если автоматические ID не нужны, пропустите генерацию
+   workflow, но всё равно создайте коммит A.
+3. Соберите тему с `themeVersion: "1.0.0"` в новую пустую папку:
+
+   ```sh
+   node "$THEME_TOOLS/bin/theme.cjs" build themes/ocean --runtime "$THEME_TOOLS/.runtime/candidate" --source-repository https://github.com/YOUR-NAME/YOUR-THEMES --source-commit "$(git rev-parse HEAD)" --out distributions/ocean/1.0.0
+   node "$THEME_TOOLS/bin/theme.cjs" collection distributions/ocean/1.0.0 --out . --runtime "$THEME_TOOLS/.runtime/candidate"
+   ```
+
+   Перед сборкой все файлы темы должны быть закоммичены, а переданный коммит —
+   совпадать с HEAD. Workflow ищет только отслеживаемые пакеты в `distributions/`,
+   а не в игнорируемой `dist/`. Для нескольких тем перечислите все нужные текущие
+   пакеты перед `--out .`: индекс заменяется целиком. Он создаётся сразу в корне;
+   перенос готового индекса из другой папки нарушает относительные пути.
+4. Проверьте файлы и diff. Закоммитьте пакет, корневой `cytv-themes.json` и workflow
+   отдельно как **B**, затем отправьте B в публичный репозиторий. В дескрипторе
+   остаётся исходный коммит A; неизменяемая ссылка на дескриптор содержит полный
+   хеш B. Для поиска по адресу репозитория индекс должен попасть в его основную
+   ветку. Прямая ссылка с B работает независимо от этого.
+5. В **своём репозитории тем** опубликуйте GitHub Release с тегом `v1.0.0` на B.
+   Версия тега без `v` должна точно совпадать с `themeVersion`. Кандидат можно
+   отметить prerelease. Это релиз темы, он не выпускает Home и не обновляет ТВ.
+   Дождитесь успешного **Actions → Theme installation links**, проверьте файл
+   `tv-links.json` и таблицу установки в описании релиза. Затем откройте
+   **TV link → Retry lookup**, проверьте опубликованную версию и скопируйте ID.
+
+Создание файла workflow не запускает его. При ошибке изучите причину и повторите
+неудачный запуск Actions; редактирование описания релиза не создаёт новое событие
+публикации. Ключ или аккаунт da.gd не нужен. При недоступности сокращателя полная
+проверенная ссылка остаётся пригодной. [Подробности](short-links.md).
+**Send to TV** передаёт текущие локальные правки; **TV link** показывает проверенную
+публичную версию, которая может быть старее локальной. Эти кнопки не публикуют тему.
 
 ## Sharingan в редакторе
 
-Исходники находятся в `examples/itachi`. Совместимый runtime закреплён в
+Следующие команды снова выполняются **из папки инструментов**. Исходники
+находятся в `examples/itachi`. Совместимый runtime закреплён в
 `runtime.lock.json`; кандидат Home 1.6.0 поддерживает размеры часов и CSS-эффекты
 `modern-icon-css-v1`. Старый runtime эти стили отклоняет.
 

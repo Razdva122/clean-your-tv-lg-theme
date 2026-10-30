@@ -4,6 +4,32 @@
 const path = require('node:path'),
   fs = require('node:fs'),
   t = require('../lib/toolkit.cjs');
+const HELP = `Clean Your TV theme tools (development candidate)
+
+Usage: node bin/theme.cjs COMMAND DIRECTORY [options]
+
+Start:       init DIRECTORY --repository https://github.com/OWNER/REPO --author NAME
+Preview:     preview THEME --runtime RUNTIME [--port 8766] [--edition root]
+Compare:     showcase THEMES --runtime RUNTIME [--port 8877]
+Check:       validate THEME --runtime RUNTIME
+Capture:     screenshots THEME --runtime RUNTIME --out NEW_DIRECTORY
+Build:       build THEME --runtime RUNTIME --source-repository URL --source-commit FULL_SHA --out distributions/SLUG/VERSION
+Discover:    collection DISTRIBUTIONS... --runtime RUNTIME --out .
+Release IDs: release-workflow (run from your author repository)
+             release-links REPOSITORY --repository OWNER/REPO --commit FULL_SHA --tag vX.Y.Z --out NEW_DIRECTORY
+TV transfer: send THEME --runtime RUNTIME --tv TV_ADDRESS --pin PIN
+
+Keep the trusted toolkit separately from your own Git theme repository.
+Commit source A, build, then commit/push distribution B before publishing vX.Y.Z.
+Send to TV tests local edits; TV link installs only a verified published version.
+No stable runtime is published. Use the matched candidate runtime, not a random export.
+Guides: docs/tutorial.md, docs/publish.md, docs/short-links.md
+`;
+if (process.argv.length === 2 || process.argv.slice(2).some(arg => arg === '--help' || arg === '-h') || process.argv[2] === 'help') {
+  process.stdout.write(HELP);
+  process.exit(0);
+}
+
 const args = process.argv.slice(2),
   command = args.shift(),
   pos = [],

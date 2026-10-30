@@ -60,10 +60,15 @@ not submit anything to the main project's Showcase.
 ## Generate IDs automatically on release
 
 Use a trusted toolkit candidate bundle or a checkout of its reviewed commit.
-From your own theme repository, run once:
+The toolkit revision must already be public: the generated workflow later checks
+out that exact commit from GitHub. Use a clean trusted checkout whose current
+HEAD contains the reviewed tooling, or a tested bundle with `toolkit-source.json`.
+Local uncommitted toolkit changes are not included in that pin. From your own
+theme repository root, run once:
 
 ```sh
-node /absolute/path/clean-your-tv-lg-theme/bin/theme.cjs release-workflow
+THEME_TOOLS=/absolute/path/clean-your-tv-lg-theme
+node "$THEME_TOOLS/bin/theme.cjs" release-workflow
 ```
 
 This creates `.github/workflows/theme-links.yml` without overwriting an existing
@@ -71,16 +76,23 @@ file. The generated workflow pins the exact toolkit source commit, supplied by
 the bundle's `toolkit-source.json` or the trusted toolkit checkout. It never checks
 out floating tooling from `main` or from the theme author's repository.
 
-Commit the workflow to your default branch. Build and commit the validated theme
-distributions as documented in the tutorial, under:
+Inspect the generated toolkit `ref` and confirm that commit is public. Commit the
+workflow to your default branch and include it in the release distribution commit.
+Follow [the source A / distribution B sequence](publish.md#publish-one-version).
+The workflow scans **tracked `distributions/**/cytv-theme.json` files only**;
+packages under ignored `dist/` are not discovered. Use paths such as:
 
 ```text
 distributions/forest/1.0.0/cytv-theme.json
 distributions/ocean/1.0.0/cytv-theme.json
 ```
 
-Push the distribution commit, then publish a GitHub release tagged `v1.0.0` at
-that commit. Contract-valid prerelease tags such as `v1.0.0-beta.1` work too.
+Push distribution commit B, then publish a GitHub release in your **theme
+repository** tagged `v1.0.0` at B. Its workflow file must exist at B before the
+release is published. Each included descriptor must have `themeVersion: "1.0.0"`:
+the tag without `v` must match exactly. Contract-valid prerelease tags such as
+`v1.0.0-beta.1` work when the descriptor version is `1.0.0-beta.1`. Mark candidate
+releases as prereleases when appropriate. This does not release Home.
 The workflow:
 
 1. Reads tracked descriptors matching that version, without running theme scripts.
@@ -96,6 +108,16 @@ release; no shortening-service secret is needed. Several themes can share one
 release. Each has its own stable ID, version and distribution path. If there are
 no matching distributions or their public bytes differ, link generation fails
 without replacing release notes. A shortening outage preserves full URLs.
+
+Wait for **Actions → Theme installation links** to finish. Confirm `tv-links.json`
+is attached to the release and the installation table appears in its notes. Then
+use **TV link → Retry lookup** and verify the displayed version. If the workflow
+fails, inspect its error and rerun that failed Actions run after resolving the
+cause; generating a local workflow file does not run it, and editing release
+notes does not trigger its `release: published` event. A successful run may still
+report an unavailable ID during a shortening outage; its full immutable URLs
+remain usable. Root-collection discovery independently requires the index and
+packages to be on the public default branch.
 
 ## Provider and scope
 

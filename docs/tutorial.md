@@ -12,20 +12,33 @@ For a visual comparison before editing:
 npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
 ```
 
-Open **http://127.0.0.1:8877/** and click the Classic, Alpine or Channel preview card. Click inside Home before using arrows/Enter; Esc goes back. Hold Enter to rearrange an app. TV actions are simulated. Keep the terminal running and stop it with Ctrl+C. To compare saved images without Node, open `examples/index.html` as a file.
+Open **http://127.0.0.1:8877/** and click a Classic, Alpine, Channel or Sharingan preview card. Click inside Home before using arrows/Enter; Esc goes back. Hold Enter to rearrange an app. TV actions are simulated. Keep the terminal running and stop it with Ctrl+C. To compare saved images without Node, open `examples/index.html` as a file.
 
 Classic is the built-in renderer, not a theme source to copy. Alpine uses a panorama and a looping horizontal ribbon. Channel uses a numbered list. Both include Inputs and standard Settings screenshots; Alpine also has a [library capture](previews/alpine-library.png).
 
 ## 2. Create an independent identity
 
-Replace YOUR-NAME and YOUR-THEMES with your actual public GitHub owner and repository:
+Keep two directories: the trusted toolkit (including `.runtime/candidate`) and
+**your own author repository**, which contains only your sources and published
+packages. `init` creates files; it does not create a GitHub repository or Git history.
+Create an empty public GitHub repository, clone it, and open its local root.
+Replace the paths, YOUR-NAME and YOUR-THEMES below with your actual values.
+These commands use a macOS/Linux shell or Git Bash on Windows:
 
 ```sh
-npm run theme -- init themes/ocean --name Ocean --repository https://github.com/YOUR-NAME/YOUR-THEMES --author "Your Name"
-npm run theme -- preview themes/ocean --runtime .runtime/candidate --port 8766
+THEME_TOOLS=/absolute/path/clean-your-tv-lg-theme
+cd /absolute/path/your-projects
+git clone https://github.com/YOUR-NAME/YOUR-THEMES.git
+cd YOUR-THEMES
+node "$THEME_TOOLS/bin/theme.cjs" init themes/ocean --name Ocean --repository https://github.com/YOUR-NAME/YOUR-THEMES --author "Your Name"
+node "$THEME_TOOLS/bin/theme.cjs" preview themes/ocean --runtime "$THEME_TOOLS/.runtime/candidate" --port 8766
 ```
 
-Open **http://127.0.0.1:8766/**. The generated `theme.json` declares the title, stable lowercase ID, author, version, layout, assets and licensing. `theme.css` is the editable appearance. LICENSE.txt and CREDITS.txt must describe your actual work and every third-party image. The generated preview is a tiny placeholder; replace it before publication.
+Run the remaining author commands from this repository root. Toolkit examples
+still run from the toolkit directory. Reopen your author terminal with the same
+`THEME_TOOLS` assignment when needed.
+
+Open **http://127.0.0.1:8766/**. The generated `theme.json` declares the title, stable lowercase ID, author, version, layout, assets and licensing. `theme.css` is the editable appearance. LICENSE.txt and CREDITS.txt must describe your actual work and every third-party image. The generated preview is a 1×1 placeholder; replace it before publication. The folder slug becomes the final part of `github:owner/repository:ocean`; keep that ID stable for later versions. The initial version is `1.0.0`. Changing the display title does not require changing the ID.
 
 You can instead copy an example into your own theme folder. Change its ID, author/profile, title and source repository before publishing. Keep wallpaper/brand notices and original licenses unless you replace the corresponding assets. Alpine's `glasshouse` directory and ID are historical stable identifiers; Alpine is its display name.
 
@@ -57,7 +70,7 @@ Use [the header-icon recipe](authoring.md#replace-header-button-icons) for Input
 ## 6. Verify the complete experience
 
 ```sh
-npm run theme -- validate themes/ocean --runtime .runtime/candidate
+node "$THEME_TOOLS/bin/theme.cjs" validate themes/ocean --runtime "$THEME_TOOLS/.runtime/candidate"
 ```
 
 In preview check Home, the last app, Add app/library, empty library, Inputs, focused shortcuts, rearrange/cancel, long names, missing icons and standard Settings. Try mouse and keyboard. Browser results do not verify TV remote behavior, storage, standby, cold boot or updates.
@@ -84,7 +97,7 @@ After editing, send again for a fresh compiled snapshot.
 Without a browser:
 
 ```sh
-npm run theme -- send themes/ocean --tv 192.168.1.20 --pin SIX_DIGITS --runtime .runtime/candidate
+node "$THEME_TOOLS/bin/theme.cjs" send themes/ocean --tv 192.168.1.20 --pin SIX_DIGITS --runtime "$THEME_TOOLS/.runtime/candidate"
 ```
 
 Use the actual address and PIN shown on your TV. Avoid retaining a PIN in shell
@@ -94,7 +107,7 @@ Transfers use PC → TV only. If the receiver is unavailable, update the complet
 
 ## 7. Commit, build and submit
 
-Commit all theme source files before building. Follow [publishing](publish.md): source commit A produces a descriptor and hashed assets; commit the distribution separately as B, then use the exact descriptor URL at B. Never invent either hash or replace it with a moving branch in a catalog submission.
+Follow the [complete publication sequence](publish.md#publish-one-version): inspect your local diff, commit source A, build into `distributions/ocean/1.0.0`, generate the root collection with `--out .`, then commit and push distribution B. Its descriptor retains source A; public installation uses the exact descriptor URL at B. For automatic IDs, publish a theme-repository release tagged `v1.0.0` at B after committing the generated workflow. Never invent either hash or replace it with a moving branch in a catalog submission.
 
 Several themes can share one repository: use `themes/ocean` and `themes/forest`, each with a unique stable ID, version, assets and credits. Build each separately, optionally create a collection index, and submit one showcase record per theme. A new version needs a new review; votes and automatic inclusion are not implemented.
 
@@ -121,4 +134,4 @@ In the computer renderer, **Receive from computer** explains the steps on the TV
 
 Use **TV link → Copy ID** for published versions, or generate the keyless release
 workflow to attach IDs automatically. See [complete instructions](short-links.md).
-The matching Home accepts an ID, an da.gd URL or the full GitHub URL.
+The matching Home accepts an ID, a da.gd URL or the full GitHub URL. **Send to TV** tests current local edits; **TV link** retrieves a published version and excludes local changes. Neither action publishes a release.
