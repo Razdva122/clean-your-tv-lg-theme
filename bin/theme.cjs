@@ -4,7 +4,7 @@
 const path = require('node:path'),
   fs = require('node:fs'),
   t = require('../lib/toolkit.cjs');
-const HELP = `Clean Your TV theme tools (development candidate)
+const HELP = `Clean Your TV theme tools 0.1.0
 
 Usage: node bin/theme.cjs COMMAND DIRECTORY [options]
 

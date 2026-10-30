@@ -1,8 +1,8 @@
 {
   "name": "clean-your-tv-lg-theme",
-  "version": "0.1.0-candidate.1",
+  "version": "0.1.0",
   "private": true,
-  "description": "CSS author tools for Clean Your TV; candidate runtime required",
+  "description": "CSS author tools for Clean Your TV Home 1.6",
   "license": "MIT",
   "engines": {
     "node": ">=22"

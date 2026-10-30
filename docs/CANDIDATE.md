@@ -1,5 +1,9 @@
 # Author toolkit candidate
 
+Historical development record. For toolkit 0.1.0, use the [release guide](RELEASE.md)
+and current `runtime.lock.json`; the older commit and artifact below are retained
+as evidence of their original candidate run.
+
 The `release/next` branch collects the author tools for the main project's 1.6.0
 candidate. Toolkit version `0.1.0-candidate.1` is independent of the TV application's
 version. This is a development toolkit artifact, not a stable TV application release.

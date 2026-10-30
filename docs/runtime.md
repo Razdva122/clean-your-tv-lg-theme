@@ -1,5 +1,10 @@
 # Runtime preparation and trust
 
+Toolkit 0.1.0 pairs with application 1.5.0 / Home 1.6 at exact main source
+`1fc8235ac564bd2d06ec53a41b07b26f48ba17e1`. Its author-runtime export still uses
+`status: candidate`; this describes the independent export format, not the TV
+application release status. See [release verification](RELEASE.md).
+
 The toolkit imports the main project's compiler, policy and actual renderer bytes.
 It never maintains a launcher fork. The checked-in lock currently has
 `status: unpublished`; `runtime:fetch` therefore refuses to invent a release.
