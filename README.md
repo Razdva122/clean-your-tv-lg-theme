@@ -84,8 +84,10 @@ for retries and CLI sending. The only transfer direction is PC → TV.
 
 ## Short installation IDs
 
-For a published theme, **TV link** offers **Copy ID** (for example `102300a209`)
-and **Copy link**. Generate a pinned release workflow once with
+**TV link** shows the last verified published version and offers **Copy ID**
+(for example `102300a209`) and **Copy link**. Local edits are excluded. If that
+public version has no ID yet, **Create installation ID** shortens only its verified
+public address; an unpublished theme gets publishing instructions. Generate a pinned release workflow once with
 `node /path/to/toolkit/bin/theme.cjs release-workflow`; it automatically attaches
 IDs when you publish `vX.Y.Z` theme releases. No da.gd account or API key is needed.
 See [ID and release instructions](docs/short-links.md). Local PC → TV transfer

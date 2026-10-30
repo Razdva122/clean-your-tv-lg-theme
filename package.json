@@ -9,7 +9,7 @@
   },
   "scripts": {
     "theme": "node bin/theme.cjs",
-    "test": "node --test tests/*.cjs"
+    "test": "node --test --test-concurrency=2 tests/*.cjs"
   },
   "devDependencies": {
     "@babel/core": "7.29.7",

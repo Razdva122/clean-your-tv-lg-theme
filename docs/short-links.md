@@ -1,7 +1,7 @@
 # Theme installation IDs without API keys
 
-For a published public theme, **TV link** in the preview can retrieve its release
-link or create one through da.gd. The ID is convenient for remote entry:
+For a published public theme, **TV link** in the preview retrieves a verified published
+installation link and an existing ID when available. The ID is convenient for remote entry:
 
 - `102300a209`
 - `da.gd/102300a209`
@@ -13,24 +13,49 @@ before loading, then check the GitHub destination and the package as usual.
 Full GitHub links remain accepted. The example is a real public Channel 1.3.3 link;
 using an ID does not upgrade an older Home package.
 
-## Copy or create an ID in preview
+## Copy a published ID or link in preview
 
-Select your theme and choose **TV link**. The tools look for a `vX.Y.Z` release
-matching the source's `themeVersion`, using the release metadata produced below.
-You can also paste the exact public `cytv-theme.json` URL, pinned to its distribution
-commit, then choose **Create short link**. Use **Copy ID** for remote entry or
-**Copy link** for sharing. The descriptor ID, version and repository must match
-the selected theme. Classic is already built in and needs no link.
+Select your theme and choose **TV link**. The dialog shows the **last published
+version of that theme**, which can be older than your local `themeVersion`. It
+checks public GitHub release metadata for the selected theme ID and repository,
+chooses the latest publication date (including published prereleases), and verifies
+the commit-pinned descriptor against its recorded SHA-256 digest. Drafts are ignored.
+When no matching release entry exists, it resolves the public repository's default
+HEAD to an exact commit, reads root `cytv-themes.json` at that revision, and verifies
+the selected theme's identity, version, relative path and descriptor SHA-256. This
+fallback shows the current public collection entry even without release metadata;
+it never reads your local collection. Classic is already built in and needs no link.
 
-The tools check the public descriptor before contacting da.gd and verify the
-returned link's destination. No key or account is required. If da.gd is unavailable
-or rate-limited, the full URL remains available. Requests do not hammer the
-provider with automatic retries. A failed/changed input clears previous results
-so an older ID cannot accidentally be copied for a newer address.
+**Local edits, uncommitted changes and a newer local version are not included in
+this link.** Use **Copy ID** for remote entry or **Copy link** for sharing. Opening
+the dialog only reads published metadata. If the verified publication has no ID,
+**Create installation ID** explicitly asks da.gd to shorten that public immutable
+URL. The server rechecks the selected publication and its digest; it accepts no
+caller-supplied URL or local files. An outage preserves the verified full link.
+Neither action publishes the theme, uploads local edits or sends anything to TV.
+The release workflow below can also generate installation IDs. No key or shortener account is required.
 
-Files existing only on your PC are sent with **Send to TV** instead. Creating a
-short link does not upload or expose a local folder, and does not submit anything
-to the main project's Showcase.
+If neither release metadata nor the public root collection contains the selected
+theme, the dialog explains how to build, commit, publish and generate an ID. A
+missing collection (HTTP 404) is distinct from an invalid or unavailable collection.
+Repositories with other publication layouts cannot be discovered here; an empty
+result does not establish that the repository has no releases.
+Connection errors, missing/private repositories, rate limits, malformed metadata
+and descriptor mismatches show a lookup failure, never an unpublished claim.
+**Retry lookup** rechecks publication. Lookup is limited to 1,000 releases; reaching
+that bound fails explicitly instead of selecting a possibly stale publication.
+
+The tools verify the short link's exact destination before offering its ID. The
+collection fallback checks only the existing deterministic alias for its exact
+immutable URL; opening the dialog never creates one. A published collection entry can therefore
+provide a full link while its ID remains unavailable. If the
+shortener is unavailable or its lookup differs, the verified full immutable URL
+remains copyable and the dialog explains that the ID is unavailable. A failed
+lookup clears previous results. The full URL still requires the normal TV package
+validation and does not establish device compatibility.
+
+Files existing only on your PC are sent with **Send to TV** instead. TV links do
+not submit anything to the main project's Showcase.
 
 ## Generate IDs automatically on release
 
