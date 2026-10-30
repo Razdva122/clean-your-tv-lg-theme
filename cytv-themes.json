@@ -8,6 +8,13 @@
       "themeVersion": "1.3.3",
       "path": "distributions/channel/1.3.3/cytv-theme.json",
       "sha256": "da7da0848ac0ecd60ebbcd964cb65a68fdf4fab54f30eebd56218c9d3141e17c"
+    },
+    {
+      "id": "github:razdva122/clean-your-tv-lg-theme:itachi",
+      "title": "Itachi · Sharingan",
+      "themeVersion": "1.0.2",
+      "path": "distributions/itachi/1.0.2/cytv-theme.json",
+      "sha256": "a2d8b8ea998314b9afd28c41c97b80250baf96e26279b2f9dcd7c93417553240"
     }
   ]
 }

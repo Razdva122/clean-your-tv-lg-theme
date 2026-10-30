@@ -5,3 +5,8 @@ These version directories contain generated data, not author code. Alpine 1.4.2 
 The main project catalog pins the later distribution commit, its descriptor digest and all manifest file hashes. Do not edit a published version directory in place; change themeVersion, commit author source and build a new version instead. The collection index is `cytv-themes.json`; each listing still links to its own specific descriptor.
 
 Alpine preserves its stable `glasshouse` ID; Channel preserves `terminal`. Display names and directory names do not change installed identity. Their licensing and preview icon notices travel in hashed document files. External TV installation is still in development.
+
+Itachi 1.0.2 is a separate editable-toolkit theme identity. Its descriptor records
+the exact committed author source and clean paired Home 1.6 candidate runtime.
+The repository-root collection lists Channel and Itachi; historical distributions
+and the older collection below this directory remain unchanged.
