@@ -62,7 +62,7 @@ candidate archive provides tools/runtime, not your author repository's Git histo
 
 `layout.ribbon` requires the paired main-project PR candidate export advertising
 `ribbon-layout-v1`. The tested clean feature export comes from main-project
-commit `b7c12db62b65eb0fc6b6e2a3728ba54d80395eb9`, an unpublished PR candidate
+commit `8a2d751a0fd8dd07afa159fee03b67eda32c0ae5`, an unpublished PR candidate
 with `dirty: false`; it does not establish public release or TV acceptance.
 The reviewed stable provenance in `runtime.lock.json` remains
 unchanged; that pin predates this option. A lock upgrade belongs after reviewed

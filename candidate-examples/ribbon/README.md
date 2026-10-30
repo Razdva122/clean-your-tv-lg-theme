@@ -14,7 +14,8 @@ not a theme-specific renderer. Both editions use the same trusted geometry.
 npm run theme -- preview candidate-examples/ribbon --runtime /absolute/path/ribbon-pr-runtime
 ```
 
-Use Left from the first app to enter shortcuts and Right to return. The fixed
+Use Left from the first visible card to enter shortcuts and Right from Settings
+to return to that card while preserving the visible ribbon window. The fixed
 columns belong to the theme; switching back to Classic restores the user's
 saved column preference. Settings and recovery keep their trusted appearance.
 Browser preview uses simulated TV services and is not physical-device acceptance.

@@ -160,8 +160,10 @@ fractional; `iconScale` may also be fractional and adjusts native artwork within
 its trusted card bounds. Bottom-left shortcuts require `left >= 340`; combinations must leave
 at least 64 design pixels per card after skew and spacing. Labels placed `below`
 require `bottom >= 64` so captions remain on screen. The compiler checks
-these combined bounds as well as individual ranges. `shortcuts` edge navigation moves from the first app
-into trusted shortcuts; wrapping keeps the scenic app loop. Focused-above labels
+these combined bounds as well as individual ranges. `shortcuts` edge navigation
+moves Left from the first visible card
+into trusted shortcuts; Right from Settings returns to that card and preserves
+the visible ribbon window; wrapping keeps the scenic app loop. Focused-above labels
 show the selected app caption above its card. Card placement, navigation, pointer
 hit areas and focus still belong to the trusted renderer. CSS remains appearance
 only. Unknown keys, invalid values and incompatible layouts fail validation.
