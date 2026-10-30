@@ -25,8 +25,10 @@ services are simulated. Keep the terminal open; Ctrl+C stops the local server.
 This is a local candidate showcase, not a published community catalog.
 
 
-Use built-in **Classic** or the complete [Channel and Alpine examples and screenshots](examples/README.md). The [local visual gallery](examples/index.html)
+Use built-in **Classic** or the complete [Channel, Alpine and Sharingan examples and screenshots](examples/README.md). The [local visual gallery](examples/index.html)
 compares Home, Inputs and the standard Settings screen without a runtime.
+Sharingan sources and build instructions live in [examples/itachi](examples/itachi/README.md).
+The paired runtime supports clock/date sizes and optional CSS-only icon effects.
 For an interactive example, run `npm run theme -- preview examples/terminal --runtime .runtime/candidate`.
 
 ## Start a theme and open the preview
@@ -91,7 +93,7 @@ remains available independently.
 
 ## Matched release candidate
 
-`release/next` collects the tools for the main project’s 1.5.0 candidate. Download
+`release/next` collects the tools for the main project’s 1.6.0 candidate. Download
 the tested toolkit/runtime bundle from Actions using the [candidate guide](docs/CANDIDATE.md).
 Its runtime is pinned to the exact source in `runtime.lock.json`; this does not
 publish a stable application release.
@@ -105,7 +107,7 @@ publish a stable application release.
 | Prepare a runtime locally | [Runtime preparation](docs/runtime.md) |
 | Build, publish several themes and submit a PR | [Publishing](docs/publish.md) |
 | Candidate limits and TV availability | [Compatibility](docs/compatibility.md) |
-| Compare complete examples | [Classic, Alpine and Channel](examples/README.md) |
+| Compare complete examples | [Classic, Alpine, Channel and Sharingan](examples/README.md) |
 
 The public catalog belongs to [the main project](https://github.com/Razdva122/clean-your-tv-lg-webos/tree/codex/theme-css-foundation/showcase). Its initial Alpine/Channel records reference independently committed distributions in this repository; the catalog and TV installer follow the main project release cycle. A listing does not automatically bundle a theme. The main candidate bundles Classic and Alpine, while Channel stays an external showcase install; see the main user guide for the implemented candidate TV flow.
 

@@ -1,0 +1,36 @@
+.ctv-home { background-color: #000000; color: #ffffff; }
+.ctv-ambient { background-image: linear-gradient(0deg, transparent 0%, transparent 100%); }
+.ctv-clock { color: #cccccc; font-weight: 400; font-size: 48px; }
+.ctv-date { color: #929292; font-size: 22px; }
+.ctv-card { background-color: transparent; border-style: none; box-shadow: 0 0 0 transparent; }
+.ctv-label { color: #ffffff; font-weight: 400; text-shadow: 0 1px 6px #000000; }
+.ctv-shortcut { color: #bdbdbd; background-color: transparent; border-color: transparent; }
+.ctv-shortcut.is-focused { color: #ffffff; background-color: #252525; }
+.ctv-library { background-color: #000000; }
+.ctv-library-panel { background-color: #101010; border-color: #404040; }
+.ctv-library-row { color: #ffffff; background-color: #171717; }
+.ctv-library-row.is-focused { color: #ffffff; background-color: #303030; }
+.ctv-inputs { background-color: #101010; }
+.ctv-input-row { color: #ffffff; background-color: #171717; }
+.ctv-input-row.is-focused { color: #ffffff; background-color: #303030; }
+
+.ctv-hero { color: transparent; text-shadow: 0 0 0 transparent; }
+.ctv-shortcut { background-image: linear-gradient(0deg, transparent 0%, transparent 100%); border-style: none; }
+/* Flat colored original backgrounds: an approximate contrast key, never a new image. */
+.ctv-icon.is-dark { filter: grayscale(1) brightness(1.8) contrast(6); mix-blend-mode: screen; }
+.ctv-icon.is-mid { filter: grayscale(1) contrast(10); mix-blend-mode: screen; }
+.ctv-icon.is-bright { filter: grayscale(1) invert(1) brightness(.8) contrast(10); mix-blend-mode: screen; }
+/* Only original image pixels are filtered. No replacement logos or sources. */
+.ctv-icon.is-light { filter: grayscale(1) invert(1) brightness(1.3); mix-blend-mode: screen; }
+.ctv-icon.is-glyph { filter: brightness(0) invert(1); mix-blend-mode: normal; }
+.ctv-card.is-focused { border-width: 0; border-style: none; }
+.ctv-label { color: transparent; text-shadow: 0 0 0 transparent; }
+.ctv-label.is-focused { color: white; text-shadow: 0 1px 6px black; }
+
+.ctv-card { isolation: isolate; }
+
+/* Larger painted logos, keeping each app's original image and native resolution. */
+.ctv-card { overflow: visible; }
+.ctv-card .ctv-icon { transform: scale(1.6); }
+.ctv-card .ctv-icon.is-wide { transform: scale(2); }
+.ctv-card .ctv-icon.is-glyph { transform: scale(1.25); }

@@ -1,10 +1,11 @@
-# Classic, Channel and Alpine
+# Classic, Channel, Alpine and Sharingan
 
-The live showcase includes three choices:
+The live showcase includes four choices:
 
 | Theme | Composition | Default columns | Source |
 | --- | --- | --- | --- |
 | [Alpine](glasshouse/theme.css) | Scenic wallpaper, large clock and one looping bottom ribbon | 8 | Editable example in `glasshouse/` |
+| [Itachi · Sharingan](itachi/README.md) | Dark portrait, crimson eyes and CSS-only white native icons | 5 | Editable source in `itachi/` |
 | Classic | Original Home shelf and grid | 5 | Built into the renderer; uses trusted reset, no theme CSS copy |
 | [Channel](terminal/theme.css) | Blue teletext-style numbered list with a selected title | 1 | Editable example in `terminal/` |
 
@@ -29,7 +30,7 @@ npm ci --ignore-scripts
 npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
 ```
 
-Open **http://127.0.0.1:8877/**. Classic is selected initially. Click Alpine, Channel or
+Open **http://127.0.0.1:8877/**. Classic is selected initially. Click Alpine, Channel, Itachi · Sharingan or
 Classic above the actual Home screen, then use the mouse or arrows/Enter inside
 it. Switching does not reload Home; app order and saved column preferences are retained.
 App launches and TV services are simulated. Keep the terminal open; Ctrl+C stops
@@ -126,3 +127,13 @@ is identified separately. New card UI requires the refreshed candidate runtime.
 ## Button icon examples
 
 Alpine uses original outline artwork; Channel uses original pixel artwork for Inputs, network and Settings. See [the icon recipe](../docs/authoring.md#replace-header-button-icons). Alpine retains its existing `glasshouse` directory and stable ID so installed theme identity is preserved.
+
+## Sharingan authoring
+
+[Itachi · Sharingan](itachi/README.md) lives in this toolkit and uses the same
+validate/preview/build commands as other themes. Its public runtime capability
+`modern-icon-css-v1` enables bounded icon filters and paint scaling while
+retaining native app images. Use the exact paired runtime; older exports reject
+its CSS. The toolkit theme ID differs from the historical main-project ID; old
+packages and installed versions are not silently migrated. Its image license is
+personal/non-commercial fan use; preserve its separate notices.

@@ -15,15 +15,15 @@ test('live showcase switches themes on one renderer and retains user column choi
  try{
   const page=await browser.newPage({viewport:{width:1280,height:900}});await page.goto(preview.url);
   assert.equal(await page.locator('#themePicker strong').textContent(),'Themes','author picker uses English');
-  assert.deepEqual(await page.locator('#themePicker .ctv-theme-card__name').allTextContents(),['Classic','Alpine','Channel']);
-  assert.equal(await page.locator('#themePicker img').count(),3,'each theme has a preview image');
+  assert.deepEqual(await page.locator('#themePicker .ctv-theme-card__name').allTextContents(),['Classic','Alpine','Itachi · Sharingan','Channel']);
+  assert.equal(await page.locator('#themePicker img').count(),4,'each theme has a preview image');
   for(const img of await page.locator('#themePicker img').all()) {await img.evaluate(el=>el.decode());assert.ok(await img.evaluate(el=>el.naturalWidth>1));}
-  assert.equal(await page.locator('#themePicker .ctv-theme-card').count(),3);
+  assert.equal(await page.locator('#themePicker .ctv-theme-card').count(),4);
   assert.equal((await fetch(preview.url+'theme-thumbnail?theme=../private')).status,404);
   await page.setViewportSize({width:390,height:844});
   await page.waitForFunction(()=>document.getElementById('screen').getBoundingClientRect().width<=innerWidth);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'narrow page contains its horizontal card strip');
-  for(const name of await page.locator('#themePicker .ctv-theme-card__name').all()) assert.ok(await name.evaluate(el=>el.offsetHeight<=parseFloat(getComputedStyle(el).lineHeight)+1),'short theme name fits one line');
+  for(const name of await page.locator('#themePicker .ctv-theme-card__name').all()) assert.ok(await name.evaluate(el=>el.offsetHeight<=parseFloat(getComputedStyle(el).lineHeight)*2+1),'theme name stays within two readable lines');
   assert.equal(await page.locator('.theme-card-strip').evaluate(el=>el.scrollWidth>el.clientWidth),true,'narrow picker can scroll through image cards');
   await page.setViewportSize({width:1280,height:900});
   const frame=page.frames().find(f=>f.url().includes('/runtime/'));

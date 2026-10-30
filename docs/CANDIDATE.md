@@ -1,6 +1,6 @@
 # Author toolkit candidate
 
-The `release/next` branch collects the author tools for the main project's 1.5.0
+The `release/next` branch collects the author tools for the main project's 1.6.0
 candidate. Toolkit version `0.1.0-candidate.1` is independent of the TV application's
 version. This is an unpublished test bundle, not a stable TV release.
 
@@ -64,3 +64,13 @@ da.gd development resolver accepted the bare ID and full short URL and verified
 all 12 Channel files. This module check is separate from signed-candidate UI
 acceptance. Full pinned GitHub links and Send to TV remain available; certificate
 checks are unchanged.
+
+## Sharingan author runtime
+
+The paired runtime now pins main-project commit
+`9e5059fdf8831920eaf7e0e44fc60cb4f966ed5f`, a clean release/next revision with
+clock/date font sizes and the optional `modern-icon-css-v1` contract. The toolkit
+ships editable Sharingan in `examples/itachi`, including its own identity and
+redistribution notices. The existing ordinary validate, preview, screenshots,
+build and outgoing Send to TV workflows handle it without a theme-specific
+compiler or relaxed policy. Browser checks are not physical-TV acceptance.

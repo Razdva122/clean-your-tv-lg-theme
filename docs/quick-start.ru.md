@@ -33,7 +33,7 @@ id, версия, лицензия и описание. Проверка: `npm r
 npm run theme -- showcase examples --runtime .runtime/candidate --port 8877
 ```
 
-Откройте **http://127.0.0.1:8877/** и нажимайте Classic, Alpine или Channel.
+Откройте **http://127.0.0.1:8877/** и нажимайте Classic, Alpine, Channel или Itachi · Sharingan.
 Classic выбрана при открытии: это исходное встроенное оформление Home.
 Возврат к ней сбрасывает CSS и обои темы; явный выбор числа колонок сохраняется.
 После выбора темы используйте мышь либо стрелки и Enter внутри экрана. При
@@ -92,3 +92,20 @@ npm run theme -- send themes/ocean --tv 192.168.1.20 --pin SIX_DIGITS --runtime 
 с пульта. Полную ссылку тоже можно скопировать. Команда `release-workflow` один
 раз создаёт workflow для автоматической генерации при релизе — ключ da.gd не
 нужен. [Подробная инструкция](short-links.md).
+
+## Sharingan в редакторе
+
+Исходники находятся в `examples/itachi`. Совместимый runtime закреплён в
+`runtime.lock.json`; кандидат Home 1.6.0 поддерживает размеры часов и CSS-эффекты
+`modern-icon-css-v1`. Старый runtime эти стили отклоняет.
+
+```sh
+npm run theme -- validate examples/itachi --runtime .runtime/candidate
+npm run theme -- preview examples/itachi --runtime .runtime/candidate
+```
+
+Редактируйте `theme.css` и сохраняйте файл. Сборка выполняется штатной командой
+`build` после коммита исходников; [полный пример](../examples/itachi/README.md#build-a-distribution).
+Новый ID: `github:razdva122/clean-your-tv-lg-theme:itachi`. Старые пакеты из основного
+проекта не заменяются автоматически. Изображения имеют отдельные ограничения
+личного некоммерческого использования; сохраняйте LICENSE и CREDITS темы.

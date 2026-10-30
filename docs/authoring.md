@@ -18,7 +18,7 @@ The pinned runtime's `theme-api/contract.json` is the authoritative machine-read
 selector/property/state table. The shared compiler resolves source variables and
 runs the same browser compatibility transform and typed policy used by TV Home.
 Unknown parts/properties, raw executable content, imports, network URLs, arbitrary
-positioning, geometry transforms, hidden focus controls and unsupported features
+positioning, unbounded geometry transforms, hidden focus controls and unsupported features
 fail validation. Settings, confirmations and recovery remain standard.
 
 Layout belongs in `theme.json`, not arbitrary CSS: one of `dock-grid` (low shelf), `icon-grid` (compact square icons),
@@ -54,7 +54,9 @@ Unchanged preview polls do not resend image bytes. No raw-CSS bypass is used.
 
 The `.ctv-focus` visual part styles the shared focus frame. `.ctv-label.is-focused`
 styles selected app names. Themes cannot change focus positioning or hide it:
-the runtime retains a 2px focused-card border in the selected accent.
+the runtime normally retains a 2px focused-card border in the selected accent.
+An explicit card border none/0 can suppress that border while the trusted
+110% focus scale and readable selected label remain.
 The old glass specular layer is disabled while an author theme is active.
 An explicit `.ctv-ambient` background-image can replace the built-in app-colored
 glow; a fully transparent gradient produces a flat background.
@@ -100,3 +102,28 @@ Use `.ctv-input-icon`, `.ctv-network-icon` and `.ctv-settings-icon`. Each hook i
 Run the live showcase command in [examples](../examples/README.md), select Alpine or Channel and click Inputs/Settings or navigate Up with the remote keys. Compare their outline/pixel glyphs and focused states; switching to Classic restores the built-in artwork. A candidate runtime containing these three new hooks is required. This styles only the Home shortcut; the Settings screen remains standard.
 
 The Channel example demonstrates separate registered dark-blue focus icons on a white shortcut. Use `.ctv-shortcut.is-focused .ctv-network-icon` (and the input/settings hooks) to replace the artwork as well as the text color. Verify every shortcut with mouse and remote focus. The Alpine example crops and downsamples the original photograph to 3840×2160; do not enlarge a small thumbnail and call it 4K. Older runtimes reject UHD images.
+
+## CSS-only native icon effects
+
+The [Sharingan example](../examples/itachi/README.md) demonstrates optional
+`modern-icon-css-v1`. Use `.ctv-clock` and `.ctv-date` with bounded `font-size`;
+48px and 22px respectively are accepted examples. Other parts cannot use that
+property. `theme-api/contract.json` remains the exact scope/range authority.
+
+```css
+.ctv-clock { font-size: 48px; }
+.ctv-date { font-size: 22px; }
+.ctv-icon.is-light {
+  filter: grayscale(1) invert(1) brightness(1.3);
+  mix-blend-mode: screen;
+}
+.ctv-card { isolation: isolate; overflow: visible; }
+.ctv-card .ctv-icon { transform: scale(1.6); }
+```
+
+Only allowed icon filter functions, screen blending and bounded icon paint
+scales are accepted. Arbitrary transforms, URLs inside filters, moving card hit
+areas and executable CSS remain forbidden. The compiler records the required
+capability automatically; compatible Home/browser support is required on TV.
+These effects preserve original app-image URLs and bytes. They approximate white
+logos, not image background removal, and cannot increase native image detail.
