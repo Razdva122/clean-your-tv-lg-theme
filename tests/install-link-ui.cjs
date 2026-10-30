@@ -16,14 +16,19 @@ test('TV link shows only last publication, honest lookup states and copyable ver
   await page.waitForFunction(()=>document.getElementById('themeInstallID').value==='test12');
   assert.match(await page.locator('#installLinkTheme').innerText(),/Last published: Terminal · 1.3.3/);
   assert.match(await page.locator('#installLinkLocalNotice').innerText(),/Local edits.*not included/);
-  assert.equal(await page.locator('#publishedThemeURL').getAttribute('readonly'),'');
+  assert.equal(await page.locator('#publishedThemeURL').count(),0);
+  assert.equal(await page.locator('#themeLinkResult').isVisible(),false);
+  assert.equal(await page.locator('#copyThemeLink').isVisible(),false);
+  assert.equal(await page.locator('#retryThemeLink').isVisible(),false);
   await page.locator('#copyThemeID').click();assert.equal(await page.evaluate(()=>window.copiedLink),'test12');
-  await page.locator('#copyThemeLink').click();assert.equal(await page.evaluate(()=>window.copiedLink),'https://da.gd/test12');
-  mode='fallback';await page.locator('#retryThemeLink').click();
+  async function reopen(){await page.locator('#closeThemeLink').click();await page.locator('#themeInstallLink').click();}
+  mode='fallback';await reopen();
   await page.waitForFunction(u=>document.getElementById('themeLinkResult').value===u,url);
+  assert.equal(await page.locator('#themeLinkResult').isVisible(),true);
+  await page.locator('#copyThemeLink').click();assert.equal(await page.evaluate(()=>window.copiedLink),url);
   assert.equal(await page.locator('#copyThemeID').isDisabled(),true);assert.equal(await page.locator('#copyThemeLink').isDisabled(),false);
   assert.equal(await page.locator('#createThemeLink').isVisible(),true);mode='published';await page.locator('#createThemeLink').click();await page.waitForFunction(()=>document.getElementById('themeInstallID').value==='test12');
-  mode='unavailable';await page.locator('#retryThemeLink').click();
+  mode='unavailable';await reopen();
   await page.waitForFunction(()=>document.getElementById('installLinkStatus').textContent.includes('does not mean'));
   assert.equal(await page.locator('#themeLinkResult').inputValue(),'');assert.equal(await page.locator('#copyThemeLink').isDisabled(),true);
   assert.equal(await page.locator('#installLinkTheme').innerText(),'');
