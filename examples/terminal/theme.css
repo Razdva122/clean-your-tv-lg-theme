@@ -1,0 +1,38 @@
+/* Channel: royal-blue teletext, a numbered list and a yellow selection title. */
+:root { --blue: #121c85; --yellow: #fff36a; --cyan: #90e8fc; }
+.ctv-home { background-color: var(--blue); color: #ffffff; font-family: monospace; }
+.ctv-ambient { background-image: linear-gradient(0deg, transparent 0%, transparent 100%); }
+.ctv-header { background-color: var(--blue); }
+.ctv-clock, .ctv-greeting, .ctv-date, .ctv-period { color: #ffffff; font-family: monospace; font-weight: 400; letter-spacing: 0px; text-transform: uppercase; }
+.ctv-hero { color: var(--yellow); font-family: monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.ctv-divider { background-color: #ffffff; }
+.ctv-shortcut { background-image: linear-gradient(0deg, var(--blue) 0%, var(--blue) 100%); color: var(--cyan); border-style: solid; border-width: 2px; border-color: #5666b5; border-radius: 0px; font-family: monospace; }
+.ctv-shortcut.is-focused { border-color: #ffffff; background-image: linear-gradient(0deg, #ffffff 0%, #ffffff 100%); color: var(--blue); }
+.ctv-dock { background-color: transparent; border-style: none; border-radius: 0px; }
+.ctv-card { color: #ffffff; border-style: none; border-radius: 0px; box-shadow: 0px 0px 0px 0px transparent; }
+.ctv-card.is-focused { color: var(--blue); background-color: #ffffff; }
+.ctv-label { color: #ffffff; font-family: monospace; font-weight: 400; letter-spacing: 0px; }
+.ctv-label.is-focused { color: var(--blue); }
+.ctv-inputs { background-image: linear-gradient(0deg, var(--blue) 0%, var(--blue) 100%); color: #ffffff; border-color: var(--cyan); border-radius: 0px; font-family: monospace; }
+.ctv-input-row { border-radius: 0px; }
+.ctv-input-row.is-focused { background-color: #ffffff; color: var(--blue); }
+.ctv-library-row { background-color: var(--blue); border-color: var(--cyan); border-radius: 0px; }
+.ctv-library-row.is-focused { background-color: #ffffff; color: var(--blue); }
+.ctv-library-row.is-focused .ctv-label { color: var(--blue); }
+
+
+/* The app library belongs to Home; trusted Settings keep their standard UI. */
+.ctv-library { background-color: rgba(4, 9, 45, 0.92); color: #ffffff; font-family: monospace; }
+.ctv-library-panel { background-color: var(--blue); color: #ffffff; border-style: solid; border-width: 2px; border-color: var(--cyan); border-radius: 0px; box-shadow: 0px 0px 0px 0px transparent; }
+.ctv-library-close { background-color: var(--blue); color: #ffffff; border-style: solid; border-width: 2px; border-color: var(--cyan); border-radius: 0px; font-family: monospace; }
+.ctv-library-close.is-focused { background-color: #ffffff; color: var(--blue); border-color: #ffffff; }
+
+/* Replace the trusted SVG fill with a validated local image; keep button labels. */
+.ctv-input-icon { color: transparent; background-image: url(assets/button-inputs.png); }
+.ctv-network-icon { color: transparent; background-image: url(assets/button-network.png); }
+.ctv-settings-icon { color: transparent; background-image: url(assets/button-settings.png); }
+.ctv-shortcut.is-focused { background-color: #ffffff; color: var(--blue); }
+
+.ctv-shortcut.is-focused .ctv-input-icon { background-image: url(assets/button-inputs-focused.png); }
+.ctv-shortcut.is-focused .ctv-network-icon { background-image: url(assets/button-network-focused.png); }
+.ctv-shortcut.is-focused .ctv-settings-icon { background-image: url(assets/button-settings-focused.png); }

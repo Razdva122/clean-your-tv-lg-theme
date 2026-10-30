@@ -4,6 +4,32 @@
 const path = require('node:path'),
   fs = require('node:fs'),
   t = require('../lib/toolkit.cjs');
+const HELP = `Clean Your TV theme tools 0.1.0
+
+Usage: node bin/theme.cjs COMMAND DIRECTORY [options]
+
+Start:       init DIRECTORY --repository https://github.com/OWNER/REPO --author NAME
+Preview:     preview THEME --runtime RUNTIME [--port 8766] [--edition root]
+Compare:     showcase THEMES --runtime RUNTIME [--port 8877]
+Check:       validate THEME --runtime RUNTIME
+Capture:     screenshots THEME --runtime RUNTIME --out NEW_DIRECTORY
+Build:       build THEME --runtime RUNTIME --source-repository URL --source-commit FULL_SHA --out distributions/SLUG/VERSION
+Discover:    collection DISTRIBUTIONS... --runtime RUNTIME --out .
+Release IDs: release-workflow (run from your author repository)
+             release-links REPOSITORY --repository OWNER/REPO --commit FULL_SHA --tag vX.Y.Z --out NEW_DIRECTORY
+TV transfer: send THEME --runtime RUNTIME --tv TV_ADDRESS --pin PIN
+
+Keep the trusted toolkit separately from your own Git theme repository.
+Commit source A, build, then commit/push distribution B before publishing vX.Y.Z.
+Send to TV tests local edits; TV link installs only a verified published version.
+No stable runtime is published. Use the matched candidate runtime, not a random export.
+Guides: docs/tutorial.md, docs/publish.md, docs/short-links.md
+`;
+if (process.argv.length === 2 || process.argv.slice(2).some(arg => arg === '--help' || arg === '-h') || process.argv[2] === 'help') {
+  process.stdout.write(HELP);
+  process.exit(0);
+}
+
 const args = process.argv.slice(2),
   command = args.shift(),
   pos = [],
@@ -34,18 +60,37 @@ async function main() {
     console.log(path.resolve(options.out, 'cytv-themes.json'));
     return;
   }
+  if (command === 'release-workflow') {
+    const release=require('../lib/release-links.cjs'),destination=path.resolve(options.out||'.github/workflows/theme-links.yml');
+    if(fs.existsSync(destination))throw Error('Workflow already exists; inspect it before replacing it.');
+    fs.mkdirSync(path.dirname(destination),{recursive:true});fs.writeFileSync(destination,release.workflow(release.toolkitCommit()));console.log('Created '+destination);return;
+  }
+  if (command === 'release-notes') {if(!pos[0])throw Error('Use release-notes OUTPUT_DIRECTORY');require('../lib/release-links.cjs').finishNotes(pos[0]);return;}
+  if (command === 'release-links') {
+    if(!pos[0]||!options.out)throw Error('Use release-links REPOSITORY_DIRECTORY --repository OWNER/REPO --commit SHA --tag vX.Y.Z --out NEW_DIRECTORY');
+    const entries=await require('../lib/release-links.cjs').generate(pos[0],options);console.log('Prepared installation links for '+entries.length+' themes.');return;
+  }
   if (command === 'runtime:fetch') throw Error('No published runtime is pinned. Use an explicitly exported maintainer candidate with --runtime PATH. Never download or execute a theme repository as runtime tooling.');
-  if (!['validate', 'build', 'preview', 'submission', 'screenshots'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|screenshots|build|collection|submission} DIRECTORY [--runtime PATH]');
+  if (!['validate', 'build', 'preview', 'showcase', 'submission', 'screenshots', 'send'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|showcase|send|screenshots|build|collection|submission} DIRECTORY [--runtime PATH]');
+  if (options.inventory && !['preview','showcase','screenshots'].includes(command)) throw Error('--inventory is for private preview/showcase/screenshots only');
   const rt = t.runtime(options.runtime || process.env.CYTV_THEME_RUNTIME);
   const sourceOptions = {
     repository: options['source-repository'],
     commit: options['source-commit'],
     out: options.out
   };
+  if (command === 'send') {
+    const sender = require('../lib/theme-send.cjs');
+    sender.validate(options.tv, options.pin);
+    await sender.send(await t.compile(pos[0], rt), options.tv, options.pin);
+    console.log('Sent. Finish installation on TV, then choose Apply theme.');
+    return;
+  }
   if (command === 'screenshots') {
     const report = await require('../lib/screenshots.cjs').screenshots(pos[0], rt, {
       out: options.out,
       edition: options.edition,
+      inventory: options.inventory,
       executable: options['browser-executable']
     });
     console.log(t.encode(report));
@@ -75,11 +120,12 @@ async function main() {
     const m = await t.build(pos[0], rt, sourceOptions);
     console.log(m.id + ' ' + m.themeVersion + ' → ' + path.resolve(options.out));
   }
-  if (command === 'preview') {
+  if (command === 'preview' || command === 'showcase') {
     const port = options.port === undefined ? 8766 : Number(options.port);
     if (!Number.isInteger(port) || port < 0 || port > 65535) throw Error('Invalid port');
-    const p = await t.preview(pos[0], rt, {
+    const p = await t[command](pos[0], rt, {
       edition: options.edition,
+      inventory: options.inventory,
       port
     });
     console.log('Open ' + p.url + ' in your browser. Save theme.css to reload. Ctrl+C stops preview.');

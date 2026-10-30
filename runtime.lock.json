@@ -3,5 +3,10 @@
   "themeApiVersion": 1,
   "status": "unpublished",
   "artifact": null,
-  "note": "No official author runtime has been published. Development requires an explicit locally exported candidate via --runtime; a candidate is not a signed application release."
+  "note": "Author toolkit 0.1.0 pairs with the clean main-project 1.5.0 source (Home 1.6). The independently exported author runtime retains candidate status and explicit --runtime; no separately signed runtime download is pinned.",
+  "candidateSource": {
+    "repository": "Razdva122/clean-your-tv-lg-webos",
+    "commit": "1fc8235ac564bd2d06ec53a41b07b26f48ba17e1",
+    "releaseCandidate": "1.6.0"
+  }
 }

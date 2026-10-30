@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "themeApiVersion": 1,
+  "id": "github:razdva122/clean-your-tv-lg-theme:terminal",
+  "title": "Channel",
+  "description": "A readable teletext Home with numbered rows, a selected-app preview and matching app library.",
+  "author": {
+    "name": "Clean Your TV contributors",
+    "url": "https://github.com/razdva122"
+  },
+  "themeVersion": "1.3.3",
+  "layout": {
+    "preset": "channel-list",
+    "columns": 1,
+    "spacingScale": 1,
+    "textScale": 1,
+    "focusScale": 1.1
+  },
+  "defaults": {
+    "wallpaperAssetId": null,
+    "dim": 0,
+    "accent": "#ffffff"
+  },
+  "assets": [
+    {
+      "id": "preview",
+      "path": "assets/preview.png",
+      "mediaType": "image/png",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "id": "button-inputs",
+      "path": "assets/button-inputs.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    },
+    {
+      "id": "button-network",
+      "path": "assets/button-network.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    },
+    {
+      "id": "button-settings",
+      "path": "assets/button-settings.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    },
+    {
+      "id": "inputs-preview",
+      "path": "assets/inputs-preview.png",
+      "mediaType": "image/png",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "id": "settings-preview",
+      "path": "assets/settings-preview.png",
+      "mediaType": "image/png",
+      "width": 960,
+      "height": 540
+    },
+    {
+      "id": "button-inputs-focused",
+      "path": "assets/button-inputs-focused.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    },
+    {
+      "id": "button-network-focused",
+      "path": "assets/button-network-focused.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    },
+    {
+      "id": "button-settings-focused",
+      "path": "assets/button-settings-focused.png",
+      "mediaType": "image/png",
+      "width": 96,
+      "height": 96
+    }
+  ],
+  "previewAssetId": "preview",
+  "license": {
+    "identifier": "MIT",
+    "textPath": "LICENSE.txt",
+    "creditsPath": "CREDITS.txt"
+  }
+}

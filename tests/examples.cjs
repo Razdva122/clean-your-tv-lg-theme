@@ -1,0 +1,104 @@
+'use strict';
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const toolkit = require('../lib/toolkit.cjs');
+const root = path.resolve(__dirname, '../examples');
+const names = fs.readdirSync(root).filter(name => fs.existsSync(path.join(root, name, 'theme.json')));
+
+test('shipped examples have useful browser previews instead of scaffold pixels', () => {
+  for (const name of names) {
+    const manifest = JSON.parse(fs.readFileSync(path.join(root, name, 'theme.json')));
+    const asset = manifest.assets.find(asset => asset.id === manifest.previewAssetId);
+    const image = fs.readFileSync(path.join(root, name, asset.path));
+    if (asset.mediaType === 'image/png') {
+      assert.equal(image.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', name);
+      assert.equal(image.readUInt32BE(16), 960, name + ': full Home preview width');
+      assert.equal(image.readUInt32BE(20), 540, name + ': full Home preview height');
+    } else {
+      assert.equal(asset.mediaType, 'image/jpeg', name + ': supported preview format');
+      assert.equal(image.subarray(0, 3).toString('hex'), 'ffd8ff', name + ': JPEG signature');
+      // The shared compiler below verifies the actual decoded JPEG dimensions.
+    }
+    assert.ok(image.length <= 300 * 1024, name + ': preview budget');
+    assert.equal(asset.width, 960, name + ': declared width matches capture');
+    assert.equal(asset.height, 540, name + ': declared height matches capture');
+  }
+});
+
+test('every shipped theme compiles against the actual shared contract', {
+  skip: !process.env.CYTV_THEME_RUNTIME
+}, async () => {
+  const runtime = toolkit.runtime(process.env.CYTV_THEME_RUNTIME);
+  for (const name of names) {
+    const compiled = await toolkit.compile(path.join(root, name), runtime);
+    assert.ok(compiled.manifest.layout.columns >= 1 && compiled.manifest.layout.columns <= 8);
+    assert.ok(compiled.rules.rules.length > 0, name + ': usable rules');
+  }
+});
+
+test('example focus keeps Add app and missing-icon glyphs readable', {
+  skip: !process.env.CYTV_THEME_RUNTIME || !process.env.CYTV_THEME_BROWSER
+}, async () => {
+  const runtime = toolkit.runtime(process.env.CYTV_THEME_RUNTIME);
+  const browser = await require('playwright').chromium.launch({headless:true,executablePath:process.env.CYTV_THEME_BROWSER});
+  try {
+    for (const name of names) {
+      const preview = await toolkit.preview(path.join(root,name),runtime);
+      const page = await browser.newPage({viewport:{width:960,height:595}});
+      try {
+        page.setDefaultTimeout(10000);
+        await page.goto(preview.url);
+        const frame = page.frames().find(f=>f.url().includes('/runtime/'));
+        await frame.waitForFunction(()=>document.getElementById('ctv-theme-style') && document.querySelector('#tiles .focused'));
+        await frame.addStyleTag({content:'* { transition:none !important; animation:none !important; }'});
+        if(name==='itachi'){
+          await frame.waitForFunction(()=>document.getElementById('hero').textContent.length>0);
+          const state=await frame.evaluate(()=>({
+            title:document.getElementById('hero').textContent,
+            selected:document.querySelector('#tiles .item.focused').getAttribute('aria-label'),
+            heroColor:getComputedStyle(document.getElementById('hero')).color,
+            labels:[...document.querySelectorAll('#tiles .ctv-label')].map(e=>getComputedStyle(e).color),
+            counter:getComputedStyle(document.getElementById('ribbonPosition')).color
+          }));
+          assert.equal(state.title,state.selected,'single hero caption names the selected app');
+          assert.notEqual(state.heroColor,'rgba(0, 0, 0, 0)','selected title remains readable');
+          assert(state.labels.every(c=>c==='rgba(0, 0, 0, 0)'),'per-tile captions do not compete with the hero');
+          assert.equal(state.counter,'rgba(0, 0, 0, 0)','decorative counter and arrows are hidden');
+          await page.locator('iframe').focus();await page.keyboard.down('Enter');await frame.locator('#tiles .moving .card').waitFor();await page.keyboard.up('Enter');
+          assert.equal(await frame.locator('#tiles .moving .card').evaluate(e=>getComputedStyle(e).outlineColor),'rgba(0, 0, 0, 0)','moving logo has no tight rectangular outline');
+          await frame.locator('body').press('Escape');
+        }
+        if(name==='terminal'){
+          for(const id of ['btnInputs','btnWifi','btnSettings']){
+            const button=frame.locator('#'+id),icon=button.locator('svg');
+            const normal=await icon.evaluate(el=>getComputedStyle(el).backgroundImage);
+            await button.hover();
+            await frame.waitForFunction(id=>document.getElementById(id).classList.contains('is-focused'),id);
+            assert.equal(await button.evaluate(el=>getComputedStyle(el).color),'rgb(18, 28, 133)',id+': dark-blue focus text');
+            assert.notEqual(await icon.evaluate(el=>getComputedStyle(el).backgroundImage),normal,id+': focus artwork changes with text');
+            if(process.env.THEME_FOCUS_SCREENSHOTS){fs.mkdirSync(process.env.THEME_FOCUS_SCREENSHOTS,{recursive:true});await page.locator('iframe').screenshot({path:path.join(process.env.THEME_FOCUS_SCREENSHOTS,id+'.png')});}
+          }
+        }
+        const contrast = async selector => frame.locator(selector).evaluate(el=>{
+          const card=el.closest('.card'),style=getComputedStyle(card);
+          const color=el.tagName.toLowerCase()==='svg'?getComputedStyle(el).stroke:getComputedStyle(card,'::after').color;
+          let background=style.backgroundColor;
+          if(background==='rgba(0, 0, 0, 0)') background=(getComputedStyle(document.getElementById('glass')).backgroundImage.match(/rgba?\([^)]+\)/)||[getComputedStyle(document.querySelector('.ctv-home')).backgroundColor])[0];
+          const base=getComputedStyle(document.querySelector('.ctv-home')).backgroundColor.match(/[\d.]+/g).slice(0,3).map(Number);
+          const luminance=value=>{const channels=value.match(/[\d.]+/g).map(Number),alpha=channels.length===4?channels[3]:1;const rgb=channels.slice(0,3).map((n,i)=>n*alpha+base[i]*(1-alpha)).map(n=>{n/=255;return n<=.04045?n/12.92:Math.pow((n+.055)/1.055,2.4);});return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;};
+          const a=luminance(color),b=luminance(background);return(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+        });
+        await frame.locator('.add-app').dispatchEvent('mouseover');
+        assert.ok(await contrast('.add-app svg')>=4.5,name+': selected Add icon contrast');
+        await frame.locator('#tiles .item:not(.add-app) .ctv-icon').first().evaluate(img=>{img.src='/missing-demo-icon.svg';});
+        await frame.locator('#tiles .item:not(.add-app)').first().dispatchEvent('mouseover');
+        await frame.locator('.card.missing-icon').first().waitFor();
+        assert.ok(await contrast('.card.missing-icon')>=4.5,name+': selected missing-icon initial contrast');
+      } finally {
+        await page.close();preview.server.closeAllConnections();await new Promise(resolve=>preview.server.close(resolve));
+      }
+    }
+  } finally {await browser.close();}
+});

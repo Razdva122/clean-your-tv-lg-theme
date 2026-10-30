@@ -1,0 +1,39 @@
+name: Theme installation links
+on:
+  release:
+    types: [published]
+permissions:
+  contents: write
+jobs:
+  links:
+    # Toolkit releases are separate from vX.Y.Z theme publications.
+    if: startsWith(github.event.release.tag_name, 'v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: theme-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: Razdva122/clean-your-tv-lg-theme
+          ref: 1a599feadd6be33dc8fbaccd568f321883e76150
+          path: theme-tools
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate keyless installation links
+        env:
+          THEME_TAG: ${{ github.event.release.tag_name }}
+        run: node theme-tools/bin/theme.cjs release-links theme-source --repository "$GITHUB_REPOSITORY" --commit "$GITHUB_SHA" --tag "$THEME_TAG" --out theme-release
+      - name: Attach links and preserve release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          THEME_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          gh release upload "$THEME_TAG" theme-release/tv-links.json --clobber --repo "$GITHUB_REPOSITORY"
+          gh release view "$THEME_TAG" --json body --repo "$GITHUB_REPOSITORY" > theme-release/current-notes.json
+          node theme-tools/bin/theme.cjs release-notes theme-release
+          gh release edit "$THEME_TAG" --notes-file theme-release/notes.md --repo "$GITHUB_REPOSITORY"

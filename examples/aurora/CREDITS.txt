@@ -1,4 +1,0 @@
-# Credits
-
-CSS: original work by Example author.
-Preview: original generated solid-color PNG, CC0-1.0. Replace with a browser preview before showcase review.
