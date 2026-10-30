@@ -61,6 +61,15 @@ Edit `layout.preset` in theme.json: `dock-grid`, `icon-grid`, `side-grid`, `chan
 
 By default the user's explicit Columns setting wins over your default. Set `allowColumnOverride: false` when the composition requires its own fixed count, as Alpine does. The saved user choice returns when switching to an adjustable theme. This flag does not permit arbitrary card placement.
 
+For a fixed scenic composition, the paired PR candidate also accepts optional
+`layout.ribbon`: bounded offsets, card height, gap, skew, focus lift, shortcut
+placement, edge navigation, label placement and clock visibility. Start from
+[`candidate-examples/ribbon`](../candidate-examples/ribbon/README.md), keep
+`allowColumnOverride: false`, and follow the [field table](authoring.md#optional-scenic-ribbon-geometry-pr-candidate).
+Use the [explicit PR runtime](runtime.md#ribbon-pr-candidate); older author
+runtimes fail with `update-runtime`. Older Home rejects its automatically emitted
+`ribbon-layout-v1` capability while keeping the previous theme.
+
 ## 5. Add wallpaper and button artwork
 
 Copy your licensed PNG/JPEG/WebP into the theme's assets folder. Declare an ID, relative path, media type and exact dimensions in `theme.json`. Set `defaults.wallpaperAssetId` to its ID, then adjust `defaults.dim` for readable text. Images cannot reference outside the theme or load from remote hosts.

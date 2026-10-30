@@ -1,0 +1,85 @@
+{
+  "kind": "browser-preview",
+  "inventory": "tv-reference",
+  "hardwareVerified": false,
+  "locale": "en-US",
+  "clock": "2026-01-01T12:00:00Z",
+  "browser": "156.0.8078.74",
+  "runtime": {
+    "status": "candidate",
+    "source": {
+      "repository": "https://github.com/Razdva122/clean-your-tv-lg-webos",
+      "commit": "8a2d751a0fd8dd07afa159fee03b67eda32c0ae5",
+      "dirty": false
+    },
+    "manifestSha256": "d9263a2545d9c5f3c64f30997d091941dd0efe8f3b8e3c974272cb68eb0c3d92"
+  },
+  "themeApiVersion": 1,
+  "theme": "github:razdva122/clean-your-tv-lg-theme:ribbon",
+  "themeVersion": "1.0.0",
+  "captures": [
+    {
+      "edition": "no-root",
+      "file": "previews/no-root-home.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c5048c97ecfa91987968a139c604849d3944010de1ba6bb1bf700050ae33cfef",
+      "columns": {
+        "columns": 8,
+        "override": null,
+        "themeColumns": 8,
+        "preset": "scenic-grid",
+        "allowColumnOverride": false,
+        "ribbon": {
+          "left": 340,
+          "right": 84,
+          "bottom": 0,
+          "cardHeight": 180,
+          "gap": 0,
+          "skewDeg": -13,
+          "focusLift": 36,
+          "iconScale": 0.65,
+          "shortcuts": "bottom-left",
+          "edgeNavigation": "shortcuts",
+          "labels": "focused-above",
+          "showClock": false
+        }
+      }
+    },
+    {
+      "edition": "root",
+      "file": "previews/root-home.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c5048c97ecfa91987968a139c604849d3944010de1ba6bb1bf700050ae33cfef",
+      "columns": {
+        "columns": 8,
+        "override": null,
+        "themeColumns": 8,
+        "preset": "scenic-grid",
+        "allowColumnOverride": false,
+        "ribbon": {
+          "left": 340,
+          "right": 84,
+          "bottom": 0,
+          "cardHeight": 180,
+          "gap": 0,
+          "skewDeg": -13,
+          "focusLift": 36,
+          "iconScale": 0.65,
+          "shortcuts": "bottom-left",
+          "edgeNavigation": "shortcuts",
+          "labels": "focused-above",
+          "showClock": false
+        }
+      }
+    }
+  ],
+  "thumbnail": {
+    "source": "previews/no-root-home.png",
+    "file": "assets/preview.jpg",
+    "width": 960,
+    "height": 540,
+    "conversion": "sips resample; JPEG quality 85"
+  }
+}
