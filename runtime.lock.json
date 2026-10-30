@@ -3,10 +3,10 @@
   "themeApiVersion": 1,
   "status": "unpublished",
   "artifact": null,
-  "note": "No stable author runtime is published. candidateSource pins the reviewed main-project input for the tested Actions candidate bundle; --runtime remains explicit and runtime:fetch does not invent a stable release.",
+  "note": "Author toolkit 0.1.0 pairs with the clean main-project 1.5.0 source (Home 1.6). The independently exported author runtime retains candidate status and explicit --runtime; no separately signed runtime download is pinned.",
   "candidateSource": {
     "repository": "Razdva122/clean-your-tv-lg-webos",
-    "commit": "0db8b9bbf4b899c9384eb8a916cf55b03e84b3d6",
+    "commit": "1fc8235ac564bd2d06ec53a41b07b26f48ba17e1",
     "releaseCandidate": "1.6.0"
   }
 }
