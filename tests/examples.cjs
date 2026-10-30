@@ -53,6 +53,23 @@ test('example focus keeps Add app and missing-icon glyphs readable', {
         const frame = page.frames().find(f=>f.url().includes('/runtime/'));
         await frame.waitForFunction(()=>document.getElementById('ctv-theme-style') && document.querySelector('#tiles .focused'));
         await frame.addStyleTag({content:'* { transition:none !important; animation:none !important; }'});
+        if(name==='itachi'){
+          await frame.waitForFunction(()=>document.getElementById('hero').textContent.length>0);
+          const state=await frame.evaluate(()=>({
+            title:document.getElementById('hero').textContent,
+            selected:document.querySelector('#tiles .item.focused').getAttribute('aria-label'),
+            heroColor:getComputedStyle(document.getElementById('hero')).color,
+            labels:[...document.querySelectorAll('#tiles .ctv-label')].map(e=>getComputedStyle(e).color),
+            counter:getComputedStyle(document.getElementById('ribbonPosition')).color
+          }));
+          assert.equal(state.title,state.selected,'single hero caption names the selected app');
+          assert.notEqual(state.heroColor,'rgba(0, 0, 0, 0)','selected title remains readable');
+          assert(state.labels.every(c=>c==='rgba(0, 0, 0, 0)'),'per-tile captions do not compete with the hero');
+          assert.equal(state.counter,'rgba(0, 0, 0, 0)','decorative counter and arrows are hidden');
+          await page.locator('iframe').focus();await page.keyboard.down('Enter');await frame.locator('#tiles .moving .card').waitFor();await page.keyboard.up('Enter');
+          assert.equal(await frame.locator('#tiles .moving .card').evaluate(e=>getComputedStyle(e).outlineColor),'rgba(0, 0, 0, 0)','moving logo has no tight rectangular outline');
+          await frame.locator('body').press('Escape');
+        }
         if(name==='terminal'){
           for(const id of ['btnInputs','btnWifi','btnSettings']){
             const button=frame.locator('#'+id),icon=button.locator('svg');

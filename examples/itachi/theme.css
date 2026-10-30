@@ -3,7 +3,7 @@
 .ctv-clock { color: #cccccc; font-weight: 400; font-size: 48px; }
 .ctv-date { color: #929292; font-size: 22px; }
 .ctv-card { background-color: transparent; border-style: none; box-shadow: 0 0 0 transparent; }
-.ctv-label { color: #ffffff; font-weight: 400; text-shadow: 0 1px 6px #000000; }
+.ctv-label { color: transparent; text-shadow: 0 0 0 transparent; }
 .ctv-shortcut { color: #bdbdbd; background-color: transparent; border-color: transparent; }
 .ctv-shortcut.is-focused { color: #ffffff; background-color: #252525; }
 .ctv-library { background-color: #000000; }
@@ -14,7 +14,7 @@
 .ctv-input-row { color: #ffffff; background-color: #171717; }
 .ctv-input-row.is-focused { color: #ffffff; background-color: #303030; }
 
-.ctv-hero { color: transparent; text-shadow: 0 0 0 transparent; }
+.ctv-hero { color: #eeeeee; font-weight: 400; text-shadow: 0 2px 12px #000000; }
 .ctv-shortcut { background-image: linear-gradient(0deg, transparent 0%, transparent 100%); border-style: none; }
 /* Flat colored original backgrounds: an approximate contrast key, never a new image. */
 .ctv-icon.is-dark { filter: grayscale(1) brightness(1.8) contrast(6); mix-blend-mode: screen; }
@@ -24,8 +24,8 @@
 .ctv-icon.is-light { filter: grayscale(1) invert(1) brightness(1.3); mix-blend-mode: screen; }
 .ctv-icon.is-glyph { filter: brightness(0) invert(1); mix-blend-mode: normal; }
 .ctv-card.is-focused { border-width: 0; border-style: none; }
-.ctv-label { color: transparent; text-shadow: 0 0 0 transparent; }
-.ctv-label.is-focused { color: white; text-shadow: 0 1px 6px black; }
+.ctv-card.is-moving { outline-color: transparent; box-shadow: 0 0 0 transparent; }
+.ctv-position { color: transparent; text-shadow: 0 0 0 transparent; }
 
 .ctv-card { isolation: isolate; }
 

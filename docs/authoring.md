@@ -127,3 +127,6 @@ areas and executable CSS remain forbidden. The compiler records the required
 capability automatically; compatible Home/browser support is required on TV.
 These effects preserve original app-image URLs and bytes. They approximate white
 logos, not image background removal, and cannot increase native image detail.
+
+The `.ctv-position` part controls the decorative scenic-ribbon counter and arrows.
+Use a transparent color to hide this indicator; app labels use `.ctv-label`.

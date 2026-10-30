@@ -1,12 +1,12 @@
 Wallpaper: generated with built-in OpenAI imagegen for this personal fan theme, 2026-10-29. Prompt: extremely dark frontal anime portrait of Itachi, crimson Sharingan eyes only color, black lower area for app logos. No raw TV screenshot, private inventory, replacement-logo files, addresses or pairing keys are included.
-Preview uses a public synthetic CYTV application list and native YouTube/Netflix icon samples; app logos remain their respective owners' marks.
+Current preview uses the curated ten-app international webOS reference; unchanged original app resources remain their publishers' copyright and trademarks. The theme package contains rendered preview screenshots, not application packages or private TV data.
 Wallpaper eye refinement: built-in imagegen edit, 2026-10-29. Brighter saturated scarlet irises with crisp black three-tomoe Sharingan pattern; dark composition preserved.
 
 Imported into the author toolkit from Razdva122/clean-your-tv-lg-webos themes/itachi at cb9da20d82fec62449fb2c8de36d3a4678897c38. The legacy theme ID and immutable distributions remain with that repository. This editable edition uses github:razdva122/clean-your-tv-lg-theme:itachi.
 
-Toolkit gallery preview: captured from the actual pinned No-root renderer using synthetic demo data, then JPEG-compressed within the 300 KiB preview budget. See previews/provenance.json and the shared DEMO-ICON-CREDITS.txt / DEMO-ICON-LICENSE.txt for demo app artwork.
+Toolkit gallery preview: captured from the actual pinned No-root renderer using original international webOS app resources, then JPEG-compressed within the 300 KiB preview budget. See previews/provenance.json. The Inputs scene uses one explicitly simulated generic HDMI input. No physical TV compatibility is implied.
 
---- Sources and attribution for synthetic browser-preview app artwork ---
+--- Historical attribution retained for prior synthetic gallery previews ---
 
 Vector artwork used by the browser preview.
 Brand names and logos belong to their respective owners.
