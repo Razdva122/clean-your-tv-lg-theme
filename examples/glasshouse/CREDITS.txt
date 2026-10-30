@@ -1,12 +1,13 @@
 Visual reference: Glasshouse Home by rorygallagher2024, https://github.com/rorygallagher2024/glasshouse (MIT). Independent theme, no affiliation; no Glasshouse logo or application code copied.
 
-Wallpaper: Fronalpstock big.jpg by Hannes Röst, https://commons.wikimedia.org/wiki/File:Fronalpstock_big.jpg . CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/ . Cropped from the original 10109×4542 photograph and downsampled to 3840×2160 using Lanczos, JPEG quality 88. Displayed darkened by the renderer. The wallpaper remains CC BY-SA 3.0. Theme CSS and tools are MIT.
+Wallpaper: View of Brenta Dolomites at Lake Nero, Alta Val Nambrone.jpg by Marco Ober, https://commons.wikimedia.org/wiki/File:View_of_Brenta_Dolomites_at_Lake_Nero,_Alta_Val_Nambrone.jpg . CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/ . Original photograph: 5456×3069. The Wikimedia-provided 3840×2160 JPEG derivative is copied unchanged, without local upscaling, sharpening or recompression. The renderer applies a 14% dim overlay; the wallpaper remains CC BY-SA 4.0. Theme CSS and header artwork are MIT.
+Wallpaper file SHA-256: 7e374d25d1592df1ece90530a3809466e3e1df94416a7e55f488d0947208bee8
 
-Preview application icons: see ../DEMO-ICON-CREDITS.txt and ../DEMO-ICON-LICENSE.txt in the example collection. Product names and marks identify simulated apps and do not imply endorsement.
+Current gallery previews use the curated original international webOS app resources. App artwork remains copyright/trademarks of the respective publishers and is not relicensed under MIT. Inputs are generic simulations; browser previews do not imply physical TV compatibility.
 
 Header button artwork: original Clean Your TV contributors artwork, MIT; raster PNG sources generated from simple geometric paths.
 
-Self-contained browser-preview artwork notices:
+Historical synthetic browser-preview artwork notices retained for older captures:
 
 Vector artwork used by the browser preview.
 Brand names and logos belong to their respective owners.

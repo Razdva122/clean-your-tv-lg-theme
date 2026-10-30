@@ -8,7 +8,7 @@
     "name": "Clean Your TV contributors",
     "url": "https://github.com/razdva122"
   },
-  "themeVersion": "1.4.4",
+  "themeVersion": "1.4.5",
   "layout": {
     "preset": "scenic-grid",
     "columns": 8,
@@ -19,20 +19,20 @@
   },
   "defaults": {
     "wallpaperAssetId": "landscape",
-    "dim": 0.36,
+    "dim": 0.14,
     "accent": "#ece7df"
   },
   "assets": [
     {
       "id": "preview",
-      "path": "assets/preview.png",
-      "mediaType": "image/png",
+      "path": "assets/preview.jpg",
+      "mediaType": "image/jpeg",
       "width": 960,
       "height": 540
     },
     {
       "id": "landscape",
-      "path": "assets/fronalpstock.jpg",
+      "path": "assets/brenta-dolomites-4k.jpg",
       "mediaType": "image/jpeg",
       "width": 3840,
       "height": 2160
@@ -82,7 +82,7 @@
   ],
   "previewAssetId": "preview",
   "license": {
-    "identifier": "MIT AND CC-BY-SA-3.0",
+    "identifier": "MIT AND CC-BY-SA-4.0",
     "textPath": "LICENSE.txt",
     "creditsPath": "CREDITS.txt"
   }
