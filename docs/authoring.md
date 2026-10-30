@@ -41,10 +41,34 @@ asset handles. No remote imports/fonts/videos/scripts/plugins/install hooks.
 A preview asset is required; the scaffold includes an original 1×1 placeholder.
 Replace it with a useful browser preview before submitting to showcase.
 
-With the UHD wallpaper candidate runtime, the asset selected by `defaults.wallpaperAssetId` may be up to 3840×2160 / 2 MiB. Other images remain 1920×1080 / 2 MiB each, preview 960×540 / 300 KiB,
-16 assets and 6 MiB total. Resize large originals yourself; automatic image
-normalization is not provided. Every asset needs redistribution permission and
-an entry in CREDITS.txt. LICENSE and credits are bounded hashed documents, not images.
+### Background rules for the current runtime
+
+Keep the existing static-background options. Video backgrounds, a separate 4K
+video plane and HDR/Dolby Vision output are not supported by Theme API 1.
+
+- Use listed local static PNG, JPEG or WebP assets, or allowed CSS colors and
+  gradients. No remote images, animated/video backgrounds or author scripts.
+- The current Home graphics canvas is 1920×1080. A 3840×2160 source image does
+  not make the interface or wallpaper render at native 4K. LG documents separate
+  graphics and video limits in its [app-resolution specification](https://webostv.developer.lge.com/develop/specifications/app-resolution).
+- Only the asset selected by `defaults.wallpaperAssetId` may be up to
+  3840×2160 and 2 MiB in this candidate. Older runtimes can reject that size.
+  All other images are limited to 1920×1080 and 2 MiB each. The preview is limited
+  to 960×540 and 300 KiB. There are at most 16 assets and 6 MiB of image data in
+  total. These are acceptance ceilings, not required image sizes or output-quality guarantees.
+- Prepare the intended crop yourself; use 16:9 for a full-screen panorama.
+  Resize/compress externally, declare the actual dimensions and validate again.
+  The toolkit does not automatically normalize images. Do not enlarge a thumbnail
+  and describe it as a detailed 4K original.
+- Choose a clean source without visible compression blocks, banding or unwanted
+  softness. Check the rendered composition at 1920×1080, including the clock,
+  selected app name, focus, Inputs and app library. Adjust `defaults.dim` within
+  0–0.85 for readability; avoid dimming that unnecessarily obscures image detail.
+- Use ordinary SDR artwork for predictable current rendering. Do not promise HDR,
+  native 4K or OLED-specific picture quality from image dimensions or browser
+  screenshots. Physical TV appearance remains a separate verification step.
+- Every asset needs redistribution permission and an entry in `CREDITS.txt`.
+  LICENSE and credits are bounded hashed documents, not images.
 
 The final emitted stylesheet has a global 256 KiB budget. This is separate from
 the 2 MiB encoded-image limit: preview converts validated image bytes to browser
@@ -101,7 +125,7 @@ Use `.ctv-input-icon`, `.ctv-network-icon` and `.ctv-settings-icon`. Each hook i
 
 Run the live showcase command in [examples](../examples/README.md), select Alpine or Channel and click Inputs/Settings or navigate Up with the remote keys. Compare their outline/pixel glyphs and focused states; switching to Classic restores the built-in artwork. A candidate runtime containing these three new hooks is required. This styles only the Home shortcut; the Settings screen remains standard.
 
-The Channel example demonstrates separate registered dark-blue focus icons on a white shortcut. Use `.ctv-shortcut.is-focused .ctv-network-icon` (and the input/settings hooks) to replace the artwork as well as the text color. Verify every shortcut with mouse and remote focus. The Alpine example crops and downsamples the original photograph to 3840×2160; do not enlarge a small thumbnail and call it 4K. Older runtimes reject UHD images.
+The Channel example demonstrates separate registered dark-blue focus icons on a white shortcut. Use `.ctv-shortcut.is-focused .ctv-network-icon` (and the input/settings hooks) to replace the artwork as well as the text color. Verify every shortcut with mouse and remote focus. Alpine includes a licensed 3840×2160 photographic source; its displayed resolution is still governed by the current graphics canvas. Follow the [background rules](#background-rules-for-the-current-runtime) when replacing it.
 
 ## CSS-only native icon effects
 

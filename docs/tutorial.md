@@ -63,7 +63,7 @@ By default the user's explicit Columns setting wins over your default. Set `allo
 
 ## 5. Add wallpaper and button artwork
 
-Copy your licensed PNG/JPEG/WebP into the theme's assets folder. Declare an ID, relative path, media type and exact dimensions in `theme.json`. Set `defaults.wallpaperAssetId` to its ID, then adjust `defaults.dim` for readable text. Images cannot reference outside the theme or load from remote hosts.
+Copy your licensed PNG/JPEG/WebP into the theme's assets folder. Declare an ID, relative path, media type and exact dimensions in `theme.json`. Set `defaults.wallpaperAssetId` to its ID, then adjust `defaults.dim` for readable text. Images cannot reference outside the theme or load from remote hosts. Follow the [current background rules](authoring.md#background-rules-for-the-current-runtime): static SDR artwork, a 1920×1080 graphics canvas, and no video/HDR output. A permitted 3840×2160 wallpaper source does not mean native 4K rendering.
 
 Use [the header-icon recipe](authoring.md#replace-header-button-icons) for Inputs, Wi-Fi and Settings shortcut glyphs. Alpine includes outline artwork and Channel pixel artwork. Preserve visible labels and focused contrast. To let wallpaper show behind Add app, style the full-screen `.ctv-library` with a translucent scrim and keep `.ctv-library-panel` readable; an opaque full-screen background will cover the panorama.
 
@@ -75,7 +75,7 @@ node "$THEME_TOOLS/bin/theme.cjs" validate themes/ocean --runtime "$THEME_TOOLS/
 
 In preview check Home, the last app, Add app/library, empty library, Inputs, focused shortcuts, rearrange/cancel, long names, missing icons and standard Settings. Try mouse and keyboard. Browser results do not verify TV remote behavior, storage, standby, cold boot or updates.
 
-Use [the screenshots command](publish.md#capture-browser-review-images) for fixed-clock Home/Inputs/Settings images and provenance. Review library screenshots too. The preview must be at most 960×540 and 300 KiB; other assets at most 1920×1080, 2 MiB each and 6 MiB in total. Resize/compress externally, update actual dimensions and validate again.
+Use [the screenshots command](publish.md#capture-browser-review-images) for fixed-clock Home/Inputs/Settings images and provenance. Review library screenshots too. The preview must be at most 960×540 and 300 KiB. In the current candidate only the selected wallpaper may reach 3840×2160; other images are limited to 1920×1080. Images are limited to 2 MiB each, 16 assets and 6 MiB in total. Resize/compress externally, update actual dimensions and validate again.
 
 ## Try an unpublished theme on your TV
 
