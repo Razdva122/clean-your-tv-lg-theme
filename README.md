@@ -112,3 +112,10 @@ publish a stable application release.
 The public catalog belongs to [the main project](https://github.com/Razdva122/clean-your-tv-lg-webos/tree/codex/theme-css-foundation/showcase). Its initial Alpine/Channel records reference independently committed distributions in this repository; the catalog and TV installer follow the main project release cycle. A listing does not automatically bundle a theme. The main candidate bundles Classic and Alpine, while Channel stays an external showcase install; see the main user guide for the implemented candidate TV flow.
 
 The repository-root `cytv-themes.json` discovers **Channel only** for the candidate TV installer. Alpine is a bundled main-project theme; its older distribution remains historical. A repository-root URL resolves the default branch, so the new index becomes discoverable there after this toolkit PR merges. The showcase's existing commit-pinned Channel descriptor already works independently of that merge.
+
+## Preview real TV resources
+
+Default icons are public demo SVGs, not TV app resources. For original app icons,
+use [a private local TV snapshot](docs/tv-preview.md) with
+`--inventory .runtime/private-tv/inventory.json`. The header distinguishes
+**TV snapshot** from **Demo apps**. Snapshots never become theme package assets.

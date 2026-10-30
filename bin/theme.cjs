@@ -46,6 +46,7 @@ async function main() {
   }
   if (command === 'runtime:fetch') throw Error('No published runtime is pinned. Use an explicitly exported maintainer candidate with --runtime PATH. Never download or execute a theme repository as runtime tooling.');
   if (!['validate', 'build', 'preview', 'showcase', 'submission', 'screenshots', 'send'].includes(command) || !pos[0]) throw Error('Usage: theme {init|validate|preview|showcase|send|screenshots|build|collection|submission} DIRECTORY [--runtime PATH]');
+  if (options.inventory && !['preview','showcase','screenshots'].includes(command)) throw Error('--inventory is for private preview/showcase/screenshots only');
   const rt = t.runtime(options.runtime || process.env.CYTV_THEME_RUNTIME);
   const sourceOptions = {
     repository: options['source-repository'],
@@ -63,6 +64,7 @@ async function main() {
     const report = await require('../lib/screenshots.cjs').screenshots(pos[0], rt, {
       out: options.out,
       edition: options.edition,
+      inventory: options.inventory,
       executable: options['browser-executable']
     });
     console.log(t.encode(report));
@@ -97,6 +99,7 @@ async function main() {
     if (!Number.isInteger(port) || port < 0 || port > 65535) throw Error('Invalid port');
     const p = await t[command](pos[0], rt, {
       edition: options.edition,
+      inventory: options.inventory,
       port
     });
     console.log('Open ' + p.url + ' in your browser. Save theme.css to reload. Ctrl+C stops preview.');
