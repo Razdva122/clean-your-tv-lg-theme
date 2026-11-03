@@ -149,7 +149,7 @@ Build, live preview, send and submission include both local video files. Sending
 is still an outgoing private-TV/PIN request and has a bounded 33 MiB envelope.
 
 For originals, use the main project's
-[offline wallpaper preparation tool](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/codex/personal-wallpapers/scripts/prepare-theme-wallpaper.py)
+[offline wallpaper preparation tool](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/053f91cca27b7196582f3d4bd1d0b56cb353689e/scripts/prepare-theme-wallpaper.py)
 with pinned `imageio-ffmpeg==0.6.0`, or supply already prepared compliant MP4s.
 It rejects undersized crops instead of upscaling. Retain original source URLs,
 licenses, credits and all transformations in your theme's documents. The browser
