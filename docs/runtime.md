@@ -52,3 +52,5 @@ node "$THEME_TOOLS/bin/theme.cjs" preview themes/ocean --runtime "$THEME_TOOLS/.
 Run that command from your author repository root. Do not copy the runtime or
 `node_modules` into your theme folder or publish them with a distribution. A
 candidate archive provides tools/runtime, not your author repository's Git history.
+
+The video-wallpaper development candidate adds shared MP4 validation and embedded UHD/FHD files. Use the exact runtime pin paired with this branch; older immutable runtime exports remain image-only. Build, live preview, send and submission retain the media, and live reload hashes videos as well as images.

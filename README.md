@@ -132,3 +132,25 @@ Default icons are [ten original international webOS app resources](examples/refe
 including recorded native IDs, versions, dimensions and hashes. For a personal app set, use [a private local TV snapshot](docs/tv-preview.md) with
 `--inventory .runtime/private-tv/inventory.json`. The header distinguishes
 **TV snapshot** from **Reference TV apps**. Snapshots never become theme package assets.
+
+## Embedded 4K wallpaper candidate
+
+The Alpine and Ribbon examples include actual 3840×2160 H.264 media, a 1080p
+variant and a static JPEG fallback. Ribbon uses a gentle 20-second camera orbit
+over real Webb imagery. These examples require the matching candidate runtime
+pinned in runtime.lock.json; they are not published TV release acceptance.
+
+Author theme.json uses `wallpaperVideo: {"variants": [{"quality":"4k",
+"path":"assets/wallpaper-4k.mp4"}, {"quality":"1080p",
+"path":"assets/wallpaper-1080p.mp4"}]}`. Keep the fallback image in
+`defaults.wallpaperAssetId`. The compiler derives sizes, hashes and decoded H.264
+dimensions and rejects mismatched quality, audio, duration or byte budgets.
+Build, live preview, send and submission include both local video files. Sending
+is still an outgoing private-TV/PIN request and has a bounded 33 MiB envelope.
+
+For originals, use the main project's
+[offline wallpaper preparation tool](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/codex/personal-wallpapers/scripts/prepare-theme-wallpaper.py)
+with pinned `imageio-ffmpeg==0.6.0`, or supply already prepared compliant MP4s.
+It rejects undersized crops instead of upscaling. Retain original source URLs,
+licenses, credits and all transformations in your theme's documents. The browser
+preview can select 4K explicitly; it does not prove a TV's native capabilities.

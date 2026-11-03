@@ -3,12 +3,12 @@
   "themeApiVersion": 1,
   "id": "github:razdva122/clean-your-tv-lg-theme:glasshouse",
   "title": "Alpine",
-  "description": "A quiet alpine panorama, large clock and one infinitely looping horizontal app ribbon.",
+  "description": "A real 4K Bachalpsee photograph, large clock and one infinitely looping horizontal app ribbon.",
   "author": {
     "name": "Clean Your TV contributors",
     "url": "https://github.com/razdva122"
   },
-  "themeVersion": "1.4.5",
+  "themeVersion": "1.5.0",
   "layout": {
     "preset": "scenic-grid",
     "columns": 8,
@@ -19,7 +19,7 @@
   },
   "defaults": {
     "wallpaperAssetId": "landscape",
-    "dim": 0.14,
+    "dim": 0.36,
     "accent": "#ece7df"
   },
   "assets": [
@@ -32,7 +32,7 @@
     },
     {
       "id": "landscape",
-      "path": "assets/brenta-dolomites-4k.jpg",
+      "path": "assets/bachsee.jpg",
       "mediaType": "image/jpeg",
       "width": 3840,
       "height": 2160
@@ -82,8 +82,20 @@
   ],
   "previewAssetId": "preview",
   "license": {
-    "identifier": "MIT AND CC-BY-SA-4.0",
+    "identifier": "MIT AND CC-BY-SA-3.0-DE",
     "textPath": "LICENSE.txt",
     "creditsPath": "CREDITS.txt"
+  },
+  "wallpaperVideo": {
+    "variants": [
+      {
+        "quality": "4k",
+        "path": "assets/wallpaper-4k.mp4"
+      },
+      {
+        "quality": "1080p",
+        "path": "assets/wallpaper-1080p.mp4"
+      }
+    ]
   }
 }

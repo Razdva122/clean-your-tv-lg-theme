@@ -1,0 +1,15 @@
+{
+  "kind": "browser",
+  "editions": [
+    "root",
+    "no-root"
+  ],
+  "sourceThemeVersion": "1.1.0",
+  "wallpaperDecode": [
+    3840,
+    2160
+  ],
+  "runtime": "local next-release candidate export; shared Home renderer",
+  "physicalTVAcceptance": false,
+  "note": "Simulated services and reference app inventory; 4K explicitly selected because browser UHD capability is unknown. Community preview is the retained historical prototype, not this capture."
+}
