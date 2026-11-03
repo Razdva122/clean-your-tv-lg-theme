@@ -136,8 +136,8 @@ including recorded native IDs, versions, dimensions and hashes. For a personal a
 ## Embedded 4K wallpaper candidate
 
 The Alpine and Ribbon examples include actual 3840×2160 H.264 media, a 1080p
-variant and a static JPEG fallback. Ribbon uses a gentle 20-second camera orbit
-over real Webb imagery. These examples require the matching candidate runtime
+variant and a static JPEG fallback. Ribbon uses an original blue-violet nebula on black space with a gentle
+20-second camera drift, rendered from a 4096×2304 procedural source. These examples require the matching candidate runtime
 pinned in runtime.lock.json; they are not published TV release acceptance.
 
 Author theme.json uses `wallpaperVideo: {"variants": [{"quality":"4k",
