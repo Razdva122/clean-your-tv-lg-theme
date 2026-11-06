@@ -72,10 +72,10 @@ makes no device acceptance claim. A and B are separate because a descriptor
 cannot contain the hash of its own enclosing commit.
 
 An immutable descriptor URL works without an ID or Showcase submission. On the
-matching TV candidate use **Settings → Appearance → More options → Add by URL →
+matching published Home use **Settings → Themes → Add by ID →
 Load**. Root collections offer theme selection. Installed themes apply without a
 timer; the separate Showcase's **Try theme** has a 20-second Keep/Revert trial.
-Older published Home packages may lack these candidate controls. A moving branch
+Older Home packages may lack these controls. A moving branch
 is resolved once, never followed live; a tag alone does not prove immutability.
 
 Personal installation does not require a Showcase submission. Showcase belongs
@@ -126,4 +126,4 @@ credits, ownership and review dates before approving. Use one draft per theme.
 
 ## Bundled versus external examples
 
-Classic and Alpine are bundled by the main candidate. Channel is its ordinary external showcase theme. The old external Alpine distribution remains immutable for historical reproducibility; its catalog listing is archived, and the bundled descriptor uses `builtin:alpine`. Copying the editable Alpine example into your own repository still requires an independent ID, author and redistribution notices. Do not edit historical distribution directories in place.
+Home 1.10.0 bundles Classic, Liquid Glass and Ribbon. Alpine and Channel are external showcase themes. The old toolkit Alpine distribution remains immutable for historical reproducibility; current Alpine source/catalogue is maintained by the main project. Copying the editable Alpine example into your own repository still requires an independent ID, author and redistribution notices. Do not edit historical distribution directories in place.

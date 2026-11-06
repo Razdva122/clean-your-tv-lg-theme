@@ -1,8 +1,11 @@
 # Author toolkit candidate
 
-This branch prepares embedded UHD wallpaper authoring against the exact main-project
-next-release development commit in runtime.lock.json. It is outside the frozen TV
-release inventory until its coordinator admits it. Toolkit version `0.1.0-candidate.1` is independent of the TV application's
+Historical development record. For the current toolkit, use the [release guide](RELEASE.md)
+and current `runtime.lock.json`; the older commit and artifact below are retained
+as evidence of their original candidate run.
+
+The `release/next` branch collects the author tools for the main project's 1.6.0
+candidate. Toolkit version `0.1.0-candidate.1` is independent of the TV application's
 version. This is a development toolkit artifact, not a stable TV application release.
 Published theme prereleases have their own version and installation ID.
 

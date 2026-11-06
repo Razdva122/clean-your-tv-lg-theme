@@ -1,5 +1,10 @@
 # Runtime preparation and trust
 
+Toolkit 0.2.0 pairs with application 1.9.0 / Home 1.10.0 at exact main source
+`94c81dc7c102b8e9476e22cdc4ad6ce3ab36cf92`. Its author-runtime export still uses
+`status: candidate`; this describes the independent export format, not the TV
+application release status. See [release verification](RELEASE.md).
+
 The toolkit imports the main project's compiler, policy and actual renderer bytes.
 It never maintains a launcher fork. The checked-in lock currently has
 `status: unpublished`; `runtime:fetch` therefore refuses to invent a release.
@@ -18,9 +23,14 @@ project, then runs:
 
 ```sh
 npm ci --ignore-scripts
-python3 scripts/export-theme-runtime.py --out build/theme-author-runtime
+python3 -m venv /absolute/path/runtime-build-venv
+/absolute/path/runtime-build-venv/bin/python -m pip install -r scripts/build-requirements.txt
+/absolute/path/runtime-build-venv/bin/python scripts/export-theme-runtime.py --out build/theme-author-runtime
 ```
 
+Keep the Python environment outside the source checkout so it stays clean. On
+Windows use the environment's `Scripts/python.exe` instead of `bin/python`. The
+export downloads pinned font sources and needs network access on the first run.
 The candidate requires a clean checkout. For local experiments only, explicitly
 add `--allow-dirty`; those exports cannot stand in for the pinned candidate.
 Existing output is never replaced.
@@ -53,4 +63,12 @@ Run that command from your author repository root. Do not copy the runtime or
 `node_modules` into your theme folder or publish them with a distribution. A
 candidate archive provides tools/runtime, not your author repository's Git history.
 
-The video-wallpaper development candidate adds shared MP4 validation and embedded UHD/FHD files. Use the exact runtime pin paired with this branch; older immutable runtime exports remain image-only. Build, live preview, send and submission retain the media, and live reload hashes videos as well as images.
+## Ribbon PR candidate
+
+The former explicit PR export is superseded by the matched toolkit 0.2.0 bundle.
+Its pinned runtime includes `ribbon-layout-v1` and `video-wallpaper-v1` from
+published Home 1.10.0. Use `examples/ribbon` with `.runtime/candidate` for
+validate, preview, build and outgoing transfer. Older verified runtimes without
+the required contract are refused with `update-runtime`; a theme cannot upgrade Home.
+The runtime manifest retains candidate status as explained above. Desktop tests
+do not establish physical-TV playback or receiver acceptance.

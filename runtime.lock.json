@@ -3,10 +3,10 @@
   "themeApiVersion": 1,
   "status": "unpublished",
   "artifact": null,
-  "note": "No stable author runtime is published. candidateSource pins the reviewed main-project input for the tested Actions candidate bundle; --runtime remains explicit and runtime:fetch does not invent a stable release.",
+  "note": "Author toolkit 0.2.0 pairs with published application 1.9.0 / Home 1.10.0. The independently exported author runtime retains candidate status and explicit --runtime; no separately signed runtime download is pinned.",
   "candidateSource": {
     "repository": "Razdva122/clean-your-tv-lg-webos",
-    "commit": "698bd74507e99429304d19807bcea49d5f46943b",
-    "releaseCandidate": "next-video-wallpapers"
+    "commit": "94c81dc7c102b8e9476e22cdc4ad6ce3ab36cf92",
+    "releaseCandidate": "1.10.0"
   }
 }

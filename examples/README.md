@@ -145,3 +145,8 @@ default: unchanged native files, app IDs, versions, dimensions and hashes. It
 contains no Russian streaming apps. These are rendering fixtures; launches,
 network status and inputs remain simulated. Use `--inventory` for a private
 snapshot instead. Older historical screenshots may use the legacy SVG demo set.
+
+[Ribbon](ribbon/README.md) is included in toolkit 0.2.0 with the matched Home
+1.10.0 runtime. It uses the released Black Hole artwork by Xecutioner, with
+non-commercial permission and attribution, UHD/FHD videos and an image fallback.
+The previous feature-only copy in `candidate-examples/ribbon` is superseded.

@@ -7,8 +7,8 @@ installation link and an existing ID when available. The ID is convenient for re
 - `da.gd/102300a209`
 - `https://da.gd/102300a209`
 
-All three identify the same version. Matching Home candidates accept them under
-**Settings → Appearance → More options → Add by URL**, show the expanded address
+All three identify the same version. Matching published Home versions accept them under
+**Settings → Themes → Add by ID**, show the expanded address
 before loading, then check the GitHub destination and the package as usual.
 Full GitHub links remain accepted. The example is a real public Channel 1.3.3 link;
 using an ID does not upgrade an older Home package.

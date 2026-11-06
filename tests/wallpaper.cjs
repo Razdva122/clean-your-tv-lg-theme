@@ -26,15 +26,17 @@ test('embedded media survives compilation, transfer snapshot and hashed distribu
 });
 test('real browser decodes UHD and releases image fallback in both editions',{skip:!runtimePath||!process.env.CYTV_THEME_BROWSER},async()=>{
  const rt=t.runtime(runtimePath),browser=await require('playwright').chromium.launch({headless:true,executablePath:process.env.CYTV_THEME_BROWSER});
- try{for(const edition of ['root','no-root']){
-  const p=await t.preview(path.resolve('examples/ribbon'),rt,{edition});
+ try{for(const edition of ['root','no-root']){for(const slug of ['glasshouse','ribbon']){
+  const p=await t.preview(path.resolve('examples',slug),rt,{edition});
   try{const page=await browser.newPage();await page.goto(p.url);const frame=page.frames().find(f=>f!==page.mainFrame());
    await frame.waitForFunction(()=>window.HomeWallpaper?.state().actualQuality==='1080p');
    await frame.evaluate(()=>HomeWallpaper.setQuality('4k'));
    await frame.waitForFunction(()=>HomeWallpaper.state().actualQuality==='4k');
-   assert.deepEqual(await frame.evaluate(()=>{const v=document.querySelector('video');return [v.videoWidth,v.videoHeight,v.duration]}),[3840,2160,20]);
+   assert.deepEqual(await frame.evaluate(()=>{const v=document.querySelector('video');return [v.videoWidth,v.videoHeight,v.duration]}),[3840,2160,slug==='ribbon'?Infinity:2]);
+   if(slug==='ribbon')assert.equal(await frame.evaluate(()=>WallpaperStream.state().mode),'mse');
    await frame.evaluate(()=>HomeWallpaper.setQuality('image'));assert.equal(await frame.locator('video').count(),0);
+   if(slug==='ribbon')assert.equal(await frame.evaluate(()=>WallpaperStream.state().mode),'closed');
    await page.close();
   }finally{p.server.closeAllConnections();await new Promise(r=>p.server.close(r));}
- }}finally{await browser.close();}
+ }}}finally{await browser.close();}
 });

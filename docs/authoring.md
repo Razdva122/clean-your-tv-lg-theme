@@ -29,7 +29,7 @@ Templates own geometry and remote hit areas. Unless `allowColumnOverride` is fal
 within every template; narrow channel-list cells use a compact icon and label.
 In side-grid, Left from the first grid column enters the sidebar, Up/Down
 selects a shortcut, and Right returns to the grid.
-This candidate implements Classic spacing/text/focus scales only:
+This runtime implements Classic spacing/text/focus scales only:
 use spacingScale=1, textScale=1 and focusScale=1.1. Other scale combinations fail
 explicitly until shared geometry support lands. The broader API bounds do not
 prove every combination readable on a real TV.
@@ -37,22 +37,23 @@ prove every combination readable on a real TV.
 List static PNG/JPEG/WebP files in `assets` with unique IDs, relative paths,
 mediaType and dimensions. Reference listed assets from CSS with `url(assets/name.png)`.
 The preview resolves verified images locally; installed styles receive trusted
-asset handles. No remote imports/fonts/videos/scripts/plugins/install hooks.
+asset handles. No remote imports, fonts, videos, scripts, plugins or install hooks.
 A preview asset is required; the scaffold includes an original 1×1 placeholder.
 Replace it with a useful browser preview before submitting to showcase.
 
 ### Background rules for the current runtime
 
-Keep the existing static-background options. Video backgrounds, a separate 4K
-video plane and HDR/Dolby Vision output are not supported by Theme API 1.
+Keep a static fallback. The matched runtime also supports verified local silent
+H.264 MP4 through `wallpaperVideo` and `video-wallpaper-v1`; see the embedded
+wallpaper section below. HDR/Dolby Vision output is not supported.
 
 - Use listed local static PNG, JPEG or WebP assets, or allowed CSS colors and
-  gradients. No remote images, animated/video backgrounds or author scripts.
+  gradients. No remote images, remote videos or author scripts.
 - The current Home graphics canvas is 1920×1080. A 3840×2160 source image does
   not make the interface or wallpaper render at native 4K. LG documents separate
   graphics and video limits in its [app-resolution specification](https://webostv.developer.lge.com/develop/specifications/app-resolution).
 - Only the asset selected by `defaults.wallpaperAssetId` may be up to
-  3840×2160 and 2 MiB in this candidate. Older runtimes can reject that size.
+  3840×2160 and 2 MiB in this runtime. Older runtimes can reject that size.
   All other images are limited to 1920×1080 and 2 MiB each. The preview is limited
   to 960×540 and 300 KiB. There are at most 16 assets and 6 MiB of image data in
   total. These are acceptance ceilings, not required image sizes or output-quality guarantees.
@@ -154,3 +155,77 @@ logos, not image background removal, and cannot increase native image detail.
 
 The `.ctv-position` part controls the decorative scenic-ribbon counter and arrows.
 Use a transparent color to hide this indicator; app labels use `.ctv-label`.
+
+<a id="optional-scenic-ribbon-geometry-pr-candidate"></a>
+
+## Optional scenic ribbon geometry
+
+A trusted runtime advertising `ribbon-layout-v1` supports optional `layout.ribbon`
+inside the existing `scenic-grid` preset. It requires `allowColumnOverride: false`;
+keep `columns` between 1 and 8. Omit `ribbon` to retain existing scenic behavior.
+The main compiler validates this object and automatically adds the capability to
+`requires.capabilities`; authors do not add a capability by hand.
+
+| Field | Allowed values | Default |
+| --- | --- | --- |
+| `left` | 64–640 | 112 |
+| `right` | 32–320 | 112 |
+| `bottom` | 0–200 | 162 |
+| `cardHeight` | 96–240 | 128 |
+| `gap` | 0–64 | 24 |
+| `skewDeg` | −18–18 | 0 |
+| `focusLift` | 0–64 | 0 |
+| `iconScale` | 0.4–1 | 1 |
+| `shortcuts` | `header`, `bottom-left` | `header` |
+| `edgeNavigation` | `wrap`, `shortcuts` | `wrap` |
+| `labels` | `below`, `focused-above` | `below` |
+| `showClock` | boolean | `true` |
+
+Distances are in the renderer's 1920×1080 design coordinates; skew is degrees.
+Each field is optional. Numeric distances must be integers; `skewDeg` may be
+fractional; `iconScale` may also be fractional and adjusts native artwork within
+its trusted card bounds. Bottom-left shortcuts require `left >= 256`; combinations must leave
+at least 64 design pixels per card after skew and spacing. Labels placed `below`
+require `bottom >= 64` so captions remain on screen. The compiler checks
+these combined bounds as well as individual ranges. `shortcuts` edge navigation
+moves Left from the first visible card
+into trusted shortcuts; Right from Settings returns to that card and preserves
+the visible ribbon window; wrapping keeps the scenic app loop. Focused-above labels
+show the selected app caption above its card. Card placement, navigation, pointer
+hit areas and focus still belong to the trusted renderer. CSS remains appearance
+only. Unknown keys, invalid values and incompatible layouts fail validation.
+
+[The Ribbon example](../examples/ribbon/README.md) demonstrates eight skewed
+cards, raised focus, bottom-left shortcuts and a hidden clock with the credited Xecutioner Black Hole
+wallpaper. It contains no author JavaScript, layout stylesheet or renderer fork.
+See [runtime preparation](runtime.md) before using it.
+
+## Embedded wallpaper video
+
+Toolkit 0.2.0's matched Home 1.10.0 runtime accepts optional local MP4 files:
+
+```json
+"wallpaperVideo": {
+  "variants": [
+    {"quality": "4k", "path": "assets/wallpaper-4k.mp4"},
+    {"quality": "1080p", "path": "assets/wallpaper-1080p.mp4"}
+  ]
+}
+```
+
+Retain `defaults.wallpaperAssetId` for the image fallback. Use one or two unique
+qualities: 3840×2160 or 1920×1080, one H.264 track, no audio, finite duration
+1–60 seconds. UHD is limited to 12 MiB, FHD to 4 MiB, both to 16 MiB combined;
+the complete verified package is limited to 24 MiB. The compiler derives actual
+size, SHA-256 and dimensions and emits `video-wallpaper-v1`. Build, preview,
+submission and outgoing transfer preserve the verified media. Live reload also
+watches video changes. Older Home versions reject the unknown capability.
+
+Use licensed original media and retain source, crop, encoding and rights records.
+The main project's pinned `scripts/prepare-theme-wallpaper.py` can prepare silent
+UHD/FHD variants and a poster with `imageio-ffmpeg==0.6.0`; it refuses undersized
+source crops. See the [Alpine](../examples/glasshouse/README.md) and
+[Ribbon](../examples/ribbon/README.md) examples. Do not describe upscaled source
+as native UHD detail. Browser decoding proves neither the TV's video-plane
+resolution nor its playback capabilities. Match Home/service versions and read
+[receiver acceptance limits](compatibility.md) before testing on a device.
