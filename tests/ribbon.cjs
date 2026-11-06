@@ -1,16 +1,10 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),cp=require('node:child_process');
-const toolkit=require('../lib/toolkit.cjs'),source=path.resolve(__dirname,'../candidate-examples/ribbon');
+const toolkit=require('../lib/toolkit.cjs'),source=path.resolve(__dirname,'../examples/ribbon');
 const manifest=JSON.parse(fs.readFileSync(path.join(source,'theme.json')));
 const runtime=process.env.CYTV_THEME_RUNTIME ? toolkit.runtime(process.env.CYTV_THEME_RUNTIME) : null;
-const contract=runtime && runtime.meta.contract && runtime.inventory.has(runtime.meta.contract) ? JSON.parse(fs.readFileSync(path.join(runtime.root,runtime.meta.contract))) : null;
-const supportsRibbon=!!(contract && contract.optionalCapabilities && contract.optionalCapabilities['ribbon-layout-v1']);
-const featureSkip=!runtime ? 'CYTV_THEME_RUNTIME is not configured' : !supportsRibbon ? 'verified runtime lacks ribbon-layout-v1; use the explicit feature candidate' : false;
-
-test('an explicit older verified runtime refuses Ribbon with update-runtime',{skip:!runtime ? 'CYTV_THEME_RUNTIME is not configured' : supportsRibbon ? 'feature runtime supports ribbon-layout-v1' : false},async()=>{
- await assert.rejects(toolkit.compile(source,runtime),/update-runtime:.*ribbon-layout-v1/);
-});
+const featureSkip=!runtime ? 'CYTV_THEME_RUNTIME is not configured' : false;
 
 test('Ribbon requires a runtime contract advertising ribbon-layout-v1 before compilation',async()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'ctv-ribbon-old-'));
@@ -34,19 +28,19 @@ test('Ribbon refuses a mismatched compiler that silently drops optional geometry
  }finally{fs.rmSync(root,{recursive:true,force:true});}
 });
 
-test('Ribbon compiles and exports through the main candidate without losing geometry',{skip:featureSkip},async()=>{
+test('Ribbon compiles and exports through the matched runtime without losing geometry',{skip:featureSkip},async()=>{
  const rt=toolkit.runtime(process.env.CYTV_THEME_RUNTIME),tmp=fs.mkdtempSync(path.join(os.tmpdir(),'ctv-ribbon-build-'));
  try{
   const compiled=await toolkit.compile(source,rt);
   assert.deepEqual(compiled.manifest.layout.ribbon,manifest.layout.ribbon);
   assert.equal(compiled.manifest.layout.allowColumnOverride,false);
-  assert.deepEqual(compiled.manifest.requires.capabilities,['ribbon-layout-v1']);
+  assert.deepEqual(compiled.manifest.requires.capabilities,['video-wallpaper-v1','ribbon-layout-v1']);
   const repo=path.join(tmp,'source');fs.cpSync(source,repo,{recursive:true});
   const git=args=>cp.execFileSync('git',['-C',repo,...args],{encoding:'utf8'}).trim();
   git(['init','-q']);git(['add','.']);git(['-c','user.name=Theme test','-c','user.email=theme@example.test','-c','commit.gpgsign=false','commit','-qm','Commit Ribbon source']);
   const result=await toolkit.build(repo,rt,{repository:'https://github.com/razdva122/clean-your-tv-lg-theme',commit:git(['rev-parse','HEAD']),out:path.join(tmp,'distribution')});
   assert.deepEqual(result.layout.ribbon,manifest.layout.ribbon);
-  assert.deepEqual(result.requires.capabilities,['ribbon-layout-v1']);
+  assert.deepEqual(result.requires.capabilities,['video-wallpaper-v1','ribbon-layout-v1']);
   assert.equal(result.title,'Ribbon');
  }finally{fs.rmSync(tmp,{recursive:true,force:true});}
 });

@@ -4,7 +4,7 @@ This guide is for a contributor using a computer. Node.js 22+ runs the author to
 
 ## 1. Prepare the tools once
 
-Download the [matched candidate bundle](CANDIDATE.md), or clone `release/next`, open a terminal in its root and run `npm ci --ignore-scripts`. A source checkout also needs a maintainer-exported candidate in `.runtime/candidate`; follow [runtime preparation](runtime.md). No stable author runtime is published. Do not download a random theme repository as executable tooling.
+Download the [matched toolkit 0.2.0 bundle](RELEASE.md), or clone the reviewed `toolkit-v0.2.0` tag, open a terminal in its root and run `npm ci --ignore-scripts`. A source checkout also needs a maintainer-exported candidate in `.runtime/candidate`; follow [runtime preparation](runtime.md). No stable author runtime is published. Do not download a random theme repository as executable tooling.
 
 For a visual comparison before editing:
 
@@ -57,22 +57,22 @@ Use the [CSS reference](authoring.md), not internal DOM IDs or guessed selectors
 
 ## 4. Choose composition and columns
 
-Edit `layout.preset` in theme.json: `dock-grid`, `icon-grid`, `side-grid`, `channel-list` or `scenic-grid`. The last is one infinitely looping row, not a two-row grid. Set columns 1–8; use spacingScale=1, textScale=1 and focusScale=1.1 in this candidate.
+Edit `layout.preset` in theme.json: `dock-grid`, `icon-grid`, `side-grid`, `channel-list` or `scenic-grid`. The last is one infinitely looping row, not a two-row grid. Set columns 1–8; use spacingScale=1, textScale=1 and focusScale=1.1 in this runtime.
 
 By default the user's explicit Columns setting wins over your default. Set `allowColumnOverride: false` when the composition requires its own fixed count, as Alpine does. The saved user choice returns when switching to an adjustable theme. This flag does not permit arbitrary card placement.
 
-For a fixed scenic composition, the paired PR candidate also accepts optional
+For a fixed scenic composition, the matched runtime also accepts optional
 `layout.ribbon`: bounded offsets, card height, gap, skew, focus lift, shortcut
 placement, edge navigation, label placement and clock visibility. Start from
-[`candidate-examples/ribbon`](../candidate-examples/ribbon/README.md), keep
+[`examples/ribbon`](../examples/ribbon/README.md), keep
 `allowColumnOverride: false`, and follow the [field table](authoring.md#optional-scenic-ribbon-geometry-pr-candidate).
-Use the [explicit PR runtime](runtime.md#ribbon-pr-candidate); older author
+Use the [matched runtime](runtime.md); older author
 runtimes fail with `update-runtime`. Older Home rejects its automatically emitted
 `ribbon-layout-v1` capability while keeping the previous theme.
 
 ## 5. Add wallpaper and button artwork
 
-Copy your licensed PNG/JPEG/WebP into the theme's assets folder. Declare an ID, relative path, media type and exact dimensions in `theme.json`. Set `defaults.wallpaperAssetId` to its ID, then adjust `defaults.dim` for readable text. Images cannot reference outside the theme or load from remote hosts.
+Copy your licensed PNG/JPEG/WebP into the theme's assets folder. Declare an ID, relative path, media type and exact dimensions in `theme.json`. Set `defaults.wallpaperAssetId` to its ID, then adjust `defaults.dim` for readable text. Images cannot reference outside the theme or load from remote hosts. Follow the [current background rules](authoring.md#background-rules-for-the-current-runtime): SDR images, a 1920×1080 graphics canvas, optional verified local H.264 video, and no HDR output. A permitted 3840×2160 wallpaper source does not mean native 4K rendering.
 
 Use [the header-icon recipe](authoring.md#replace-header-button-icons) for Inputs, Wi-Fi and Settings shortcut glyphs. Alpine includes outline artwork and Channel pixel artwork. Preserve visible labels and focused contrast. To let wallpaper show behind Add app, style the full-screen `.ctv-library` with a translucent scrim and keep `.ctv-library-panel` readable; an opaque full-screen background will cover the panorama.
 
@@ -84,12 +84,12 @@ node "$THEME_TOOLS/bin/theme.cjs" validate themes/ocean --runtime "$THEME_TOOLS/
 
 In preview check Home, the last app, Add app/library, empty library, Inputs, focused shortcuts, rearrange/cancel, long names, missing icons and standard Settings. Try mouse and keyboard. Browser results do not verify TV remote behavior, storage, standby, cold boot or updates.
 
-Use [the screenshots command](publish.md#capture-browser-review-images) for fixed-clock Home/Inputs/Settings images and provenance. Review library screenshots too. The preview must be at most 960×540 and 300 KiB; other assets at most 1920×1080, 2 MiB each and 6 MiB in total. Resize/compress externally, update actual dimensions and validate again.
+Use [the screenshots command](publish.md#capture-browser-review-images) for fixed-clock Home/Inputs/Settings images and provenance. Review library screenshots too. The preview must be at most 960×540 and 300 KiB. In the matched runtime only the selected wallpaper may reach 3840×2160; other images are limited to 1920×1080. Images are limited to 2 MiB each, 16 assets and 6 MiB in total. Resize/compress externally, update actual dimensions and validate again.
 
 ## Try an unpublished theme on your TV
 
 In preview/showcase select a local theme, then **Send to TV**. First open
-**Settings → Appearance → Receive from computer** on your compatible TV candidate.
+**Settings → Themes → Receive from computer** on your compatible Home/service installation.
 Enter the TV's private IPv4 address and six-digit PIN into the dialog on your
 computer, then choose **Send theme**. Keep both devices on the same home network.
 The computer compiles the currently selected theme and sends an outgoing request
@@ -122,7 +122,16 @@ Several themes can share one repository: use `themes/ocean` and `themes/forest`,
 
 ## Can I choose this on my TV now?
 
-The theme-enabled main candidate embeds theme cards and controls directly in **Settings → Appearance**; there is no separate Themes launch screen. Classic and Alpine are bundled; Channel stays external. Use **More options → Add by URL → Load**, choose a distribution entry, then its downloaded version. Installed and built-in themes apply and save immediately without a timer. The separate showcase refreshes from the main repository without reloading Home; its **Try theme** action retains the 20-second Keep/Revert trial. Local transfers offer **Apply theme** without a timer. Confirmed files are cached for offline startup; interrupted previews relaunch in Classic. Published packages may not include this candidate yet. Follow [the user guide](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/release/next/docs/THEMES.md). Do not manually replace Home files or run author code on the TV. Browser results are not physical-TV acceptance.
+Published Home 1.10.0 places theme controls in **Settings → Themes**. Classic,
+Liquid Glass and Ribbon are bundled; Alpine and Channel are external catalogue
+themes. Use **Add by ID → Load**, select a found theme and download it. Installed
+and built-in themes apply and save immediately. Theme showcase provides a
+20-second Keep/Revert trial; local transfers offer **Apply theme** without a timer.
+Confirmed files are cached for offline startup. Follow the [published user
+guide](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/v1.9.0/docs/THEMES.md).
+A toolkit update cannot repair an old Root worker or prove receiver/media acceptance;
+see [compatibility limits](compatibility.md). Do not manually replace Home files or
+run author code on the TV. Browser results are separate from physical-TV acceptance.
 
 ## Troubleshooting
 
@@ -134,7 +143,7 @@ The theme-enabled main candidate embeds theme cards and controls directly in **S
 | Images fail validation | Check manifest paths, MIME type, actual dimensions, byte limits and credits. |
 | Last version remains on screen | Fix the error above Home; the preview deliberately retains the last valid theme. |
 | Build refuses dirty input | Commit the source files, pass the exact HEAD and use an empty output outside the source folder. |
-| There is no TV theme setting | That package does not include the theme-enabled candidate; a catalog listing cannot add the control. |
+| There is no TV theme setting | Update to a complete supported theme-enabled Home/service release; a catalog listing cannot add the control. |
 
 In the computer renderer, **Receive from computer** explains the steps on the TV instead of reporting an unavailable TV service. Use **Send to TV** above the preview. Classic is built in: its send dialog explains that no transfer is needed before asking for TV details. The renderer permits data requests only to the GitHub origins and da.gd plain-text lookup used by the trusted theme loader; the outer author page remains restricted to same-origin network requests.
 

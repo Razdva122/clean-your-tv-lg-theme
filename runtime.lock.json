@@ -3,10 +3,10 @@
   "themeApiVersion": 1,
   "status": "unpublished",
   "artifact": null,
-  "note": "Author toolkit 0.1.0 pairs with the clean main-project 1.5.0 source (Home 1.6). The independently exported author runtime retains candidate status and explicit --runtime; no separately signed runtime download is pinned.",
+  "note": "Author toolkit 0.2.0 pairs with published application 1.9.0 / Home 1.10.0. The independently exported author runtime retains candidate status and explicit --runtime; no separately signed runtime download is pinned.",
   "candidateSource": {
     "repository": "Razdva122/clean-your-tv-lg-webos",
-    "commit": "1fc8235ac564bd2d06ec53a41b07b26f48ba17e1",
-    "releaseCandidate": "1.6.0"
+    "commit": "94c81dc7c102b8e9476e22cdc4ad6ce3ab36cf92",
+    "releaseCandidate": "1.10.0"
   }
 }

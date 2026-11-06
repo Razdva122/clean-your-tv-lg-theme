@@ -1,7 +1,7 @@
 # Runtime preparation and trust
 
-Toolkit 0.1.0 pairs with application 1.5.0 / Home 1.6 at exact main source
-`1fc8235ac564bd2d06ec53a41b07b26f48ba17e1`. Its author-runtime export still uses
+Toolkit 0.2.0 pairs with application 1.9.0 / Home 1.10.0 at exact main source
+`94c81dc7c102b8e9476e22cdc4ad6ce3ab36cf92`. Its author-runtime export still uses
 `status: candidate`; this describes the independent export format, not the TV
 application release status. See [release verification](RELEASE.md).
 
@@ -23,9 +23,14 @@ project, then runs:
 
 ```sh
 npm ci --ignore-scripts
-python3 scripts/export-theme-runtime.py --out build/theme-author-runtime
+python3 -m venv /absolute/path/runtime-build-venv
+/absolute/path/runtime-build-venv/bin/python -m pip install -r scripts/build-requirements.txt
+/absolute/path/runtime-build-venv/bin/python scripts/export-theme-runtime.py --out build/theme-author-runtime
 ```
 
+Keep the Python environment outside the source checkout so it stays clean. On
+Windows use the environment's `Scripts/python.exe` instead of `bin/python`. The
+export downloads pinned font sources and needs network access on the first run.
 The candidate requires a clean checkout. For local experiments only, explicitly
 add `--allow-dirty`; those exports cannot stand in for the pinned candidate.
 Existing output is never replaced.
@@ -60,37 +65,10 @@ candidate archive provides tools/runtime, not your author repository's Git histo
 
 ## Ribbon PR candidate
 
-`layout.ribbon` requires the paired main-project PR candidate export advertising
-`ribbon-layout-v1`. The tested clean feature export comes from main-project
-commit `8a2d751a0fd8dd07afa159fee03b67eda32c0ae5`, an unpublished PR candidate
-with `dirty: false`; it does not establish public release or TV acceptance.
-The reviewed stable provenance in `runtime.lock.json` remains
-unchanged; that pin predates this option. A lock upgrade belongs after reviewed
-integration, with exact provenance, rather than pointing at an unreviewed commit.
-
-A maintainer may export the checked-out main PR candidate explicitly:
-
-```sh
-python3 scripts/export-theme-runtime.py --out build/ribbon-pr-runtime
-```
-
-Run this in the main project after installing its locked dependencies. The
-export requires a clean checkout; a development-only dirty export needs explicit
-`--allow-dirty` and is not reviewed release evidence. Keep the complete export
-outside theme source, then pass its absolute path from the toolkit:
-
-```sh
-npm run theme -- preview candidate-examples/ribbon --runtime /absolute/path/main/build/ribbon-pr-runtime
-CYTV_THEME_RUNTIME=/absolute/path/main/build/ribbon-pr-runtime npm test
-```
-
-For the browser checks also set `CYTV_THEME_BROWSER` to the installed Chromium
-executable. The wrapper checks the verified runtime contract before compilation
-and refuses an older explicit runtime with `update-runtime` rather than silently
-rendering the old scenic layout. It also checks that compilation preserved the
-ribbon and emitted its capability. The main runtime owns validation and rendering.
-
-Ribbon source lives in `candidate-examples/ribbon`, outside the stable `examples`
-catalogue. Clone this repository and use the explicit feature export above; the
-stable candidate bundle retains examples compatible with its reviewed runtime
-pin. Ribbon joins that bundle only after a reviewed runtime pin upgrade.
+The former explicit PR export is superseded by the matched toolkit 0.2.0 bundle.
+Its pinned runtime includes `ribbon-layout-v1` and `video-wallpaper-v1` from
+published Home 1.10.0. Use `examples/ribbon` with `.runtime/candidate` for
+validate, preview, build and outgoing transfer. Older verified runtimes without
+the required contract are refused with `update-runtime`; a theme cannot upgrade Home.
+The runtime manifest retains candidate status as explained above. Desktop tests
+do not establish physical-TV playback or receiver acceptance.

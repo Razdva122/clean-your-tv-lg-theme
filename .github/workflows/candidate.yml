@@ -35,6 +35,7 @@ jobs:
         run: |
           npm ci --ignore-scripts
           npm ci --ignore-scripts --prefix .candidate-source
+          python -m pip install -r .candidate-source/scripts/build-requirements.txt
       - name: Export the pinned candidate runtime
         working-directory: .candidate-source
         run: python scripts/export-theme-runtime.py --out ../.runtime/candidate

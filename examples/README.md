@@ -146,7 +146,7 @@ contains no Russian streaming apps. These are rendering fixtures; launches,
 network status and inputs remain simulated. Use `--inventory` for a private
 snapshot instead. Older historical screenshots may use the legacy SVG demo set.
 
-The unreleased [Ribbon source](../candidate-examples/ribbon/README.md) is kept
-outside this stable catalogue. It requires the full source repository and an
-explicit new PR runtime; it is not included in the stable candidate example
-bundle until the runtime pin has been reviewed and upgraded.
+[Ribbon](ribbon/README.md) is included in toolkit 0.2.0 with the matched Home
+1.10.0 runtime. It uses the released Black Hole artwork by Xecutioner, with
+non-commercial permission and attribution, UHD/FHD videos and an image fallback.
+The previous feature-only copy in `candidate-examples/ribbon` is superseded.
