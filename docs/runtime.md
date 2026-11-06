@@ -1,7 +1,7 @@
 # Runtime preparation and trust
 
-Toolkit 0.1.0 pairs with application 1.5.0 / Home 1.6 at exact main source
-`1fc8235ac564bd2d06ec53a41b07b26f48ba17e1`. Its author-runtime export still uses
+Toolkit 0.2.0 pairs with application 1.9.0 / Home 1.10.0 at exact main source
+`94c81dc7c102b8e9476e22cdc4ad6ce3ab36cf92`. Its author-runtime export still uses
 `status: candidate`; this describes the independent export format, not the TV
 application release status. See [release verification](RELEASE.md).
 
@@ -23,9 +23,14 @@ project, then runs:
 
 ```sh
 npm ci --ignore-scripts
-python3 scripts/export-theme-runtime.py --out build/theme-author-runtime
+python3 -m venv /absolute/path/runtime-build-venv
+/absolute/path/runtime-build-venv/bin/python -m pip install -r scripts/build-requirements.txt
+/absolute/path/runtime-build-venv/bin/python scripts/export-theme-runtime.py --out build/theme-author-runtime
 ```
 
+Keep the Python environment outside the source checkout so it stays clean. On
+Windows use the environment's `Scripts/python.exe` instead of `bin/python`. The
+export downloads pinned font sources and needs network access on the first run.
 The candidate requires a clean checkout. For local experiments only, explicitly
 add `--allow-dirty`; those exports cannot stand in for the pinned candidate.
 Existing output is never replaced.
@@ -57,3 +62,13 @@ node "$THEME_TOOLS/bin/theme.cjs" preview themes/ocean --runtime "$THEME_TOOLS/.
 Run that command from your author repository root. Do not copy the runtime or
 `node_modules` into your theme folder or publish them with a distribution. A
 candidate archive provides tools/runtime, not your author repository's Git history.
+
+## Ribbon PR candidate
+
+The former explicit PR export is superseded by the matched toolkit 0.2.0 bundle.
+Its pinned runtime includes `ribbon-layout-v1` and `video-wallpaper-v1` from
+published Home 1.10.0. Use `examples/ribbon` with `.runtime/candidate` for
+validate, preview, build and outgoing transfer. Older verified runtimes without
+the required contract are refused with `update-runtime`; a theme cannot upgrade Home.
+The runtime manifest retains candidate status as explained above. Desktop tests
+do not establish physical-TV playback or receiver acceptance.

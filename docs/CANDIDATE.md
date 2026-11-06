@@ -1,6 +1,6 @@
 # Author toolkit candidate
 
-Historical development record. For toolkit 0.1.0, use the [release guide](RELEASE.md)
+Historical development record. For the current toolkit, use the [release guide](RELEASE.md)
 and current `runtime.lock.json`; the older commit and artifact below are retained
 as evidence of their original candidate run.
 

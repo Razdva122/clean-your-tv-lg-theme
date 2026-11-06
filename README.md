@@ -4,7 +4,7 @@ Create CSS themes for Clean Your TV Home, browse them with the actual launcher,
 and build an independently versioned distribution. You can keep several themes
 in `themes/<slug>/` in one public GitHub repository.
 
-**Author toolkit 0.1.0** pairs with Clean Your TV application 1.5.0 / Home 1.6.
+**Author toolkit 0.2.0** pairs with Clean Your TV application 1.9.0 / Home 1.10.0.
 Use the [release bundle and verification guide](docs/RELEASE.md). It includes a
 clean export from exact reviewed main-project source; the author runtime retains
 its explicit **candidate** format and is not a separately signed TV package.
@@ -86,7 +86,7 @@ user column choice still takes precedence. Other themes remain selectable.
 ## Send a theme to your TV
 
 Choose your local theme in preview/showcase and click **Send to TV**. On TV open
-**Settings → Appearance → Receive from computer**, then enter the TV address and
+**Settings → Themes → Receive from computer**, then enter the TV address and
 six-digit PIN in the computer dialog. Choose **Send theme**. Both devices must
 be on the same home network; no incoming computer firewall change is needed.
 **Sent** means bytes received: finish installation on TV and choose **Apply theme**.
@@ -108,7 +108,7 @@ remains available independently.
 
 ## Matched release
 
-Toolkit `0.1.0` and tag `toolkit-v0.1.0` have their own version, separate from
+Toolkit `0.2.0` and tag `toolkit-v0.2.0` have their own version, separate from
 Itachi theme `v1.0.2` and the TV application. Follow the [release guide](docs/RELEASE.md)
 for archive hashes, runtime provenance and independent device-acceptance limits.
 [Earlier candidate evidence](docs/CANDIDATE.md) remains historical.
@@ -124,9 +124,9 @@ for archive hashes, runtime provenance and independent device-acceptance limits.
 | Candidate limits and TV availability | [Compatibility](docs/compatibility.md) |
 | Compare complete examples | [Classic, Alpine, Channel and Sharingan](examples/README.md) |
 
-The public catalog belongs to [the main project](https://github.com/Razdva122/clean-your-tv-lg-webos/tree/release/next/showcase). Its initial Alpine/Channel records reference independently committed distributions in this repository; the catalog and TV installer follow the main project release cycle. A listing does not automatically bundle a theme. Home 1.6 bundles Classic and Alpine, while Channel stays an external showcase install; see the main user guide for the implemented candidate TV flow.
+The public catalog belongs to [the main project](https://github.com/Razdva122/clean-your-tv-lg-webos/tree/release/next/showcase). Its initial Alpine/Channel records reference independently committed distributions in this repository; the catalog and TV installer follow the main project release cycle. A listing does not automatically bundle a theme. Home 1.10.0 bundles Classic, Liquid Glass and Ribbon, while Channel stays an external showcase install; see the main user guide for the published TV flow.
 
-The repository-root `cytv-themes.json` lists **Channel and Itachi · Sharingan** for the candidate TV installer. Alpine is a bundled main-project theme; its older distribution remains historical. A repository-root URL resolves the default branch, so the index is discoverable there once this toolkit release is integrated. The showcase's existing commit-pinned Channel descriptor already works independently of that merge.
+The repository-root `cytv-themes.json` lists **Channel and Itachi · Sharingan** for the TV installer. Current Alpine is an external catalogue theme; its older toolkit distribution remains historical. A repository-root URL resolves the default branch, so the index is discoverable there. The showcase's existing commit-pinned Channel descriptor works independently of a toolkit update.
 
 ## Preview real TV resources
 
@@ -134,3 +134,26 @@ Default icons are [ten original international webOS app resources](examples/refe
 including recorded native IDs, versions, dimensions and hashes. For a personal app set, use [a private local TV snapshot](docs/tv-preview.md) with
 `--inventory .runtime/private-tv/inventory.json`. The header distinguishes
 **TV snapshot** from **Reference TV apps**. Snapshots never become theme package assets.
+
+## Embedded 4K wallpapers
+
+The Alpine and Ribbon examples include actual 3840×2160 H.264 media, a 1080p
+variant and a static JPEG fallback. Ribbon mirrors the released Black Hole video by Xecutioner, recorded at native
+3840×2160, with a 12-second loop. Its artwork requires non-commercial use and
+attribution; preserve the example license and credits. These examples use the
+matched runtime pinned in runtime.lock.json; browser checks are not TV acceptance.
+
+Author theme.json uses `wallpaperVideo: {"variants": [{"quality":"4k",
+"path":"assets/wallpaper-4k.mp4"}, {"quality":"1080p",
+"path":"assets/wallpaper-1080p.mp4"}]}`. Keep the fallback image in
+`defaults.wallpaperAssetId`. The compiler derives sizes, hashes and decoded H.264
+dimensions and rejects mismatched quality, audio, duration or byte budgets.
+Build, live preview, send and submission include both local video files. Sending
+is still an outgoing private-TV/PIN request and has a bounded 33 MiB envelope.
+
+For originals, use the main project's
+[offline wallpaper preparation tool](https://github.com/Razdva122/clean-your-tv-lg-webos/blob/94c81dc7c102b8e9476e22cdc4ad6ce3ab36cf92/scripts/prepare-theme-wallpaper.py)
+with pinned `imageio-ffmpeg==0.6.0`, or supply already prepared compliant MP4s.
+It rejects undersized crops instead of upscaling. Retain original source URLs,
+licenses, credits and all transformations in your theme's documents. The browser
+preview can select 4K explicitly; it does not prove a TV's native capabilities.
