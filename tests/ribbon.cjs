@@ -22,7 +22,7 @@ test('Ribbon refuses a mismatched compiler that silently drops optional geometry
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'ctv-ribbon-mismatch-'));
  try{
   fs.writeFileSync(path.join(root,'compiler.cjs'),"exports.compileSource=()=>({manifest:{layout:{preset:'scenic-grid'},requires:{capabilities:[]}}});");
-  fs.writeFileSync(path.join(root,'contract.json'),JSON.stringify({optionalCapabilities:{'ribbon-layout-v1':{}}}));
+  fs.writeFileSync(path.join(root,'contract.json'),JSON.stringify({optionalCapabilities:{'ribbon-layout-v1':{},'weather-v1':{}}}));
   const rt={root,meta:{compiler:'compiler.cjs',contract:'contract.json'},inventory:new Map([['contract.json',{}]])};
   await assert.rejects(toolkit.compile(source,rt),/update-runtime:.*did not preserve/);
  }finally{fs.rmSync(root,{recursive:true,force:true});}
@@ -34,13 +34,13 @@ test('Ribbon compiles and exports through the matched runtime without losing geo
   const compiled=await toolkit.compile(source,rt);
   assert.deepEqual(compiled.manifest.layout.ribbon,manifest.layout.ribbon);
   assert.equal(compiled.manifest.layout.allowColumnOverride,false);
-  assert.deepEqual(compiled.manifest.requires.capabilities,['video-wallpaper-v1','ribbon-layout-v1']);
+  assert.deepEqual(compiled.manifest.requires.capabilities,['weather-v1','video-wallpaper-v1','ribbon-layout-v1']);
   const repo=path.join(tmp,'source');fs.cpSync(source,repo,{recursive:true});
   const git=args=>cp.execFileSync('git',['-C',repo,...args],{encoding:'utf8'}).trim();
   git(['init','-q']);git(['add','.']);git(['-c','user.name=Theme test','-c','user.email=theme@example.test','-c','commit.gpgsign=false','commit','-qm','Commit Ribbon source']);
   const result=await toolkit.build(repo,rt,{repository:'https://github.com/razdva122/clean-your-tv-lg-theme',commit:git(['rev-parse','HEAD']),out:path.join(tmp,'distribution')});
   assert.deepEqual(result.layout.ribbon,manifest.layout.ribbon);
-  assert.deepEqual(result.requires.capabilities,['video-wallpaper-v1','ribbon-layout-v1']);
+  assert.deepEqual(result.requires.capabilities,['weather-v1','video-wallpaper-v1','ribbon-layout-v1']);
   assert.equal(result.title,'Ribbon');
  }finally{fs.rmSync(tmp,{recursive:true,force:true});}
 });

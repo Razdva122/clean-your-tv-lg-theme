@@ -29,6 +29,12 @@
       "labels": "focused-above",
       "showClock": false,
       "iconScale": 0.65
+    },
+    "weather": {
+      "formats": [],
+      "scale": 1,
+      "padding": 24,
+      "icons": "fill"
     }
   },
   "defaults": {
