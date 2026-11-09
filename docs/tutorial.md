@@ -153,3 +153,7 @@ In the computer renderer, **Receive from computer** explains the steps on the TV
 Use **TV link → Copy ID** for published versions, or generate the keyless release
 workflow to attach IDs automatically. See [complete instructions](short-links.md).
 The matching Home accepts an ID, a da.gd URL or the full GitHub URL. **Send to TV** tests current local edits; **TV link** retrieves a published version and excludes local changes. Neither action publishes a release.
+
+## Weather
+
+The [weather authoring guide](weather.md) covers supported formats, theme styling and local synthetic preview controls. Use a matching weather-capable runtime; older published Home cannot acquire weather from a theme package alone.

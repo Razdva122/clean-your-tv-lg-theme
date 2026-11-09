@@ -3,10 +3,10 @@
   "themeApiVersion": 1,
   "status": "unpublished",
   "artifact": null,
-  "note": "Author toolkit 0.2.0 pairs with published application 1.9.0 / Home 1.10.0. The independently exported author runtime retains candidate status and explicit --runtime; no separately signed runtime download is pinned.",
+  "note": "Weather-capable author runtime candidate. No stable runtime download or physical TV acceptance is claimed. Use the complete export from the exact source pin.",
   "candidateSource": {
     "repository": "Razdva122/clean-your-tv-lg-webos",
-    "commit": "94c81dc7c102b8e9476e22cdc4ad6ce3ab36cf92",
-    "releaseCandidate": "1.10.0"
+    "commit": "3b04d656f2e5bfc11f44693a8fe012770e7da858",
+    "feature": "weather-v1"
   }
 }

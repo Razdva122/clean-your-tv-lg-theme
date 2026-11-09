@@ -4,19 +4,18 @@ Create CSS themes for Clean Your TV Home, browse them with the actual launcher,
 and build an independently versioned distribution. You can keep several themes
 in `themes/<slug>/` in one public GitHub repository.
 
-**Author toolkit 0.2.0** pairs with Clean Your TV application 1.9.0 / Home 1.10.0.
-Use the [release bundle and verification guide](docs/RELEASE.md). It includes a
-clean export from exact reviewed main-project source; the author runtime retains
-its explicit **candidate** format and is not a separately signed TV package.
-The toolkit does not download floating `main` or execute theme scripts.
+**This branch prepares weather-aware author tools.** Use the exact candidate
+source in `runtime.lock.json` and the complete [runtime export](docs/runtime.md).
+The [weather guide](docs/weather.md) explains the four formats and local preview
+controls. This is an authoring candidate, not a published Home application update.
+The prior stable toolkit is documented in [its release guide](docs/RELEASE.md).
+The toolkit does not download floating branches or execute theme scripts.
 TV transfers require an explicit Send theme action.
 
 ## Ready-made examples
 
-First download and extract the [matched toolkit bundle](docs/RELEASE.md),
-which includes `.runtime/candidate`, install Node.js 22+, and run
-`npm ci --ignore-scripts` in its toolkit directory. A source checkout also needs
-a [trusted runtime export](docs/runtime.md) before preview commands can run.
+Install Node.js 22+, run `npm ci --ignore-scripts`, and prepare the
+[matched runtime candidate](docs/runtime.md) in `.runtime/candidate` before preview commands can run.
 For a live Home screen with theme-switching buttons, run from the toolkit root:
 
 ```sh
@@ -157,3 +156,7 @@ with pinned `imageio-ffmpeg==0.6.0`, or supply already prepared compliant MP4s.
 It rejects undersized crops instead of upscaling. Retain original source URLs,
 licenses, credits and all transformations in your theme's documents. The browser
 preview can select 4K explicitly; it does not prove a TV's native capabilities.
+
+## Weather
+
+The [weather authoring guide](docs/weather.md) covers supported formats, theme styling and local synthetic preview controls. Use a matching weather-capable runtime; older published Home cannot acquire weather from a theme package alone.

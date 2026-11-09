@@ -1,9 +1,8 @@
 # Runtime preparation and trust
 
-Toolkit 0.2.0 pairs with application 1.9.0 / Home 1.10.0 at exact main source
-`94c81dc7c102b8e9476e22cdc4ad6ce3ab36cf92`. Its author-runtime export still uses
-`status: candidate`; this describes the independent export format, not the TV
-application release status. See [release verification](RELEASE.md).
+The weather integration uses the exact candidate main-project source in
+`runtime.lock.json`. The export remains a candidate until the normal Home release
+and device acceptance workflow completes. Keep the whole matching export together.
 
 The toolkit imports the main project's compiler, policy and actual renderer bytes.
 It never maintains a launcher fork. The checked-in lock currently has

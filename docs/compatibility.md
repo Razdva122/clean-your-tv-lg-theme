@@ -32,3 +32,7 @@ behavior only; no physical TV acceptance is claimed for Ribbon.
 Application v1.9.0 still records unverified retained Root image/video receive,
 Apply, playback and reload in main-project issue #337. Toolkit checks do not
 resolve that device acceptance. See the [application release and limits](https://github.com/Razdva122/clean-your-tv-lg-webos/releases/tag/v1.9.0).
+
+## Weather
+
+The [weather authoring guide](weather.md) covers supported formats, theme styling and local synthetic preview controls. Use a matching weather-capable runtime; older published Home cannot acquire weather from a theme package alone.

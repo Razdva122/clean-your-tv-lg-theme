@@ -1,3 +1,5 @@
+> Historical stable toolkit release. Weather-aware source preparation is described in [weather.md](weather.md) and the current runtime lock.
+
 # Author toolkit 0.2.0
 
 The author toolkit version is independent of the TV application and of theme

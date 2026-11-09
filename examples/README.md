@@ -1,11 +1,13 @@
-# Classic, Channel, Alpine and Sharingan
+# Authoring examples
 
-The live showcase includes four choices:
+The local author showcase includes five choices. Historical Channel and Sharingan
+examples remain editable references; they are not entries in the active Home catalog.
 
 | Theme | Composition | Default columns | Source |
 | --- | --- | --- | --- |
 | [Alpine](glasshouse/theme.css) | Scenic wallpaper, large clock and one looping bottom ribbon | 8 | Editable example in `glasshouse/` |
 | [Itachi · Sharingan](itachi/README.md) | Dark portrait, crimson eyes and CSS-only white native icons | 5 | Editable source in `itachi/` |
+| [Ribbon](ribbon/theme.css) | Fixed skewed app ribbon; no weather | 8 | Editable source in `ribbon/` |
 | Classic | Original Home shelf and grid | 5 | Built into the renderer; uses trusted reset, no theme CSS copy |
 | [Channel](terminal/theme.css) | Blue teletext-style numbered list with a selected title | 1 | Editable example in `terminal/` |
 
@@ -150,3 +152,7 @@ snapshot instead. Older historical screenshots may use the legacy SVG demo set.
 1.10.0 runtime. It uses the released Black Hole artwork by Xecutioner, with
 non-commercial permission and attribution, UHD/FHD videos and an image fallback.
 The previous feature-only copy in `candidate-examples/ribbon` is superseded.
+
+## Weather preview
+
+Use Example weather and Units above the screen. The local trusted adapter provides synthetic Berlin data without city/IP/provider requests. Non-Ribbon examples support all four formats; Ribbon declares no formats. Styling and compatibility: [weather guide](../docs/weather.md).

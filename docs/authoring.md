@@ -229,3 +229,7 @@ source crops. See the [Alpine](../examples/glasshouse/README.md) and
 as native UHD detail. Browser decoding proves neither the TV's video-plane
 resolution nor its playback capabilities. Match Home/service versions and read
 [receiver acceptance limits](compatibility.md) before testing on a device.
+
+## Weather
+
+The [weather authoring guide](weather.md) covers supported formats, theme styling and local synthetic preview controls. Use a matching weather-capable runtime; older published Home cannot acquire weather from a theme package alone.

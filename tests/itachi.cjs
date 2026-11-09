@@ -12,7 +12,7 @@ test('Sharingan builds a verified data package using the toolkit identity and ex
   const commit=git(['rev-parse','HEAD']),out=path.join(tmp,'distribution');
   const manifest=await toolkit.build(repo,rt,{repository,commit,out});
   assert.equal(manifest.id,'github:razdva122/clean-your-tv-lg-theme:itachi');
-  assert.equal(manifest.source.commit,commit);assert.deepEqual(manifest.requires.capabilities,['modern-icon-css-v1']);
+  assert.equal(manifest.source.commit,commit);assert.deepEqual(manifest.requires.capabilities,['modern-icon-css-v1','weather-v1']);
   assert.equal(manifest.layout.columns,5);assert.equal(manifest.assets.length,2,'wallpaper and preview only; no replacement app images');
   for(const file of [manifest.rules,...manifest.assets,...manifest.documents]){
    const bytes=fs.readFileSync(path.join(out,file.path));assert.equal(bytes.length,file.size);assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),file.sha256);
