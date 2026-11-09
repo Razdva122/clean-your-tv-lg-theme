@@ -6,7 +6,7 @@
   "note": "Weather-capable author runtime candidate. No stable runtime download or physical TV acceptance is claimed. Use the complete export from the exact source pin.",
   "candidateSource": {
     "repository": "Razdva122/clean-your-tv-lg-webos",
-    "commit": "3b04d656f2e5bfc11f44693a8fe012770e7da858",
+    "commit": "afc8586955802270167daed6cd3a445fc31ff364",
     "feature": "weather-v1"
   }
 }

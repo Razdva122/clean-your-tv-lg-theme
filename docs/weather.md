@@ -54,7 +54,7 @@ upstream can merge with its original identity. The reviewed catalog may record
 
 ## Reviewed candidate evidence
 
-Exact runtime source: `3b04d656f2e5bfc11f44693a8fe012770e7da858` in the main
+Exact runtime source: `afc8586955802270167daed6cd3a445fc31ff364` in the main
 project, exported from a clean checkout. Runtime format remains candidate, with
 a complete SHA-256 inventory; no separate stable download is invented.
 The Home integration and Sources dialog are reviewed in
